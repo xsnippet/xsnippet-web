@@ -1,0 +1,55 @@
+{
+  "name": "xsnippet-web",
+  "version": "1.0.0",
+  "description": "Web UI for XSnippet code sharing service",
+  "author": "The XSnippet Team <dev@xsnippet.org>",
+  "license": "MIT",
+  "homepage": "https://github.com/xsnippet/xsnippet-web",
+  "bugs": {
+    "url": "https://github.com/xsnippet/xsnippet-web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xsnippet/xsnippet-web.git"
+  },
+  "keywords": [
+    "xsnippet",
+    "ui",
+    "code",
+    "sharing"
+  ],
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3",
+    "webpack-merge": "^4.1.0"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore --ext js,jsx .",
+    "build": "webpack",
+    "start": "NODE_ENV=development webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
