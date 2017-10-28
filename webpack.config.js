@@ -47,7 +47,19 @@ module.exports = () => {
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
-              { loader: 'css-loader', options: { modules: true } },
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  minimize: isProduction,
+
+                  // Enable source maps if they are specified in devtool
+                  // option. God-Knows-Why css-loader doesn't check devtool
+                  // value in order to initialize its sourceMap value, hence
+                  // this line.
+                  sourceMap: true,
+                },
+              },
               { loader: 'stylus-loader' },
             ],
           }),
