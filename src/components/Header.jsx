@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const Header = () => (
   <header>
     <nav>
       <ul>
-        <li><Link to="/">New snippet</Link></li>
-        <li><Link to="/recent">Recent snippets</Link></li>
-        <li><Link to="/upload">Upload snippet</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/sign-in">Sign in</Link></li>
+        <li><NavLink to="/" activeClassName="active">New snippet</NavLink></li>
+        <li><NavLink to="/recent" activeClassName="active">Recent snippets</NavLink></li>
+        <li><NavLink to="/upload" activeClassName="active">Upload snippet</NavLink></li>
+        <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
+        <li><NavLink to="/sign-in" activeClassName="active">Sign in</NavLink></li>
       </ul>
     </nav>
   </header>
