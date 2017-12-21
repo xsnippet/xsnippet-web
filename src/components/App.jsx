@@ -1,10 +1,13 @@
 import React from 'react';
-import styles from '../styles/App.styl';
+
+import Header from './Header';
+import Main from './Main';
 
 
 const App = () => (
   <div>
-    <span className={styles.hero}>All</span> Heil <strong>XSnippet</strong>!
+    <Header />
+    <Main />
   </div>
 );
 
