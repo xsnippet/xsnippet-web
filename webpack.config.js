@@ -68,7 +68,8 @@ module.exports = () => {
         // Just copy these files to output "As Is", if they are imported from
         // JSX sources or encountered inside CSS.
         {
-          test: /\.(png|svg|jpg)$/,
+          test: /\.(png|svg|jpg|woff|svg|ttf|woff2|eot)$/,
+          include: path.resolve(__dirname, 'src'),
           use: ['file-loader'],
         },
       ],
