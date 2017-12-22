@@ -50,7 +50,7 @@ module.exports = () => {
               {
                 loader: 'css-loader',
                 options: {
-                  modules: true,
+                  modules: false,
                   minimize: isProduction,
 
                   // Enable source maps if they are specified in devtool
