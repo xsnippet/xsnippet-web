@@ -1,2 +1,10 @@
-.hero
-  color: red
+@import './common/reset.styl'
+@import './common/variables.styl'
+@import './common/mixins.styl'
+
+html, body, body > div
+  height: 100%
+
+.content
+  display: flex
+  height: calc(100% - 70px)

@@ -1,0 +1,47 @@
+@import './common/variables.styl'
+@import './common/icons.styl'
+
+.header
+  position: relative
+  display: flex
+  flex-flow: row nowrap
+  justify-content: flex-start
+  align-items: center
+  height: 70px
+  z-index: 2
+  box-shadow: 0px 2px 2px 0px border-dark
+  &-inner
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-between
+    align-items: center
+    width: calc(100% - 70px)
+    max-width: 1024px
+  &-logo
+    background-color: header-logo-bg
+    width: 70px
+    height: 70px
+    display: block
+  &-slogan
+    color:text-dark
+    font-family: 'Raleway'
+    font-size: 23px
+    font-weight: 600
+    margin-left: 19px
+    letter-spacing: 0.6px
+    &-x
+      color: text-green
+  &-sign-in
+    margin-right: 20px
+    & a
+      display: flex
+      align-items: center
+      text-decoration: none
+    & span
+      margin-right: 15px
+      font-family: 'Quicksand'
+      color: text-green
+    & i
+      font-size: 23px
+      margin-top: 6px
+      color: text-green

@@ -7,9 +7,10 @@ import UploadSnippet from './UploadSnippet';
 import About from './About';
 import SignIn from './SignIn';
 
+import '../styles/Main.styl';
 
 const Main = () => (
-  <main>
+  <main className="main">
     <Switch>
       <Route exact path="/" component={NewSnippet} />
       <Route path="/recent" component={RecentSnippets} />
