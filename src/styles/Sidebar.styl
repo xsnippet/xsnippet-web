@@ -1,7 +1,41 @@
 @import './common/variables.styl'
 
 .sidebar
-  display: flex;
-  width: 70px
+  display: flex
+  width: offset
   height: 100%
   background-color: sidebar-bg-normal
+  &-list
+    width: 100%
+  &-item
+    position: relative
+    height: offset
+    &-border
+      border-bottom: 1px solid rgba(color-white-smoke-white-s0, .1)
+    & a
+      display: flex
+      flex-flow: row nowrap
+      justify-content: center
+      align-items: center
+      height: 100%
+      text-decoration: none
+      &.active,
+      &:hover
+        background-color: sidebar-bg-active
+        i
+          color: sidebar-active-icon
+        &::after
+          content: ""
+          position: absolute
+          width: 0
+          height: 0
+          right: -13px
+          top: 50%
+          transform: translateY(-50%) rotate(-90deg)
+          border-left: solid transparent 9px
+          border-right: solid transparent 9px
+          border-top: solid sidebar-bg-active 9px
+    & i
+      font-size: 27px
+      margin-top: 6px
+      color: sidebar-normal-icon
