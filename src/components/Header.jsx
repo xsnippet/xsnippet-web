@@ -2,10 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '../styles/Header.styl';
+import Logo from '../assets/xsnippet.svg';
 
 const Header = () => (
   <header className="header" key="header">
-    <span className="header-logo" />
+    <div className="header-logo">
+      <NavLink exact to="/">
+        <img src={Logo} alt="XSnippet" />
+      </NavLink>
+    </div>
     <div className="header-inner">
       <div className="header-slogan">
         <span className="header-slogan-x">X</span>SNIPPET

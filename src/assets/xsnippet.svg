@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="600"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="xsnippet.svg"
+   viewBox="0 0 540 540"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <title
+     id="title4512">XSnippet Logo</title>
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>XSnippet Logo</dc:title>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>The XSnippet Team</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Ihor Kalnytskyi</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1060"
+     inkscape:window-height="740"
+     id="namedview8"
+     showgrid="true"
+     inkscape:showpageshadow="false"
+     inkscape:zoom="0.5939697"
+     inkscape:cx="155.7161"
+     inkscape:cy="334.73493"
+     inkscape:window-x="585"
+     inkscape:window-y="124"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg6">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3703" />
+  </sodipodi:namedview>
+  <path
+     d="m 149.4,430.2 -135,-160 135,-160 h 80 l -135,160 135,160 z"
+     id="path2"
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff" />
+  <path
+     d="m 323.4,270.2 -105,55 v -55 l 105,-55 z"
+     id="path4"
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff" />
+  <path
+     id="path3705"
+     d="m 392.4,430.2 135,-160 -135,-160 h -80 l 135,160 -135,160 z"
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff" />
+</svg>
