@@ -5,21 +5,26 @@ import '../styles/Sidebar.styl';
 
 const Sidebar = () => (
   <nav className="sidebar" key="navigation">
-    <ul className="">
-      <li className="">
-        <NavLink to="/" activeClassName="active">New snippet</NavLink>
+    <ul className="sidebar-list">
+      <li className="sidebar-item">
+        <NavLink exact to="/" activeClassName="active">
+          <i className="icon-new" />
+        </NavLink>
       </li>
-      <li className="">
-        <NavLink to="/recent" activeClassName="active">Recent snippets</NavLink>
+      <li className="sidebar-item">
+        <NavLink to="/recent" activeClassName="active">
+          <i className="icon-recent" />
+        </NavLink>
       </li>
-      <li className="">
-        <NavLink to="/upload" activeClassName="active">Upload snippet</NavLink>
+      <li className="sidebar-item sidebar-item-border">
+        <NavLink to="/upload" activeClassName="active">
+          <i className="icon-upload" />
+        </NavLink>
       </li>
-      <li className="">
-        <NavLink to="/about" activeClassName="active">About</NavLink>
-      </li>
-      <li className="">
-        <NavLink to="/sign-in" activeClassName="active">Sign in</NavLink>
+      <li className="sidebar-item">
+        <NavLink to="/about" activeClassName="active">
+          <i className="icon-about" />
+        </NavLink>
       </li>
     </ul>
   </nav>
