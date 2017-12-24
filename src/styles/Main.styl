@@ -1,9 +1,10 @@
 @import './common/variables.styl'
 
 .main
-  display: flex
-  padding: 30px
-  width: calc(100% - 70px)
-  height: 100%
-  box-sizing: border-box
+  padding: 27px 20px;
+  width: "calc(100% - %s)" % offset
+  min-height: 100%
+  margin-top: offset
+  margin-left: offset
   background-color: site-bg
+  font-family: font-quicksand
