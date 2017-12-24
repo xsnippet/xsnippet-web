@@ -11,14 +11,9 @@ const Sidebar = () => (
           <i className="icon-new" />
         </NavLink>
       </li>
-      <li className="sidebar-item">
+      <li className="sidebar-item sidebar-item-border">
         <NavLink to="/recent" activeClassName="active">
           <i className="icon-recent" />
-        </NavLink>
-      </li>
-      <li className="sidebar-item sidebar-item-border">
-        <NavLink to="/upload" activeClassName="active">
-          <i className="icon-upload" />
         </NavLink>
       </li>
       <li className="sidebar-item">
