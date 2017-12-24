@@ -1,0 +1,50 @@
+@import './common/variables.styl'
+
+.recent-snippet
+  display: flex
+  flex-flow: column nowrap
+  &-item
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 8px
+    padding: 20px 16px 20px 20px
+    border-left: 5px solid snippet-border 
+    box-shadow: 0 2px 2px 0 border-dark
+    background-color: snippet-content-light
+
+  &-data
+    display: flex
+    flex-flow: column nowrap
+    & > div
+      display: flex
+      flex-flow: row nowrap
+      justify-content: space-between
+    &-title
+      color: text-green
+      font-size: 19px
+    &-lang
+      margin-left: 15px
+      color: text-dark
+    &-author
+      padding-top: 13px
+      color: text-grey
+      font-size: 14px
+
+  &-button
+    color: text-light
+    border: none
+    background-color: button-normal
+    margin-right: 3px
+    font-size: 17px
+    font-family: font-quicksand
+    padding: 10px 14px
+    cursor: pointer
+    outline: none
+    &:hover
+      background-color: button-active
+    &.light
+      background-color: button-light-normal
+      &:hover
+        background-color: button-light-active
