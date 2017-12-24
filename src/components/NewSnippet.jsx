@@ -20,7 +20,7 @@ const NewSnippet = () => (
         </div>
         <div className="new-snippet-code">
           <CodeMirror
-            value="console.log('All heil XSnippet')"
+            value="console.log('All hail XSnippet')"
             options={{ lineNumbers: false }}
           />
           <div className="new-snippet-code-bottom-bar">

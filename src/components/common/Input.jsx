@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import '../../styles/common/Input.styl';
 
-const Input = props => (
-  <input className={`input ${props.additionalClass}`} placeholder={props.placeholder} />
+const Input = ({ additionalClass, placeholder }) => (
+  <input className={`input ${additionalClass}`} placeholder={placeholder} />
 );
 
 Input.propTypes = {

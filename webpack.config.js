@@ -43,7 +43,7 @@ module.exports = () => {
         // Transpile Stylus down to CSS, resolving url() inside and enabling
         // CSS modules, so CSS classes can't be accessed within JSX sources.
         {
-          test: /\.styl$/,
+          test: /\.(styl|css)$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
