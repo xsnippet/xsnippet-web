@@ -1,0 +1,81 @@
+@import './common/variables.styl'
+@import './common/overwrite.styl'
+
+lang-bar-width = 230px
+
+.new-snippet
+  display: flex
+  height: 75vh
+  background-color: snippet-content-light
+  box-shadow: 0 2px 2px 0 border-dark
+  &-code,
+  &-lang
+    &-header
+      padding: 16px 20px 19px
+      box-sizing: border-box
+      display: flex
+      flex-flow: row nowrap
+      height: offset
+      min-height: offset
+
+  &-code
+    flex: 1
+    position: relative
+    padding: 20px 20px 63px 20px
+    &-wrapper
+      display: flex
+      flex-flow: column nowrap
+      width: "calc(100% - %s)" % lang-bar-width
+    &-header
+      background-color: snippet-header-light
+      .input
+        width: 47%
+      & > input
+        margin-right: 5%
+    &-bottom-bar
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      text-align: right
+      padding: 5px
+      border-top: 1px solid border-light
+      & button
+        border: none
+        background-color: button-normal
+        color: text-light
+        padding: 11px
+        margin-right: 16px
+        margin-bottom: 7px
+        margin-top: 5px
+        font-size: 15px
+        text-align: center
+        min-width: 200px
+        &:hover,
+        &:focus
+          background-color: button-active
+          cursor: pointer
+
+  &-lang
+    &-wrapper
+      display: flex
+      flex-flow: column nowrap
+      width: lang-bar-width
+      background-color: language-bar-bg-normal
+    &-header
+      background-color: snippet-header-normal
+      .input
+        width: 100%
+    &-list
+      height: 100%
+      &-wrapper
+        flex: 1
+    &-item
+      font-size: 14px
+      padding: 13px 15px
+      cursor: pointer
+      &:hover,
+      &.active
+        padding-left: 10px
+        border-left: 5px solid snippet-border
+        background-color: language-bar-bg-active
