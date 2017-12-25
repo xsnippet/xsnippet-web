@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import NewSnippet from './NewSnippet';
 import RecentSnippets from './RecentSnippets';
+import Snippet from './Snippet';
 import About from './About';
 import SignIn from './SignIn';
 
@@ -15,6 +16,7 @@ const Main = () => (
       <Route path="/recent" component={RecentSnippets} />
       <Route path="/about" component={About} />
       <Route path="/sign-in" component={SignIn} />
+      <Route path="/:id" component={Snippet} />
     </Switch>
   </main>
 );

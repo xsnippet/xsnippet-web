@@ -21,6 +21,10 @@ module.exports = () => {
     // to debug production is pretty valuable.
     devtool: 'source-map',
 
+    devServer: {
+      historyApiFallback: true,
+    },
+
     entry: {
       app: path.resolve(__dirname, 'src', 'index.jsx'),
     },

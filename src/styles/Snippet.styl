@@ -1,0 +1,84 @@
+@import './common/variables.styl'
+
+.snippet
+  display: flex
+  flex-flow: column nowrap
+  height: 75vh
+  background-color: snippet-content-light
+  box-shadow: 0 2px 2px 0 border-dark
+  &-header
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-between
+    align-items: center
+    min-height: offset
+    color: text-light
+    background: snippet-header-light
+    border-left: 40px solid snippet-header-normal
+    padding: 15px 20px
+
+  &-data
+    &-title
+      font-size: 20px
+      margin-right: 20px
+    &-author
+      display: block
+      margin-top: 7px
+      font-size: 14px
+
+  &-button
+    padding: 9px 12px
+    color: text-light
+    font-size: 17px
+    font-family: font-quicksand
+    border-radius: 0
+    border: 1px solid text-light
+    background-color: button-normal
+    cursor: pointer
+    &:hover
+      background-color: button-light-normal
+
+  &-embed
+    min-height: 80px
+    background-color: snippet-header-normal
+    border-left: 40px solid snippet-header-dark
+    padding: 13px 20px 15px
+    &.false
+      display: none
+    &-text
+      color: text-light
+      font-family: font-quicksand
+      font-size: 14px
+      padding-bottom: 10px
+    & input
+      color: text-dark
+      background-color: snippet-content-light
+      padding: 4px 9px
+      font-size: 15px
+
+  &-code
+    flex: 1
+    position: relative
+    padding-bottom: 62px
+    &-bottom-bar
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      text-align: right
+      padding: 10px 20px
+      border-top: 1px solid border-light
+    &-button
+      color: text-light
+      border: none
+      margin-right: 3px
+      font-size: 17px
+      font-family: font-quicksand
+      padding: 10px 14px
+      cursor: pointer
+      outline: none
+      text-decoration: none
+      &.light
+        background-color: button-light-normal
+        &:hover
+          background-color: button-light-active
