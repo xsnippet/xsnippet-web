@@ -7,17 +7,17 @@ const Sidebar = () => (
   <nav className="sidebar" key="navigation">
     <ul className="sidebar-list">
       <li className="sidebar-item">
-        <NavLink exact to="/" activeClassName="active">
+        <NavLink exact to="/" activeClassName="active" title="New Snippet">
           <i className="icon-new" />
         </NavLink>
       </li>
       <li className="sidebar-item sidebar-item-border">
-        <NavLink to="/recent" activeClassName="active">
+        <NavLink to="/recent" activeClassName="active" title="Recent Snippet">
           <i className="icon-recent" />
         </NavLink>
       </li>
       <li className="sidebar-item">
-        <NavLink to="/about" activeClassName="active">
+        <NavLink to="/about" activeClassName="active" title="About">
           <i className="icon-about" />
         </NavLink>
       </li>
