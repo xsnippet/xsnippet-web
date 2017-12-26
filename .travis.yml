@@ -9,3 +9,15 @@ node_js:
 script:
   - npm run lint
   - npm run build
+
+before_deploy:
+  - export RELEASE_NAME="xsnippet_web-$(git describe --exact-match --abbrev=0).tar.gz"
+  - tar cvzf $RELEASE_NAME -C dist/ .
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: $RELEASE_NAME
+  skip_cleanup: true
+  on:
+    tags: true
