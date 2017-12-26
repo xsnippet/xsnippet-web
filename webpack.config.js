@@ -7,7 +7,6 @@ const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 
 module.exports = () => {
@@ -131,7 +130,7 @@ module.exports = () => {
         // Enable source maps if they are specified in devtool option. By some
         // funny reason UglifyJSPlugin does not check devtool option and won't
         // produce them unless its sourceMap option set to true.
-        new UglifyJSPlugin({ sourceMap: true }),
+        new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
       ],
     });
   }
