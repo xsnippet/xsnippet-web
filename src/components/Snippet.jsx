@@ -34,7 +34,7 @@ class Snippet extends React.Component {
 
     if (!snippet) return <Spinner />;
 
-    const snippetTitle = snippet.get('title') ? snippet.get('title') : `#${snippet.get('id')}, Untitled`;
+    const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
 
     return (
       [
