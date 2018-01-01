@@ -3,6 +3,7 @@ const process = require('process');
 
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const glob = require('glob');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -25,7 +26,14 @@ module.exports = () => {
     },
 
     entry: {
-      app: path.resolve(__dirname, 'src', 'index.jsx'),
+      app: [
+        path.resolve(__dirname, 'src', 'index.jsx'),
+
+        // Bundle CodeMirror's syntaxes along with main application. There are
+        // around 120 syntaxes and we, of course, do not want to import all of
+        // them from within the application, hence this hack.
+        ...glob.sync(path.resolve(__dirname, 'node_modules', 'codemirror', 'mode', '*', '*.js')),
+      ],
     },
 
     // Use [chunkhash] in order to invalidate browsers cache on new deployments.
