@@ -19,3 +19,14 @@ export const fetchSnippet = id => dispatch => (
     .then(response => response.json())
     .then(json => dispatch(setSnippet(json)))
 );
+
+export const setSyntaxes = syntaxes => ({
+  type: 'SET_SYNTAXES',
+  syntaxes,
+});
+
+export const fetchSyntaxes = dispatch => (
+  fetch('http://api.xsnippet.org/syntaxes')
+    .then(response => response.json())
+    .then(json => dispatch(setSyntaxes(json)))
+);

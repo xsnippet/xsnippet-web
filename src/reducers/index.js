@@ -24,7 +24,18 @@ const recent = (state = List(), action) => {
   }
 };
 
+const syntaxes = (state = List(), action) => {
+  switch (action.type) {
+    case 'SET_SYNTAXES':
+      return List(action.syntaxes);
+
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   snippets,
   recent,
+  syntaxes,
 });
