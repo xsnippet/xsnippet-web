@@ -31,7 +31,7 @@ export const fetchSyntaxes = dispatch => (
     .then(json => dispatch(setSyntaxes(json)))
 );
 
-export const postSnippet = snippet => dispatch => (
+export const postSnippet = (snippet, onSuccess) => dispatch => (
   fetch('http://api.xsnippet.org/snippets', {
     method: 'POST',
     headers: {
@@ -41,5 +41,8 @@ export const postSnippet = snippet => dispatch => (
     body: JSON.stringify(snippet),
   })
     .then(response => response.json())
-    .then(json => dispatch(setSnippet(json)))
+    .then((json) => {
+      dispatch(setSnippet(json));
+      onSuccess(json);
+    })
 );
