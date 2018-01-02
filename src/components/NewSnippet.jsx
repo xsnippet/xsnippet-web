@@ -42,8 +42,8 @@ class NewSnippet extends React.Component {
 
   postSnippet(e) {
     e.preventDefault();
-    const { dispatch } = this.props;
-    dispatch(actions.postSnippet(this.state));
+    const { dispatch, history } = this.props;
+    dispatch(actions.postSnippet(this.state, json => history.push(`/${json.id}`)));
   }
 
   render() {
