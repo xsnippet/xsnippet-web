@@ -30,3 +30,16 @@ export const fetchSyntaxes = dispatch => (
     .then(response => response.json())
     .then(json => dispatch(setSyntaxes(json)))
 );
+
+export const postSnippet = snippet => dispatch => (
+  fetch('http://api.xsnippet.org/snippets', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(snippet),
+  })
+    .then(response => response.json())
+    .then(json => dispatch(setSnippet(json)))
+);
