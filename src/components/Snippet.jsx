@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 
+import codemirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 
 import Title from './common/Title';
@@ -35,6 +36,7 @@ class Snippet extends React.Component {
     if (!snippet) return <Spinner />;
 
     const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
+    const modeInfo = codemirror.findModeByName(snippet.get('syntax'));
 
     return (
       [
@@ -67,7 +69,7 @@ class Snippet extends React.Component {
           <div className="snippet-code">
             <CodeMirror
               value={`${snippet.get('content')}`}
-              options={{ lineNumbers: true, readOnly: 'nocursor' }}
+              options={{ lineNumbers: true, readOnly: 'nocursor', mode: modeInfo.mime }}
             />
             <div className="snippet-code-bottom-bar">
               <button className="snippet-button light">Raw</button>
