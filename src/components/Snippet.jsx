@@ -83,5 +83,5 @@ class Snippet extends React.Component {
 }
 
 export default connect((state, ownProps) => ({
-  snippet: state.snippets.get(Number(ownProps.match.params.id)),
+  snippet: state.getIn(['snippets', Number(ownProps.match.params.id)]),
 }))(Snippet);
