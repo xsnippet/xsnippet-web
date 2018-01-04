@@ -69,7 +69,7 @@ class Snippet extends React.Component {
           <div className="snippet-code">
             <CodeMirror
               value={`${snippet.get('content')}`}
-              options={{ lineNumbers: true, readOnly: 'nocursor', mode: modeInfo.mime }}
+              options={{ lineNumbers: true, readOnly: true, mode: modeInfo.mime }}
             />
             <div className="snippet-code-bottom-bar">
               <button className="snippet-button light">Raw</button>
