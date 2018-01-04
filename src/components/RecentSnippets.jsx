@@ -26,6 +26,6 @@ class RecentSnippets extends React.Component {
 }
 
 export default connect(state => ({
-  snippets: state.snippets,
-  recent: state.recent,
+  snippets: state.get('snippets'),
+  recent: state.get('recent'),
 }))(RecentSnippets);

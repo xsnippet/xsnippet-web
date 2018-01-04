@@ -1,5 +1,5 @@
 import { List, Map, fromJS } from 'immutable';
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
 const snippets = (state = Map(), action) => {
   switch (action.type) {

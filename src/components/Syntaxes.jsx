@@ -57,5 +57,5 @@ class Syntaxes extends React.Component {
 }
 
 export default connect(state => ({
-  syntaxes: state.syntaxes,
+  syntaxes: state.get('syntaxes'),
 }))(Syntaxes);
