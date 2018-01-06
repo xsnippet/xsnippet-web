@@ -2,7 +2,7 @@ import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { connect } from 'react-redux';
 
-import regExpEscape from './../helpers';
+import { regExpEscape } from '../helpers';
 import * as actions from '../actions';
 
 class Syntaxes extends React.PureComponent {
