@@ -8,7 +8,7 @@ const RecentSnippetItem = ({ snippet }) => {
     <li className="recent-snippet-item">
       <div className="recent-snippet-data">
         <div>
-          <span className="recent-snippet-data-title">{snippetTitle}</span>
+          <Link to={`${snippet.get('id')}`} className="recent-snippet-data-title">{snippetTitle}</Link>
           <span className="recent-snippet-data-lang">[ {snippet.get('syntax', 'Text')} ]</span>
         </div>
         <span className="recent-snippet-data-author">By Guest</span>
