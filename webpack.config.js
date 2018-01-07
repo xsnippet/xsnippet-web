@@ -103,7 +103,10 @@ module.exports = () => {
 
       // Generate index.html based on passed template, populating it with
       // produced JavaScript bundles.
-      new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'src', 'index.html'),
+        favicon: path.resolve(__dirname, 'src', 'assets', 'favicon.ico'),
+      }),
 
       // Extract third party libraries into 'vendors' bundle. Unfortunately
       // this splitting can't help us to preserve the same hash for vendors if
