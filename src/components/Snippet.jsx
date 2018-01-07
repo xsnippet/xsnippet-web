@@ -9,6 +9,7 @@ import Title from './common/Title';
 import Input from './common/Input';
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
+import { downloadSnippet } from '../helpers';
 
 import '../styles/Snippet.styl';
 
@@ -17,6 +18,7 @@ class Snippet extends React.Component {
     super(props);
     this.state = { isShowEmbed: false };
     this.toggleEmbed = this.toggleEmbed.bind(this);
+    this.download = this.download.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +26,10 @@ class Snippet extends React.Component {
     const { id } = this.props.match.params;
 
     dispatch(actions.fetchSnippet(Number(id)));
+  }
+
+  download() {
+    downloadSnippet(this.props.snippet);
   }
 
   toggleEmbed() {
@@ -73,7 +79,7 @@ class Snippet extends React.Component {
             />
             <div className="snippet-code-bottom-bar">
               <button className="snippet-button light">Raw</button>
-              <button className="snippet-button light">Download</button>
+              <button className="snippet-button light" onClick={this.download}>Download</button>
             </div>
           </div>
         </div>,
