@@ -14,7 +14,7 @@ const RecentSnippetItem = ({ snippet }) => {
         <span className="recent-snippet-data-author">By Guest</span>
       </div>
       <div>
-        <button className="recent-snippet-button light">Raw</button>
+        <Link to={"/proxy/snippets/" + `${snippet.get('id')}` + "/raw"} className="recent-snippet-button">Raw</Link>
         <button className="recent-snippet-button light">Download</button>
         <Link to={`${snippet.get('id')}`} className="recent-snippet-button">Show</Link>
       </div>
