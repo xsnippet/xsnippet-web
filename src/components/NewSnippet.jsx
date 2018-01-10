@@ -6,7 +6,7 @@ import 'codemirror/lib/codemirror.css';
 
 import Title from './common/Title';
 import Input from './common/Input';
-import Syntaxes from './Syntaxes';
+import ListBoxWithSearch from './ListBoxWithSearch';
 import * as actions from '../actions';
 
 import '../styles/NewSnippet.styl';
@@ -23,6 +23,12 @@ class NewSnippet extends React.Component {
     this.postSnippet = this.postSnippet.bind(this);
     this.onSyntaxClick = this.onSyntaxClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    dispatch(actions.fetchSyntaxes);
   }
 
   onSyntaxClick(syntax) {
@@ -78,7 +84,10 @@ class NewSnippet extends React.Component {
             </div>
           </div>
           <div className="new-snippet-lang-wrapper">
-            <Syntaxes onClick={this.onSyntaxClick} />
+            <ListBoxWithSearch
+              items={this.props.syntaxes}
+              onClick={this.onSyntaxClick}
+            />
           </div>
         </form>,
       ]
@@ -86,4 +95,6 @@ class NewSnippet extends React.Component {
   }
 }
 
-export default connect()(NewSnippet);
+export default connect(state => ({
+  syntaxes: state.get('syntaxes'),
+}))(NewSnippet);
