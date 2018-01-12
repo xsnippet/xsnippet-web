@@ -50,7 +50,7 @@ export const postSnippet = (snippet, onSuccess) => dispatch => (
   fetch('http://api.xsnippet.org/snippets', {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(snippet),
