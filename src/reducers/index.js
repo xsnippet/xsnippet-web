@@ -24,6 +24,16 @@ const recent = (state = List(), action) => {
   }
 };
 
+const pagination = (state = Map(), action) => {
+  switch (action.type) {
+    case 'SET_PAGINATION_LINKS':
+      return Map(action.links);
+
+    default:
+      return state;
+  }
+};
+
 const syntaxes = (state = List(), action) => {
   switch (action.type) {
     case 'SET_SYNTAXES':
@@ -38,4 +48,5 @@ export default combineReducers({
   snippets,
   recent,
   syntaxes,
+  pagination,
 });

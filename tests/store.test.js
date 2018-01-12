@@ -35,10 +35,41 @@ describe('actions', () => {
         },
       },
       syntaxes: [],
+      pagination: {},
     });
   });
 
-  it('should create an action to fetch recent snippets', async () => {
+  it('should create an action to set pagination links', () => {
+    const links = {
+      first: {
+        limit: '20',
+        rel: 'first',
+        url: 'http://api.xsnippet.org/snippets?limit=20',
+      },
+      next: {
+        limit: '20',
+        marker: 28,
+        rel: 'next',
+        url: 'http://api.xsnippet.org/snippets?limit=20&marker=28',
+      },
+      prev: {
+        limit: '20',
+        rel: 'prev',
+        url: 'http://api.xsnippet.org/snippets?limit=20',
+      },
+    };
+    const store = createStore();
+    store.dispatch(actions.setPaginationLinks(links));
+
+    expect(store.getState().toJS()).toEqual({
+      recent: [],
+      snippets: {},
+      syntaxes: [],
+      pagination: links,
+    });
+  });
+
+  it('should create an action to fetch recent snippets with marker', async () => {
     const snippets = [
       {
         id: 1,
@@ -51,11 +82,18 @@ describe('actions', () => {
         syntax: 'Python',
       },
     ];
+    const links = '<http://api.xsnippet.org/snippets?limit=20>; rel="first", <http://api.xsnippet.org/snippets?limit=20&marker=19>; rel="next", <http://api.xsnippet.org/snippets?limit=20&marker=59>; rel="prev"';
 
-    fetchMock.getOnce('http://api.xsnippet.org/snippets', JSON.stringify(snippets));
+    fetchMock.getOnce(
+      'http://api.xsnippet.org/snippets?limit=20&marker=39',
+      {
+        headers: { Link: links },
+        body: snippets,
+      },
+    );
 
     const store = createStore();
-    await store.dispatch(actions.fetchRecentSnippets);
+    await store.dispatch(actions.fetchRecentSnippets(39));
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -72,6 +110,82 @@ describe('actions', () => {
         },
       },
       syntaxes: [],
+      pagination: {
+        first: {
+          limit: '20',
+          rel: 'first',
+          url: 'http://api.xsnippet.org/snippets?limit=20',
+        },
+        next: {
+          limit: '20',
+          marker: '19',
+          rel: 'next',
+          url: 'http://api.xsnippet.org/snippets?limit=20&marker=19',
+        },
+        prev: {
+          limit: '20',
+          marker: '59',
+          rel: 'prev',
+          url: 'http://api.xsnippet.org/snippets?limit=20&marker=59',
+        },
+      },
+    });
+  });
+
+  it('should create an action to fetch recent snippets without marker', async () => {
+    const snippets = [
+      {
+        id: 1,
+        content: 'test',
+        syntax: 'JavaScript',
+      },
+      {
+        id: 2,
+        content: 'batman',
+        syntax: 'Python',
+      },
+    ];
+    const links = '<http://api.xsnippet.org/snippets?limit=20>; rel="first", <http://api.xsnippet.org/snippets?limit=20&marker=39>; rel="next"';
+
+    fetchMock.getOnce(
+      'http://api.xsnippet.org/snippets?limit=20',
+      {
+        headers: { Link: links },
+        body: snippets,
+      },
+    );
+
+    const store = createStore();
+    await store.dispatch(actions.fetchRecentSnippets());
+
+    expect(store.getState().toJS()).toEqual({
+      recent: [1, 2],
+      snippets: {
+        1: {
+          id: 1,
+          content: 'test',
+          syntax: 'JavaScript',
+        },
+        2: {
+          id: 2,
+          content: 'batman',
+          syntax: 'Python',
+        },
+      },
+      syntaxes: [],
+      pagination: {
+        first: {
+          limit: '20',
+          rel: 'first',
+          url: 'http://api.xsnippet.org/snippets?limit=20',
+        },
+        next: {
+          limit: '20',
+          marker: '39',
+          rel: 'next',
+          url: 'http://api.xsnippet.org/snippets?limit=20&marker=39',
+        },
+      },
     });
   });
 
@@ -94,6 +208,7 @@ describe('actions', () => {
         },
       },
       syntaxes: [],
+      pagination: {},
     });
   });
 
@@ -119,6 +234,7 @@ describe('actions', () => {
         },
       },
       syntaxes: [],
+      pagination: {},
     });
   });
 
@@ -130,6 +246,7 @@ describe('actions', () => {
     expect(store.getState().toJS()).toEqual({
       recent: [],
       snippets: {},
+      pagination: {},
       syntaxes,
     });
   });
@@ -145,6 +262,7 @@ describe('actions', () => {
     expect(store.getState().toJS()).toEqual({
       recent: [],
       snippets: {},
+      pagination: {},
       syntaxes,
     });
   });
@@ -171,6 +289,7 @@ describe('actions', () => {
         },
       },
       syntaxes: [],
+      pagination: {},
     });
   });
 });
