@@ -6,7 +6,6 @@ import codemirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 
 import Title from './common/Title';
-import Input from './common/Input';
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
 import { downloadSnippet } from '../helpers';
@@ -70,7 +69,11 @@ class Snippet extends React.Component {
               In order to embed this content into your website or blog,
               simply copy and paste code provided below:
             </p>
-            <Input value={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`} />
+            <input
+              className="input"
+              type="text"
+              defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
+            />
           </div>
           <div className="snippet-code">
             <CodeMirror

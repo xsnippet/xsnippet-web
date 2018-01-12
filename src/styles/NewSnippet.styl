@@ -1,5 +1,6 @@
 @import './common/variables.styl'
 @import './common/overwrite.styl'
+@import './common/mixins.styl'
 
 lang-bar-width = 230px
 
@@ -17,6 +18,7 @@ lang-bar-width = 230px
       flex-flow: row nowrap
       height: offset
       min-height: offset
+      align-items: flex-end
 
   &-code
     flex: 1
@@ -29,6 +31,7 @@ lang-bar-width = 230px
     &-header
       background-color: snippet-header-light
       .input
+        basic-input()
         width: 47%
       & > input
         margin-right: 5%
@@ -65,7 +68,7 @@ lang-bar-width = 230px
     &-header
       background-color: snippet-header-normal
       .input
-        width: 100%
+        basic-input()
     &-list
       height: 100%
       &-wrapper

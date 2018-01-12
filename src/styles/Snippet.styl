@@ -1,4 +1,5 @@
 @import './common/variables.styl'
+@import './common/mixins.styl'
 
 .snippet
   display: flex
@@ -52,6 +53,7 @@
       font-size: 14px
       padding-bottom: 10px
     & input
+      basic-input()
       color: text-dark
       background-color: snippet-content-light
       padding: 4px 9px
