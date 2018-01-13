@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
+import Tags from 'react-tagging-input';
 
 import 'codemirror/lib/codemirror.css';
 
 import Title from './common/Title';
-import Input from './common/Input';
 import ListBoxWithSearch from './ListBoxWithSearch';
 import * as actions from '../actions';
 
@@ -20,15 +20,27 @@ class NewSnippet extends React.Component {
       tags: [],
       syntax: '', // eslint-disable-line react/no-unused-state
     };
+    this.onKeyPress = (e) => {
+      if (e.which === 13) { e.preventDefault(); }
+    };
     this.postSnippet = this.postSnippet.bind(this);
     this.onSyntaxClick = this.onSyntaxClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+    this.onTagAdded = this.onTagAdded.bind(this);
+    this.onTagRemoved = this.onTagRemoved.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-
     dispatch(actions.fetchSyntaxes);
+  }
+
+  onTagAdded(tag) {
+    this.setState({ tags: [...this.state.tags, tag] });
+  }
+
+  onTagRemoved(tag) {
+    this.setState({ tags: this.state.tags.filter(item => item !== tag) });
   }
 
   onSyntaxClick(syntax) {
@@ -36,12 +48,7 @@ class NewSnippet extends React.Component {
   }
 
   onInputChange(e) {
-    const { name } = e.target;
-    let { value } = e.target;
-
-    if (name === 'tags') {
-      value = value.split(',').map(item => item.trim());
-    }
+    const { name, value } = e.target;
 
     this.setState({ [name]: value });
   }
@@ -56,20 +63,28 @@ class NewSnippet extends React.Component {
     return (
       [
         <Title title="New snippet" key="New Snippet Title" />,
-        <form className="new-snippet" key="New Snippet" onSubmit={this.postSnippet}>
+        <form
+          className="new-snippet"
+          key="New Snippet"
+          onKeyPress={this.onKeyPress}
+          onSubmit={this.postSnippet}
+          role="presentation"
+        >
           <div className="new-snippet-code-wrapper">
             <div className="new-snippet-code-header">
-              <Input
+              <input
+                className="input"
                 placeholder="Title"
                 name="title"
-                onChangeHandler={this.onInputChange}
+                type="text"
                 value={this.state.title}
+                onChange={this.onInputChange}
               />
-              <Input
-                placeholder="Tags (separate tags by comma)"
-                name="tags"
-                onChangeHandler={this.onInputChange}
-                value={this.state.tags.toString()}
+              <Tags
+                tags={this.state.tags}
+                placeholder="Tags"
+                onAdded={this.onTagAdded}
+                onRemoved={this.onTagRemoved}
               />
             </div>
             <div className="new-snippet-code">
