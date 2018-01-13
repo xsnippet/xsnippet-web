@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-
-import codemirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
+import AceEditor from 'react-ace';
 
 import Title from './common/Title';
 import Spinner from './common/Spinner';
@@ -41,7 +38,6 @@ class Snippet extends React.Component {
     if (!snippet) return <Spinner />;
 
     const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
-    const modeInfo = codemirror.findModeByName(snippet.get('syntax'));
 
     return (
       [
@@ -76,9 +72,20 @@ class Snippet extends React.Component {
             />
           </div>
           <div className="snippet-code">
-            <CodeMirror
+            <AceEditor
+              mode={snippet.get('syntax')}
+              width="100%"
+              height="100%"
+              setOptions={{
+                readOnly: true,
+                highlightActiveLine: false,
+                highlightGutterLine: false,
+                showFoldWidgets: false,
+                useWorker: false,
+                maxLines: Infinity,
+                showPrintMargin: false,
+              }}
               value={`${snippet.get('content')}`}
-              options={{ lineNumbers: true, readOnly: true, mode: modeInfo.mime }}
             />
             <div className="snippet-code-bottom-bar">
               <button className="snippet-button light">Raw</button>

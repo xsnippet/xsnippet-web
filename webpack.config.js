@@ -14,6 +14,106 @@ module.exports = () => {
   // Use NODE_ENV environment variable to guess desired built type. Assume
   // production if nothing is passed.
   const isProduction = (process.env.NODE_ENV || 'production') === 'production';
+  const syntaxes = process.env.SYNTAXES
+    ? process.env.SYNTAXES.split(',').map(item => item.trim())
+    : [
+      'text',
+      'c_cpp',
+      'csharp',
+      'golang',
+      'java',
+      'javascript',
+      'php',
+      'perl',
+      'python',
+      'ruby',
+      'rust',
+      'css',
+      'html',
+      'objectivec',
+      'swift',
+      'clojure',
+      'lisp',
+      'haskell',
+      'scala',
+      'scheme',
+      'actionscript',
+      'ada',
+      'apache_conf',
+      'asciidoc',
+      'assembly_x86',
+      'batchfile',
+      'cobol',
+      'coffee',
+      'd',
+      'dart',
+      'diff',
+      'dockerfile',
+      'dot',
+      'ejs',
+      'elixir',
+      'elm',
+      'erlang',
+      'fortran',
+      'gitignore',
+      'glsl',
+      'gobstones',
+      'graphqlschema',
+      'groovy',
+      'haml',
+      'handlebars',
+      'haxe',
+      'hjson',
+      'ini',
+      'jade',
+      'json',
+      'jsp',
+      'jsx',
+      'julia',
+      'kotlin',
+      'latex',
+      'less',
+      'livescript',
+      'lua',
+      'makefile',
+      'markdown',
+      'matlab',
+      'mel',
+      'mysql',
+      'nix',
+      'nsis',
+      'ocaml',
+      'pascal',
+      'pgsql',
+      'powershell',
+      'prolog',
+      'protobuf',
+      'r',
+      'rdoc',
+      'rst',
+      'sass',
+      'scad',
+      'scss',
+      'sh',
+      'sjs',
+      'smarty',
+      'sql',
+      'stylus',
+      'svg',
+      'tcl',
+      'tex',
+      'textile',
+      'toml',
+      'tsx',
+      'twig',
+      'typescript',
+      'vala',
+      'vbscript',
+      'verilog',
+      'vhdl',
+      'xml',
+      'yaml',
+      'django'];
 
   let conf = {
     // Expose source map even for production because XSnippet is an Open Source
@@ -29,10 +129,16 @@ module.exports = () => {
       app: [
         path.resolve(__dirname, 'src', 'index.jsx'),
 
-        // Bundle CodeMirror's syntaxes along with main application. There are
-        // around 120 syntaxes and we, of course, do not want to import all of
+        // Bundle AceEditor's syntaxes along with main application. There are
+        // around 150 syntaxes and we, of course, do not want to import all of
         // them from within the application, hence this hack.
-        ...glob.sync(path.resolve(__dirname, 'node_modules', 'codemirror', 'mode', '*', '*.js')),
+        ...glob.sync(path.resolve(
+          __dirname,
+          'node_modules',
+          'brace',
+          'mode',
+          `@(${syntaxes.join('|')}).js`,
+        )),
       ],
     },
 
@@ -139,6 +245,12 @@ module.exports = () => {
   if (isProduction) {
     conf = merge(conf, {
       plugins: [
+        // Worker is a sort of background linter integrated in AceEditor that
+        // can show errors for some syntaxes (e.g. JavaScript or XML). It's
+        // pretty heavy (~1Mb) and we have no plans to use it, so we just
+        // aggressively strip this code out of build.
+        new webpack.IgnorePlugin(/worker/, /brace/),
+
         // Enable source maps if they are specified in devtool option. By some
         // funny reason UglifyJSPlugin does not check devtool option and won't
         // produce them unless its sourceMap option set to true.

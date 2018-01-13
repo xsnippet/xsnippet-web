@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Controlled as CodeMirror } from 'react-codemirror2';
+import AceEditor from 'react-ace';
 import Tags from 'react-tagging-input';
 
-import 'codemirror/lib/codemirror.css';
+import brace from 'brace';
+import 'brace/ext/modelist';
 
 import Title from './common/Title';
 import ListBoxWithSearch from './ListBoxWithSearch';
@@ -21,9 +22,11 @@ class NewSnippet extends React.Component {
       syntax: '', // eslint-disable-line react/no-unused-state
     };
     this.onKeyPress = (e) => {
-      if (e.which === 13) { // keyCode for Enter button
+      // e.target.nodeName !=== 'TEXTAREA' is an ugly hack to allow enter
+      // to insert "newline" into code editor. We need to figure out
+      // a better way to handle this.
+      if (e.which === 13 && e.target.nodeName !== 'TEXTAREA') { // keyCode for Enter button
         e.preventDefault();
-        e.stopPropagation();
       }
     };
     this.postSnippet = this.postSnippet.bind(this);
@@ -63,6 +66,13 @@ class NewSnippet extends React.Component {
   }
 
   render() {
+    const { modesByName } = brace.acequire('ace/ext/modelist');
+    const mode = modesByName[this.state.syntax] || modesByName.text;
+    const syntaxes = this.props.syntaxes.map(item => ({
+      name: modesByName[item].caption,
+      value: item,
+    }));
+
     return (
       [
         <Title title="New snippet" key="New Snippet Title" />,
@@ -92,11 +102,21 @@ class NewSnippet extends React.Component {
               />
             </div>
             <div className="new-snippet-code">
-              <CodeMirror
+              <AceEditor
+                mode={mode.name}
+                width="100%"
+                height="100%"
+                focus
+                setOptions={{
+                  showFoldWidgets: false,
+                  useWorker: false,
+                  maxLines: Infinity,
+                  showPrintMargin: false,
+                }}
                 value={this.state.content}
-                options={{ lineNumbers: true }}
-                onBeforeChange={(editor, data, content) => { this.setState({ content }); }}
+                onChange={(content) => { this.setState({ content }); }}
               />
+
               <div className="new-snippet-code-bottom-bar">
                 <input type="submit" value="POST" />
               </div>
@@ -104,7 +124,7 @@ class NewSnippet extends React.Component {
           </div>
           <div className="new-snippet-lang-wrapper">
             <ListBoxWithSearch
-              items={this.props.syntaxes}
+              items={syntaxes}
               onClick={this.onSyntaxClick}
             />
           </div>
