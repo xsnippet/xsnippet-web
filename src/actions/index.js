@@ -14,7 +14,7 @@ export const fetchRecentSnippets = marker => (dispatch) => {
   let qs = '';
   if (marker) { qs = `&marker=${marker}`; }
 
-  return fetch(`http://api.xsnippet.org/snippets?limit=20${qs}`)
+  return fetch(`//api.xsnippet.org/snippets?limit=20${qs}`)
     .then((response) => {
       const links = parseLinkHeader(response.headers.get('Link'));
 
@@ -30,7 +30,7 @@ export const setSnippet = snippet => ({
 });
 
 export const fetchSnippet = id => dispatch => (
-  fetch(`http://api.xsnippet.org/snippets/${id}`)
+  fetch(`//api.xsnippet.org/snippets/${id}`)
     .then(response => response.json())
     .then(json => dispatch(setSnippet(json)))
 );
@@ -41,13 +41,13 @@ export const setSyntaxes = syntaxes => ({
 });
 
 export const fetchSyntaxes = dispatch => (
-  fetch('http://api.xsnippet.org/syntaxes')
+  fetch('//api.xsnippet.org/syntaxes')
     .then(response => response.json())
     .then(json => dispatch(setSyntaxes(json)))
 );
 
 export const postSnippet = (snippet, onSuccess) => dispatch => (
-  fetch('http://api.xsnippet.org/snippets', {
+  fetch('//api.xsnippet.org/snippets', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
