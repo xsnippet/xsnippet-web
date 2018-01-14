@@ -20,8 +20,10 @@ class ListBox extends React.Component {
     // If selected item is not a part of new items, aggressively fallback to
     // first item from the list. We're doing it to be protected from cases
     // when nothing is selected.
-    if (!selected || !nextProps.items.contains(selected)) {
+    if (!selected || !nextProps.items.find(item => item.value === selected)) {
       selected = nextProps.items.get(0);
+      if (!selected) return;
+      selected = selected.value;
       nextProps.onClick(selected);
     }
 
@@ -29,10 +31,10 @@ class ListBox extends React.Component {
   }
 
   onClick(e) {
-    const { item } = e.target.dataset;
+    const { value } = e.target.dataset;
 
-    this.setState({ selected: item });
-    this.props.onClick(item);
+    this.setState({ selected: value });
+    this.props.onClick(value);
   }
 
   render() {
@@ -48,11 +50,11 @@ class ListBox extends React.Component {
           {items.size ? null : <li className="new-snippet-lang-empty">No results found</li>}
           {items.map(item => (
             <li
-              className={`new-snippet-lang-item ${item === selected ? 'active' : ''}`}
-              data-item={item}
-              key={item}
+              className={`new-snippet-lang-item ${item.value === selected ? 'active' : ''}`}
+              data-value={item.value}
+              key={item.value}
             >
-              {item}
+              {item.name}
             </li>
           ))}
         </ul>
