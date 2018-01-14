@@ -1,4 +1,5 @@
-import codemirror from 'codemirror';
+import brace from 'brace';
+import 'brace/ext/modelist';
 
 const regExpEscape = string => string.replace(/[-[\]{}()*+?.,\\^$|]/g, '\\$&');
 
@@ -19,17 +20,20 @@ function download(text, name, mime) {
 }
 
 function downloadSnippet(snippet) {
-  // Despite using CodeMirror's modes as syntaxes on XSnippet API, we might
-  // imagine other setup when more syntaxes can be used on server. Hence, we
-  // must be prepared and fallback on "Plain Text" mode if we can't figure out
-  // what's extension and/or MIME type.
-  const modeInfo = codemirror.findModeByName(snippet.get('syntax'))
-              || codemirror.findModeByName('Plain Text');
+  const { modesByName } = brace.acequire('ace/ext/modelist');
 
+  // Despite using AceEditor's modes as syntaxes, we can imagine other setup
+  // when more or even other syntaxes can be used on API side. Hence, we better
+  // be prepared and fallback to "Text" mode if unknown syntaxes it is.
+  const mode = modesByName[snippet.get('syntax')] || modesByName.text;
+  const ext = mode.extensions.split('|')[0] || 'txt';
   const content = snippet.get('content');
-  const name = `${snippet.get('id')}.${modeInfo.ext[0]}`;
+  const name = `${snippet.get('id')}.${ext}`;
 
-  download(content, name, modeInfo.mime);
+  // Unfortunately, AceEditor doesn't maintain MIME type map so we don't know
+  // for sure which mode corresponds to which MIME type. Hence, let's use
+  // text/plain until we come up with better idea.
+  download(content, name, 'text/plain');
 }
 
 export { regExpEscape, downloadSnippet };

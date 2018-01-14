@@ -1,32 +1,11 @@
 @import './common/variables.styl'
 @import './common/mixins.styl'
 
-.react-codemirror2,
-.CodeMirror
-  height: 100% !important
-  line-height: 1.4
+.snippet .ace_gutter-layer
+  width: 40px !important
 
-.new-snippet .react-codemirror2,
-.new-snippet .CodeMirror
-  color: text-dark !important
-
-.CodeMirror-gutter
-  &.CodeMirror-linenumbers
-    width: 39px
-
-.CodeMirror-sizer
-  margin-left: 39px
-  padding-top: 5px
-
-.CodeMirror-gutters
-  border-right: none
-
-.snippet .CodeMirror-line
-  padding-left: 20px !important
-
-.snippet .CodeMirror-cursor {
+.snippet .ace_cursor
   display: none !important
-}
 
 .react-tags
   display: flex
