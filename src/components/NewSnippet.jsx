@@ -21,7 +21,10 @@ class NewSnippet extends React.Component {
       syntax: '', // eslint-disable-line react/no-unused-state
     };
     this.onKeyPress = (e) => {
-      if (e.which === 13) { e.preventDefault(); }
+      if (e.which === 13) { // keyCode for Enter button
+        e.preventDefault();
+        e.stopPropagation();
+      }
     };
     this.postSnippet = this.postSnippet.bind(this);
     this.onSyntaxClick = this.onSyntaxClick.bind(this);
@@ -85,6 +88,7 @@ class NewSnippet extends React.Component {
                 placeholder="Tags"
                 onAdded={this.onTagAdded}
                 onRemoved={this.onTagRemoved}
+                uniqueTags
               />
             </div>
             <div className="new-snippet-code">
