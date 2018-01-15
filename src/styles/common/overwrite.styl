@@ -1,11 +1,22 @@
 @import './common/variables.styl'
 @import './common/mixins.styl'
 
-.snippet .ace_gutter-layer
-  width: 40px !important
+.snippet
+  .ace_cursor
+    display: none !important
+  .ace_gutter
+    &-layer
+      width: 40px !important
+    &-cell
+      padding-right: 5px !important
+      padding-left: 0
+  .ace_scroller
+    margin-left: 15px !important
+  .ace_content
+    width: calc(100% - 15px) !important
 
-.snippet .ace_cursor
-  display: none !important
+.new-snippet .ace_editor
+  min-height 100% !important
 
 .react-tags
   display: flex
