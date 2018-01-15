@@ -25,9 +25,8 @@ class ListBox extends React.Component {
       if (!selected) return;
       selected = selected.value;
       nextProps.onClick(selected);
+      this.setState({ selected });
     }
-
-    this.setState({ selected });
   }
 
   onClick(e) {
