@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
 
+import 'brace/theme/textmate';
+
 import Title from './common/Title';
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
@@ -76,6 +78,7 @@ class Snippet extends React.Component {
               mode={snippet.get('syntax')}
               width="100%"
               height="100%"
+              theme="textmate"
               setOptions={{
                 readOnly: true,
                 highlightActiveLine: false,

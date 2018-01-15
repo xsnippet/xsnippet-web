@@ -5,6 +5,7 @@ import Tags from 'react-tagging-input';
 
 import brace from 'brace';
 import 'brace/ext/modelist';
+import 'brace/theme/textmate';
 
 import Title from './common/Title';
 import ListBoxWithSearch from './ListBoxWithSearch';
@@ -107,6 +108,7 @@ class NewSnippet extends React.Component {
                 width="100%"
                 height="100%"
                 focus
+                theme="textmate"
                 setOptions={{
                   showFoldWidgets: false,
                   useWorker: false,
