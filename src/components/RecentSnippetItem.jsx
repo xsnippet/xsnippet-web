@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import brace from 'brace';
 
 import { downloadSnippet } from '../helpers';
 
 const RecentSnippetItem = ({ snippet }) => {
+  const { modesByName } = brace.acequire('ace/ext/modelist');
+  const mode = modesByName[snippet.get('syntax')] || modesByName.text;
+  const syntax = mode.caption;
   const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
   const download = () => downloadSnippet(snippet);
 
@@ -12,7 +16,7 @@ const RecentSnippetItem = ({ snippet }) => {
       <div className="recent-snippet-data">
         <div>
           <Link to={`${snippet.get('id')}`} className="recent-snippet-data-title">{snippetTitle}</Link>
-          <span className="recent-snippet-data-lang">[ {snippet.get('syntax', 'Text')} ]</span>
+          <span className="recent-snippet-data-lang">[ {syntax} ]</span>
         </div>
         <span className="recent-snippet-data-author">By Guest</span>
       </div>
