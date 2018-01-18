@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
+import brace from 'brace';
 
 import 'brace/theme/textmate';
 
@@ -36,10 +37,13 @@ class Snippet extends React.Component {
 
   render() {
     const { snippet } = this.props;
+    const { modesByName } = brace.acequire('ace/ext/modelist');
 
     if (!snippet) return <Spinner />;
 
     const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
+    const mode = modesByName[snippet.get('syntax')] || modesByName.text;
+    const syntax = mode.caption;
 
     return (
       [
@@ -49,7 +53,7 @@ class Snippet extends React.Component {
             <div className="snippet-data">
               <div>
                 <span className="snippet-data-title">{snippetTitle}</span>
-                <span className="snippet-data-lang">[ {snippet.get('syntax', 'Text')} ]</span>
+                <span className="snippet-data-lang">[ {syntax} ]</span>
               </div>
               <span className="snippet-data-author">By Guest</span>
             </div>
