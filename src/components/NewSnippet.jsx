@@ -99,6 +99,7 @@ class NewSnippet extends React.Component {
                 placeholder="Tags"
                 onAdded={this.onTagAdded}
                 onRemoved={this.onTagRemoved}
+                addKeys={[13, 9]}
                 uniqueTags
               />
             </div>
@@ -120,7 +121,7 @@ class NewSnippet extends React.Component {
               />
 
               <div className="new-snippet-code-bottom-bar">
-                <input type="submit" value="POST" />
+                <input type="submit" value="POST SNIPPET" />
               </div>
             </div>
           </div>
