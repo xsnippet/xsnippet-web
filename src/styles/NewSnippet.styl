@@ -29,6 +29,7 @@ lang-bar-width = 230px
       flex-flow: column nowrap
       width: "calc(100% - %s)" % lang-bar-width
     &-header
+      border-left: 34px solid snippet-header-normal
       background-color: snippet-header-light
       .input
         basic-input()
@@ -74,16 +75,20 @@ lang-bar-width = 230px
       &-wrapper
         flex: 1
     &-empty
-      padding: 13px 15px
+      padding: 15px
       font-size: 14px
       font-weight: 300
       color: text-grey
     &-item
+      margin-top: -1px
       font-size: 14px
-      padding: 13px 15px
+      padding: 15px
+      border-left: 5px solid language-bar-border
+      border-bottom: 1px solid language-bar-border
       cursor: pointer
       &:hover,
       &.active
-        padding-left: 10px
+        padding-bottom: 16px
         border-left: 5px solid snippet-border
+        border-bottom: none
         background-color: language-bar-bg-active
