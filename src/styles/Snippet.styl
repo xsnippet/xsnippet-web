@@ -10,77 +10,113 @@
     display: flex
     flex-flow: row nowrap
     justify-content: space-between
-    align-items: center
-    min-height: offset
-    color: text-light
-    background: snippet-header-light
-    border-left: 40px solid snippet-header-normal
+    min-height: 110px
     padding: 15px 20px
+    color: text-light
+    background: snippet-header-green-normal
+    border-left: 40px solid snippet-header-border
+    font-family: font-roboto
 
   &-data
-    & > div
-      display: flex
+    display: flex
+    flex-flow: column nowrap
+    justify-content: space-between
     &-title
       font-size: 20px
-      margin-right: 20px
+      letter-spacing: .2px
     &-author
       display: block
       margin-top: 7px
       font-size: 14px
+    &-actions
+      display: flex
+      flex-flow: column nowrap
+      justify-content: space-between
+      align-items: flex-end
+    &-lang
+      font-size: 14px
+    &-meta
+      opacity: .8
+      font-size: 12px
+      font-weight: 300
+    &-tag
+      margin-right: 5px
+      padding: 3px 8px
+      font-size: 12px
+      font-weight: 300
+      color: text-light
+      border-radius: 9.5px
+      background-color: rgba(text-light, .2)
+      letter-spacing: .4px
+      &:last-shild
+        margin-right: 0
 
   &-button
-    padding: 9px 12px
+    margin-right: 10px
+    padding: 11px 21px
     color: text-light
-    font-size: 17px
-    font-family: font-quicksand
+    font-size: 14px
+    font-weight: 400
     border-radius: 0
     border: 1px solid text-light
-    background-color: button-normal
+    background-color: button-active
+    text-transform: uppercase
     cursor: pointer
+    &:last-child
+      margin-right: 0
+    &.true
     &:hover
-      background-color: button-light-normal
+      background-color: text-light
+      color: button-active
+    &.embed
+      margin-left: 10px
+      padding: 8px 18px
+      font-size: 12px
+      text-transform: none
+      border: none
+      &:hover
+        color: text-light
+        background-color: button-embed-hover
 
   &-embed
-    min-height: 80px
-    background-color: snippet-header-normal
-    border-left: 40px solid snippet-header-dark
-    padding: 13px 20px 15px
+    position: relative
+    min-height: 84px
+    padding: 15px 20px
+    background-color: snippet-header-embed
+    border-left: 40px solid snippet-header-embed-dark
     &.false
       display: none
     &-text
-      color: text-light
-      font-family: font-quicksand
-      font-size: 14px
       padding-bottom: 10px
+      color: text-dark
+      font-family: font-roboto
+      font-weight: 300
+      font-size: 12px
     & input
       basic-input()
+      padding: 4px 9px
+      width: auto
+      min-width: 450px
+      min-height: 30px
       color: text-dark
       background-color: snippet-content-light
-      padding: 4px 9px
-      font-size: 15px
-
-  &-code
-    flex: 1
-    position: relative
-    &-bottom-bar
-      bottom: 0
-      left: 0
-      right: 0
-      text-align: right
-      padding: 10px 20px
-      border-top: 1px solid border-light
-      background-color: snippet-content-light
-    &-button
-      color: text-light
-      border: none
-      margin-right: 3px
-      font-size: 17px
-      font-family: font-quicksand
-      padding: 10px 14px
+      font-size: 13px
+    &-close
+      position: absolute
+      width: 12px
+      height: 12px
+      top: 15px
+      right: 15px
       cursor: pointer
-      outline: none
-      text-decoration: none
-      &.light
-        background-color: button-light-normal
-        &:hover
-          background-color: button-light-active
+      &::before
+      &::after
+        content: ''
+        position: absolute
+        width: 1px
+        height: 14px
+        left: 6px
+        background-color: snippet-embed-close
+      &::before
+        transform: rotate(45deg)
+      &::after
+        transform: rotate(-45deg)
