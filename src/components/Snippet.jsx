@@ -8,7 +8,7 @@ import 'brace/theme/textmate';
 import Title from './common/Title';
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
-import { downloadSnippet } from '../helpers';
+import { downloadSnippet, copyToClipboard, parseDate } from '../helpers';
 
 import '../styles/Snippet.styl';
 
@@ -18,6 +18,9 @@ class Snippet extends React.Component {
     this.state = { isShowEmbed: false };
     this.toggleEmbed = this.toggleEmbed.bind(this);
     this.download = this.download.bind(this);
+    this.copyClipboard = (e) => {
+      copyToClipboard(e, 'embedded');
+    };
   }
 
   componentDidMount() {
@@ -51,31 +54,41 @@ class Snippet extends React.Component {
         <div className="snippet" key="Snippet">
           <div className="snippet-header">
             <div className="snippet-data">
-              <div>
-                <span className="snippet-data-title">{snippetTitle}</span>
-                <span className="snippet-data-lang">[ {syntax} ]</span>
+              <span className="snippet-data-title">{snippetTitle}</span>
+              <div className="snippet-data-tags">
+                {snippet.get('tags').map(item => <span className="snippet-data-tag" key={item}>{item}</span>)}
               </div>
-              <span className="snippet-data-author">By Guest</span>
+              <span className="snippet-data-meta">{parseDate(snippet.get('created_at'))}, by Guest</span>
             </div>
-            <button
-              className="snippet-button"
-              key="snippet-details"
-              onClick={this.toggleEmbed}
-              onKeyPress={this.toggleEmbed}
-            >
-              Embed
-            </button>
+            <div className="snippet-data-actions">
+              <span className="snippet-data-lang">{syntax}</span>
+              <div>
+                <button className="snippet-button">Raw</button>
+                <button className="snippet-button" onClick={this.download}>Download</button>
+                <button
+                  className={`snippet-button ${this.state.isShowEmbed}`}
+                  key="snippet-details"
+                  onClick={this.toggleEmbed}
+                  onKeyPress={this.toggleEmbed}
+                >
+                  Embed
+                </button>
+              </div>
+            </div>
           </div>
           <div className={`snippet-embed ${this.state.isShowEmbed}`}>
+            <span className="snippet-embed-close" onClick={this.toggleEmbed} role="presentation" />
             <p className="snippet-embed-text">
               In order to embed this content into your website or blog,
               simply copy and paste code provided below:
             </p>
             <input
+              id="embedded"
               className="input"
               type="text"
               defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
             />
+            <button className="snippet-button embed" onClick={this.copyClipboard}>Copy</button>
           </div>
           <div className="snippet-code">
             <AceEditor
@@ -94,10 +107,6 @@ class Snippet extends React.Component {
               }}
               value={`${snippet.get('content')}`}
             />
-            <div className="snippet-code-bottom-bar">
-              <button className="snippet-button light">Raw</button>
-              <button className="snippet-button light" onClick={this.download}>Download</button>
-            </div>
           </div>
         </div>,
       ]

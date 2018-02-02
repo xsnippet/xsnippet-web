@@ -36,4 +36,19 @@ function downloadSnippet(snippet) {
   download(content, name, 'text/plain');
 }
 
-export { regExpEscape, downloadSnippet };
+function copyToClipboard(e, id) {
+  document.getElementById(id).select();
+  document.execCommand('copy');
+  e.target.focus();
+}
+
+// This function is here just because I don't want to pull the whole moment.js
+// only for one tiny date
+function parseDate(d) {
+  const date = new Date(d);
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
+  return `${day}.${month}.${date.getFullYear()}`;
+}
+
+export { regExpEscape, downloadSnippet, copyToClipboard, parseDate };
