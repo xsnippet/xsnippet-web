@@ -1,0 +1,92 @@
+@import './common/variables.styl'
+
+.about-us
+  padding: 22px 20px
+  margin-bottom: 10px
+  background-color: snippet-content-light
+  border-left: 9px solid about-us-border
+  box-shadow: 0 2px 2px 0 border-dark
+  font-family: font-roboto
+  & .title
+    font-size: 24px
+    color: about-us-title
+  &-paragraph
+    color: about-us-paragraph
+    font-weight: 300
+    letter-spacing: .1px
+    font-size: 14px
+    line-height: 22px
+    &.small
+      font-size: 12px
+  &-repo
+    display: block
+    padding-bottom: 3px
+    color: text-dark
+    font-size: 14px
+    &-list
+      margin-left: 37px
+      margin-top: 24px
+      list-style: disc
+      color: about-us-point
+      & + .about-us-paragraph
+        padding-top: 8px
+        padding-bottom: 5px
+    &-item
+      padding-bottom: 14px
+  &-github
+    color: snippet-border
+    font-size: 14px
+    font-weight: 300
+    letter-spacing: .1px
+  &-team
+    &-list
+      display: flex
+      flex-flow: row wrap
+      padding-top: 39px
+    &-item
+      width: 50%
+      display: inline-flex
+      padding-bottom: 29px
+      &:last-child
+        padding-bottom: 0
+      & img
+        border-radius: 50%
+        & + div
+          padding-left: 20px
+          padding-top: 15px
+    &-member
+      display: block
+      padding-bottom: 11px
+      color: about-us-point
+      font-size: 12px
+
+@media (max-width: 640px)
+  .about-us
+    &-team
+      &-list
+        flex-flow: column nowrap
+      &-item
+        display: flex
+        flex-flow: column nowrap
+        width: 100%
+        align-items: center
+        padding-bottom: 15px
+        text-align: center
+        & img
+          width: 200px
+          & + div
+            padding-left: 0
+
+@media (min-width: 1024px)
+  .about-us
+    &-team
+      &-list
+        flex-flow: row nowrap
+      &-item
+        display: flex
+        flex-flow: column nowrap
+        align-items: center
+        padding-bottom: 0
+        text-align: center
+        & img + div
+          padding-left: 0
