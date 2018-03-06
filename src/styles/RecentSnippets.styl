@@ -3,55 +3,90 @@
 .recent-snippet
   display: flex
   flex-flow: column nowrap
+  font-family: font-roboto
   &-item
     display: flex
     flex-flow: row nowrap
     justify-content: space-between
-    align-items: center
-    margin-bottom: 8px
+    align-items: stretch
+    margin-bottom: 10px
     padding: 20px 16px 20px 20px
-    border-left: 5px solid snippet-border 
+    border-left: 8px solid snippet-border 
     box-shadow: 0 2px 2px 0 border-dark
     background-color: snippet-content-light
 
-  &-data
+  &-meta
     display: flex
     flex-flow: column nowrap
+    justify-content: space-between
+    max-width: "calc(100% - %s)" % 240px
     & > div
       display: flex
-      flex-flow: row nowrap
+      flex-flow: column nowrap
       justify-content: space-between
     &-title
-      color: text-green
+      color: recent-snippet-text
       font-size: 19px
       text-decoration: none
       &:hover
         color: text-dark-green
-    &-lang
-      margin-left: 15px
-      color: text-dark
+
     &-author
       padding-top: 13px
       color: text-grey
       font-size: 14px
+    &-tags
+      margin: 10px 0
+    &-tag
+      margin-right: 5px
+      padding: 3px 8px
+      font-size: 12px
+      font-weight: 300
+      line-height: 22px
+      color: text-dark
+      border-radius: 9.5px
+      background-color: recent-snippet-tag-bg
+      letter-spacing: .4px
+      &:last-shild
+        margin-right: 0
+    &-info
+      opacity: .5
+      font-size: 13px
+      font-weight: 300
+      color: recent-snippet-meta
+
+  &-actions
+    display: flex
+    flex-flow: column nowrap
+    justify-content: space-between
+
+  &-lang
+    padding-bottom: 17px
+    text-align: right
+    font-size: 14px
+    color: recent-snippet-lang
 
   &-button
+    margin-right: 0
+    padding: 10px 14px
     color: text-light
     border: none
     background-color: button-normal
-    margin-right: 3px
-    font-size: 17px
-    font-family: font-quicksand
-    padding: 10px 14px
+    font-size: 14px
+    font-weight: 400
     cursor: pointer
     outline: none
     text-decoration: none
     &:hover
       background-color: button-active
     &.light
-      background-color: button-light-normal
+      margin-right: 8px
+      padding: 9px 14px
+      color: recent-snippet-text
+      border: 1px solid recent-snippet-light-button-border
+      background-color: recent-snippet-light-button-bg
       &:hover
-        background-color: button-light-active
+        background-color: recent-snippet-light-button-bg-hover
 
 .pagination
   display: flex
@@ -61,10 +96,9 @@
   &-item
     padding: 9px 14px
     font-size: 14px
-    font-family: font-roboto
     font-weight: 300
-    background-color: pagination-bg
     color: pagination-text
+    background-color: pagination-bg
     cursor: pointer
     &:hover
       color: text-light
