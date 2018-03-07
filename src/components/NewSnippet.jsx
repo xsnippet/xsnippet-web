@@ -30,6 +30,12 @@ class NewSnippet extends React.Component {
         e.preventDefault();
       }
     };
+    this.recalcLangHeaderHeight = () => {
+      const newSnippetHeaderHeight = document.getElementsByClassName('new-snippet-code-header')[0].offsetHeight;
+
+      document.getElementsByClassName('new-snippet-lang-header')[0]
+        .setAttribute('style', `height:${newSnippetHeaderHeight}px`);
+    };
     this.postSnippet = this.postSnippet.bind(this);
     this.onSyntaxClick = this.onSyntaxClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
@@ -43,11 +49,15 @@ class NewSnippet extends React.Component {
   }
 
   onTagAdded(tag) {
-    this.setState({ tags: [...this.state.tags, tag] });
+    this.setState({ tags: [...this.state.tags, tag] }, () => {
+      this.recalcLangHeaderHeight();
+    });
   }
 
   onTagRemoved(tag) {
-    this.setState({ tags: this.state.tags.filter(item => item !== tag) });
+    this.setState({ tags: this.state.tags.filter(item => item !== tag) }, () => {
+      this.recalcLangHeaderHeight();
+    });
   }
 
   onSyntaxClick(syntax) {

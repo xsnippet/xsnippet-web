@@ -20,17 +20,33 @@
 
 .react-tags
   display: flex
+  flex-flow: row wrap
+  basic-input()
   width: 47%
+  border-radius: 3px
+  background-color: snippet-header-normal
   input
     basic-input()
+    padding: 0
+    border-radius: 3px
+    background-color: snippet-header-normal
   .react-tags__container
     display: flex
+    flex-flow: row wrap
     color: text-light
     li
-      border: 1px solid rgba(text-light, .4)
-      margin-right: 4px
-      padding: 7px
+      margin: 0 4px 5px 0
+      padding: 0 8px
+      font-size: 12px
+      font-weight: 300
+      line-height: 20px
+      color: text-light
+      border-radius: 9.5px
+      background-color: rgba(snippet-header-light, .7)
+      letter-spacing: 0.4px
       white-space: nowrap
+      &:last-shild
+        margin-right: 0
       &:hover
         border-color: text-light
       a
