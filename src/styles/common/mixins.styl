@@ -2,15 +2,16 @@
 
 basic-input()
   width: 100%
-  background-color: transparent
+  padding: 7px 5px
   border: none
-  border-bottom: 1px solid rgba(text-light, .4)
   outline: none
   color: text-light
-  font-size: 15px
-  font-family: font-quicksand
+  font-family: font-roboto
+  font-size: 13px
+  font-weight: 300
   letter-spacing: -.3px
+  &:focus
+    &::placeholder
+      color: rgba(text-light, .8)
   &::placeholder
     color: rgba(text-light, .6)
-  &:focus
-    border-bottom: 1px solid text-light

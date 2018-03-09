@@ -12,13 +12,12 @@ lang-bar-width = 230px
   &-code,
   &-lang
     &-header
-      padding: 16px 20px 19px
-      box-sizing: border-box
       display: flex
       flex-flow: row nowrap
-      height: offset
       min-height: offset
-      align-items: flex-end
+      align-items: flex-start
+      padding: 20px 20px 19px
+      box-sizing: border-box
 
   &-code
     flex: 1
@@ -34,6 +33,8 @@ lang-bar-width = 230px
       .input
         basic-input()
         width: 47%
+        border-radius: 3px
+        background-color: snippet-header-normal
       & > input
         margin-right: 5%
     &-bottom-bar
@@ -45,19 +46,17 @@ lang-bar-width = 230px
       padding: 5px
       border-top: 1px solid border-light
       & > input
-        border: none
-        background-color: button-normal
-        color: text-light
+        min-width: 200px
         padding: 11px
-        margin-right: 16px
-        margin-bottom: 7px
-        margin-top: 5px
+        margin: 5px 16px 7px 0
+        border: none
+        background-color: snippet-post-button
+        color: text-light
         font-size: 15px
         text-align: center
-        min-width: 200px
         &:hover,
         &:focus
-          background-color: button-active
+          background-color: snippet-post-button-active
           cursor: pointer
 
   &-lang
@@ -70,6 +69,8 @@ lang-bar-width = 230px
       background-color: snippet-header-normal
       .input
         basic-input()
+        border-radius: 3px
+        background-color: snippet-header-lang-input-bg
     &-list
       height: 100%
       &-wrapper
@@ -81,14 +82,17 @@ lang-bar-width = 230px
       color: text-grey
     &-item
       margin-top: -1px
+      padding: 16px 15px
       font-size: 14px
-      padding: 15px
+      font-family: font-roboto
+      font-weight: 300
+      letter-spacing: .2px
       border-left: 5px solid language-bar-border
       border-bottom: 1px solid language-bar-border
       cursor: pointer
       &:hover,
       &.active
-        padding-bottom: 16px
+        padding-bottom: 17px
         border-left: 5px solid snippet-border
         border-bottom: none
         background-color: language-bar-bg-active
