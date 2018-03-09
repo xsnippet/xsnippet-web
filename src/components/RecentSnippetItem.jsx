@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import brace from 'brace';
 
-import { downloadSnippet } from '../helpers';
+import { downloadSnippet, parseDate } from '../helpers';
 
 const RecentSnippetItem = ({ snippet }) => {
   const { modesByName } = brace.acequire('ace/ext/modelist');
@@ -13,17 +13,22 @@ const RecentSnippetItem = ({ snippet }) => {
 
   return (
     <li className="recent-snippet-item">
-      <div className="recent-snippet-data">
+      <div className="recent-snippet-meta">
         <div>
-          <Link to={`${snippet.get('id')}`} className="recent-snippet-data-title">{snippetTitle}</Link>
-          <span className="recent-snippet-data-lang">[ {syntax} ]</span>
+          <Link to={`${snippet.get('id')}`} className="recent-snippet-meta-title">{snippetTitle}</Link>
+          <div className="recent-snippet-meta-tags">
+            {snippet.get('tags').map(item => <span className="recent-snippet-meta-tag" key={item}>{item}</span>)}
+          </div>
         </div>
-        <span className="recent-snippet-data-author">By Guest</span>
+        <span className="recent-snippet-meta-info">{parseDate(snippet.get('created_at'))}, by Guest</span>
       </div>
-      <div>
-        <button className="recent-snippet-button light">Raw</button>
-        <button className="recent-snippet-button light" onClick={download}>Download</button>
-        <Link to={`${snippet.get('id')}`} className="recent-snippet-button">Show</Link>
+      <div className="recent-snippet-actions">
+        <span className="recent-snippet-lang">{syntax}</span>
+        <div>
+          <button className="recent-snippet-button light">Raw</button>
+          <button className="recent-snippet-button light" onClick={download}>Download</button>
+          <Link to={`${snippet.get('id')}`} className="recent-snippet-button">Show</Link>
+        </div>
       </div>
     </li>
   );
