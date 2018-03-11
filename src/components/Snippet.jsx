@@ -8,7 +8,7 @@ import 'brace/theme/textmate';
 import Title from './common/Title';
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
-import { downloadSnippet, copyToClipboard, parseDate } from '../helpers';
+import { downloadSnippet, copyToClipboard, formatDate } from '../helpers';
 
 import '../styles/Snippet.styl';
 
@@ -58,7 +58,7 @@ class Snippet extends React.Component {
               <div className="snippet-data-tags">
                 {snippet.get('tags').map(item => <span className="snippet-data-tag" key={item}>{item}</span>)}
               </div>
-              <span className="snippet-data-meta">{parseDate(snippet.get('created_at'))}, by Guest</span>
+              <span className="snippet-data-meta">{formatDate(snippet.get('created_at'))}, by Guest</span>
             </div>
             <div className="snippet-data-actions">
               <span className="snippet-data-lang">{syntax}</span>

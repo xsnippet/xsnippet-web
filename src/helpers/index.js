@@ -44,12 +44,10 @@ function copyToClipboard(e, id) {
 
 // This function is here just because I don't want to pull the whole moment.js
 // only for one tiny date
-function parseDate(d) {
-  const date = new Date(d);
-  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-  const parsedMonth = date.getMonth() + 1;
-  const month = parsedMonth < 10 ? `0${parsedMonth}` : parsedMonth;
-  return `${day}.${month}.${date.getFullYear()}`;
+function formatDate(d) {
+  const ISOdate = d.split('T')[0];
+
+  return ISOdate.split('-').reverse().join('.');
 }
 
-export { regExpEscape, downloadSnippet, copyToClipboard, parseDate };
+export { regExpEscape, downloadSnippet, copyToClipboard, formatDate };

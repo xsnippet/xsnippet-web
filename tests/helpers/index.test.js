@@ -1,15 +1,15 @@
-import { parseDate } from '../../src/helpers';
+import { formatDate } from '../../src/helpers';
 
-describe('helpers: parseDate', () => {
+describe('helpers: formatDate', () => {
   it('should return properly formated date', () => {
-    const incomeDate = '03/11/2017';
+    const incomeDate = '2018-03-11T15:28:19';
 
-    expect(parseDate(incomeDate)).toEqual('11.03.2017');
+    expect(formatDate(incomeDate)).toEqual('11.03.2018');
   });
 
-  it('should return properly formated date for Jan', () => {
-    const incomeDate = '01/01/2018';
+  it('should return properly format7ed date for Jan', () => {
+    const incomeDate = '2018-01-01T23:28:19';
 
-    expect(parseDate(incomeDate)).toEqual('01.01.2018');
+    expect(formatDate(incomeDate)).toEqual('01.01.2018');
   });
 });

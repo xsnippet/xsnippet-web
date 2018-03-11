@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import brace from 'brace';
 
-import { downloadSnippet, parseDate } from '../helpers';
+import { downloadSnippet, formatDate } from '../helpers';
 
 const RecentSnippetItem = ({ snippet }) => {
   const { modesByName } = brace.acequire('ace/ext/modelist');
@@ -20,7 +20,7 @@ const RecentSnippetItem = ({ snippet }) => {
             {snippet.get('tags').map(item => <span className="recent-snippet-meta-tag" key={item}>{item}</span>)}
           </div>
         </div>
-        <span className="recent-snippet-meta-info">{parseDate(snippet.get('created_at'))}, by Guest</span>
+        <span className="recent-snippet-meta-info">{formatDate(snippet.get('created_at'))}, by Guest</span>
       </div>
       <div className="recent-snippet-actions">
         <span className="recent-snippet-lang">{syntax}</span>
