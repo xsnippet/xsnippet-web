@@ -47,7 +47,8 @@ function copyToClipboard(e, id) {
 function parseDate(d) {
   const date = new Date(d);
   const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-  const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
+  const parsedMonth = date.getMonth() + 1;
+  const month = parsedMonth < 10 ? `0${parsedMonth}` : parsedMonth;
   return `${day}.${month}.${date.getFullYear()}`;
 }
 
