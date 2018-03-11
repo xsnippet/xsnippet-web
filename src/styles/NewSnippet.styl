@@ -3,6 +3,7 @@
 @import './common/mixins.styl'
 
 lang-bar-width = 230px
+lang-bar-width-tablet = 170px
 
 .new-snippet
   display: flex
@@ -96,3 +97,25 @@ lang-bar-width = 230px
         border-left: 5px solid snippet-border
         border-bottom: none
         background-color: language-bar-bg-active
+
+@media (max-width: tablet-breakpoint)
+  .new-snippet
+    &-code,
+    &-lang
+      &-header
+        flex-flow: column nowrap
+        min-height: 105px
+    &-code
+      &-wrapper
+        width: "calc(100% - %s)" % lang-bar-width-tablet
+      &-header
+        .input
+          width: 100%
+          margin-bottom: 8px
+        .react-tags
+          width: 100%
+        & > input
+          margin-right: 0
+    &-lang
+      &-wrapper
+        width: lang-bar-width-tablet
