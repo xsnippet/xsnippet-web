@@ -49,9 +49,11 @@ class NewSnippet extends React.Component {
   }
 
   onTagAdded(tag) {
-    this.setState({ tags: [...this.state.tags, tag] }, () => {
-      this.recalcLangHeaderHeight();
-    });
+    if (tag) {
+      this.setState({ tags: [...this.state.tags, tag] }, () => {
+        this.recalcLangHeaderHeight();
+      });
+    }
   }
 
   onTagRemoved(tag) {
@@ -109,7 +111,7 @@ class NewSnippet extends React.Component {
                 placeholder="Tags"
                 onAdded={this.onTagAdded}
                 onRemoved={this.onTagRemoved}
-                addKeys={[13, 9]}
+                addKeys={[32, 13, 9]}
                 uniqueTags
               />
             </div>
