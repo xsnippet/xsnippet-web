@@ -108,3 +108,20 @@
     &.disabled
       pointer-events: none
       background-color: pagination-bg-inactive
+
+@media (max-width: tablet-breakpoint)
+  .recent-snippet
+    &-item
+      flex-flow: column nowrap
+      padding: 15px
+    &-meta
+      max-width: 100%
+      &-title
+        font-size: 16px
+      &-tags
+        margin: 5px 0
+    &-actions
+      & div
+        text-align: right
+    &-lang
+      padding-bottom: 8px

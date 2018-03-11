@@ -1,6 +1,8 @@
 @import './common/variables.styl'
 @import './common/mixins.styl'
 
+button-group-width = 312px
+
 .snippet
   display: flex
   flex-flow: column nowrap
@@ -21,13 +23,17 @@
     display: flex
     flex-flow: column nowrap
     justify-content: space-between
+    max-width: "calc(100% - %s)" % button-group-width
     &-title
       font-size: 20px
+      line-height: 20px
       letter-spacing: .2px
     &-author
       display: block
       margin-top: 7px
       font-size: 14px
+    &-tags
+      margin: 10px 0
     &-actions
       display: flex
       flex-flow: column nowrap
@@ -120,3 +126,26 @@
         transform: rotate(45deg)
       &::after
         transform: rotate(-45deg)
+
+@media (max-width: tablet-breakpoint)
+  .snippet
+    &-header
+      flex-flow: column nowrap
+    &-data
+      max-width: 100%
+      &-lang
+        padding-bottom: 8px
+      &-title
+        font-size: 17px
+        line-height: 17px
+    &-button
+      padding: 9px 16px
+      font-size: 12px
+      &.embed
+        margin-top: 8px
+        margin-left: 0
+    &-embed
+      &-close
+        display: none
+      & input
+        min-width: 100%
