@@ -2,6 +2,11 @@ import React from 'react';
 import Title from './common/Title';
 
 import '../styles/AboutUs.styl';
+import RomanImage from '../assets/roman.jpg';
+import IhorImage from '../assets/ihor.jpg';
+import OlhaImage from '../assets/olha.jpg';
+import AinuraImage from '../assets/ainura.jpg';
+import KaterynaImage from '../assets/kateryna.jpg';
 
 const About = () => (
   [
@@ -50,38 +55,38 @@ const About = () => (
       </p>
       <ul className="about-us-team-list">
         <li className="about-us-team-item">
-          <img src="http://lorempixel.com/g/100/100/" alt="Ainura Aliieva" />
+          <img src={KaterynaImage} alt="Kateryna Zharikova" />
           <div>
-            <span className="about-us-team-member">Ainura Aliieva</span>
-            <p className="about-us-paragraph small">Front-end developer</p>
+            <span className="about-us-team-member">Kateryna Zharikova</span>
+            <p className="about-us-paragraph small">Visual Designer</p>
           </div>
         </li>
         <li className="about-us-team-item">
-          <img src="http://lorempixel.com/g/100/100/" alt="Ihor Kalnytskyi" />
+          <img src={IhorImage} alt="Ihor Kalnytskyi" />
           <div>
             <span className="about-us-team-member">Ihor Kalnytskyi</span>
             <p className="about-us-paragraph small">Back-end developer</p>
           </div>
         </li>
         <li className="about-us-team-item">
-          <img src="http://lorempixel.com/g/100/100/" alt="Olha Kurkaiedova" />
-          <div>
-            <span className="about-us-team-member">Olha Kurkaiedova</span>
-            <p className="about-us-paragraph small">Front-end developer</p>
-          </div>
-        </li>
-        <li className="about-us-team-item">
-          <img src="http://lorempixel.com/g/100/100/" alt="Roman Podoliaka" />
+          <img src={RomanImage} alt="Roman Podoliaka" />
           <div>
             <span className="about-us-team-member">Roman Podoliaka</span>
             <p className="about-us-paragraph small">Back-end developer</p>
           </div>
         </li>
         <li className="about-us-team-item">
-          <img src="http://lorempixel.com/g/100/100/" alt="Kateryna Zharikova" />
+          <img src={OlhaImage} alt="Olha Kurkaiedova" />
           <div>
-            <span className="about-us-team-member">Kateryna Zharikova</span>
-            <p className="about-us-paragraph small">Visual Designer</p>
+            <span className="about-us-team-member">Olha Kurkaiedova</span>
+            <p className="about-us-paragraph small">Front-end developer</p>
+          </div>
+        </li>
+        <li className="about-us-team-item">
+          <img src={AinuraImage} alt="Ainura Aliieva" />
+          <div>
+            <span className="about-us-team-member">Ainura Aliieva</span>
+            <p className="about-us-paragraph small">Front-end developer</p>
           </div>
         </li>
       </ul>
