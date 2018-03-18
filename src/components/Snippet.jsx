@@ -21,6 +21,10 @@ class Snippet extends React.Component {
     this.copyClipboard = (e) => {
       copyToClipboard(e, 'embedded');
     };
+    this.onEditorLoad = (editor) => {
+      // we want to disable built-in find in favor of browser's one
+      editor.commands.removeCommand('find');
+    };
   }
 
   componentDidMount() {
@@ -96,6 +100,7 @@ class Snippet extends React.Component {
               width="100%"
               height="100%"
               theme="textmate"
+              onLoad={this.onEditorLoad}
               setOptions={{
                 readOnly: true,
                 highlightActiveLine: false,

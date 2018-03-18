@@ -36,6 +36,10 @@ class NewSnippet extends React.Component {
       document.getElementsByClassName('new-snippet-lang-header')[0]
         .setAttribute('style', `height:${newSnippetHeaderHeight}px`);
     };
+    this.onEditorLoad = (editor) => {
+      // we want to disable built-in find in favor of browser's one
+      editor.commands.removeCommand('find');
+    };
     this.postSnippet = this.postSnippet.bind(this);
     this.onSyntaxClick = this.onSyntaxClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
@@ -122,6 +126,7 @@ class NewSnippet extends React.Component {
                 height="100%"
                 focus
                 theme="textmate"
+                onLoad={this.onEditorLoad}
                 setOptions={{
                   showFoldWidgets: false,
                   useWorker: false,
