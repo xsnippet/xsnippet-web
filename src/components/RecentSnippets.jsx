@@ -12,6 +12,9 @@ class RecentSnippets extends React.Component {
     super(props);
     this.newerSetOfSnippets = this.newerSetOfSnippets.bind(this);
     this.olderSetOfSnippets = this.olderSetOfSnippets.bind(this);
+    this.scrollTop = () => {
+      window.scroll({ top: 0, behavior: 'smooth' });
+    };
   }
 
   componentDidMount() {
@@ -34,6 +37,7 @@ class RecentSnippets extends React.Component {
 
       dispatch(actions.fetchRecentSnippets(marker));
     }
+    this.scrollTop();
   }
 
   olderSetOfSnippets() {
@@ -41,6 +45,7 @@ class RecentSnippets extends React.Component {
     const marker = Number(pagination.get('next').marker);
 
     dispatch(actions.fetchRecentSnippets(marker));
+    this.scrollTop();
   }
 
   render() {
