@@ -10,6 +10,7 @@ const RecentSnippetItem = ({ snippet }) => {
   const syntax = mode.caption;
   const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
   const download = () => downloadSnippet(snippet);
+  const rawUrl = process.env.RAW_SNIPPETS_URL_FORMAT.replace('%s', snippet.get('id'));
 
   return (
     <li className="recent-snippet-item">
@@ -25,7 +26,7 @@ const RecentSnippetItem = ({ snippet }) => {
       <div className="recent-snippet-actions">
         <span className="recent-snippet-lang">{syntax}</span>
         <div>
-          <button className="recent-snippet-button light">Raw</button>
+          <a href={rawUrl} className="recent-snippet-button light">Raw</a>
           <button className="recent-snippet-button light" onClick={download}>Download</button>
           <Link to={`${snippet.get('id')}`} className="recent-snippet-button">Show</Link>
         </div>

@@ -205,7 +205,10 @@ module.exports = () => {
       // testing to make debugging easier. We do not know which default they
       // use, so let's set 'production' explicitly and let user to override
       // this value.
-      new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'production',
+        RAW_SNIPPETS_URL_FORMAT: '//xsnippet.org/%s/raw',
+      }),
 
       // Generate index.html based on passed template, populating it with
       // produced JavaScript bundles.
