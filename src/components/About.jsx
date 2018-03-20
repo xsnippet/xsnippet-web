@@ -58,7 +58,7 @@ const About = () => (
           <img src={KaterynaImage} alt="Kateryna Zharikova" />
           <div>
             <span className="about-us-team-member">Kateryna Zharikova</span>
-            <p className="about-us-paragraph small">Visual Designer</p>
+            <p className="about-us-paragraph small">UI Designer</p>
           </div>
         </li>
         <li className="about-us-team-item">
