@@ -154,7 +154,15 @@ module.exports = () => {
         // Transpile ES2015+ down to ES5.
         {
           test: /\.jsx?$/,
-          include: path.resolve(__dirname, 'src'),
+          include: [
+            path.resolve(__dirname, 'src'),
+            // Joi and its dependencies are not distributed as ES5 code, so
+            // we need to transpile them as well; otherwise, UglifyJS will
+            // fail to minify the sources.
+            path.resolve(__dirname, 'node_modules', 'joi'),
+            path.resolve(__dirname, 'node_modules', 'topo'),
+            path.resolve(__dirname, 'node_modules', 'isemail'),
+          ],
           use: ['babel-loader'],
         },
 
@@ -242,6 +250,10 @@ module.exports = () => {
     // Enable importing .js & .jsx files without specifying their extensions.
     resolve: {
       extensions: ['.js', '.jsx'],
+    },
+
+    node: {
+      net: 'empty',
     },
   };
 
