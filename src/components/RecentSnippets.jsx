@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Title from './common/Title';
 import RecentSnippetItem from './RecentSnippetItem';
 import * as actions from '../actions';
 
@@ -54,7 +53,6 @@ class RecentSnippets extends React.Component {
     const newer = pagination.get('prev');
 
     return ([
-      <Title title="Recent snippets" additionalClass="recent-title" key="title-recent" />,
       <ul className="recent-snippet" key="recent-snippet">
         {recent.map(id => <RecentSnippetItem key={id} snippet={snippets.get(id)} />)}
       </ul>,
