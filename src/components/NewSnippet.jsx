@@ -7,7 +7,6 @@ import brace from 'brace';
 import 'brace/ext/modelist';
 import 'brace/theme/textmate';
 
-import Title from './common/Title';
 import ListBoxWithSearch from './ListBoxWithSearch';
 import * as actions from '../actions';
 
@@ -91,65 +90,62 @@ class NewSnippet extends React.Component {
     }));
 
     return (
-      [
-        <Title title="New snippet" key="New Snippet Title" />,
-        <form
-          className="new-snippet"
-          key="New Snippet"
-          onKeyPress={this.onKeyPress}
-          onSubmit={this.postSnippet}
-          role="presentation"
-        >
-          <div className="new-snippet-code-wrapper">
-            <div className="new-snippet-code-header">
-              <input
-                className="input"
-                placeholder="Title"
-                name="title"
-                type="text"
-                value={this.state.title}
-                onChange={this.onInputChange}
-              />
-              <Tags
-                tags={this.state.tags}
-                placeholder="Tags"
-                onAdded={this.onTagAdded}
-                onRemoved={this.onTagRemoved}
-                addKeys={[32, 13, 9]}
-                uniqueTags
-              />
-            </div>
-            <div className="new-snippet-code">
-              <AceEditor
-                mode={mode.name}
-                width="100%"
-                height="100%"
-                focus
-                theme="textmate"
-                onLoad={this.onEditorLoad}
-                setOptions={{
-                  showFoldWidgets: false,
-                  useWorker: false,
-                  maxLines: Infinity,
-                  showPrintMargin: false,
-                }}
-                value={this.state.content}
-                onChange={(content) => { this.setState({ content }); }}
-              />
-
-              <div className="new-snippet-code-bottom-bar">
-                <input type="submit" value="POST SNIPPET" />
-              </div>
-            </div>
-          </div>
-          <div className="new-snippet-lang-wrapper">
-            <ListBoxWithSearch
-              items={syntaxes}
-              onClick={this.onSyntaxClick}
+      <form
+        className="new-snippet"
+        key="New Snippet"
+        onKeyPress={this.onKeyPress}
+        onSubmit={this.postSnippet}
+        role="presentation"
+      >
+        <div className="new-snippet-code-wrapper">
+          <div className="new-snippet-code-header">
+            <input
+              className="input"
+              placeholder="Title"
+              name="title"
+              type="text"
+              value={this.state.title}
+              onChange={this.onInputChange}
+            />
+            <Tags
+              tags={this.state.tags}
+              placeholder="Tags"
+              onAdded={this.onTagAdded}
+              onRemoved={this.onTagRemoved}
+              addKeys={[32, 13, 9]}
+              uniqueTags
             />
           </div>
-        </form>,
-      ]
+          <div className="new-snippet-code">
+            <AceEditor
+              mode={mode.name}
+              width="100%"
+              height="100%"
+              focus
+              theme="textmate"
+              onLoad={this.onEditorLoad}
+              setOptions={{
+                showFoldWidgets: false,
+                useWorker: false,
+                maxLines: Infinity,
+                showPrintMargin: false,
+              }}
+              value={this.state.content}
+              onChange={(content) => { this.setState({ content }); }}
+            />
+
+            <div className="new-snippet-code-bottom-bar">
+              <input type="submit" value="POST SNIPPET" />
+            </div>
+          </div>
+        </div>
+        <div className="new-snippet-lang-wrapper">
+          <ListBoxWithSearch
+            items={syntaxes}
+            onClick={this.onSyntaxClick}
+          />
+        </div>
+      </form>
     );
   }
 }
