@@ -79,18 +79,20 @@ class Snippet extends React.Component {
           </div>
         </div>
         <div className={`snippet-embed ${this.state.isShowEmbed}`}>
-          <span className="snippet-embed-close" onClick={this.toggleEmbed} role="presentation" />
-          <p className="snippet-embed-text">
-            In order to embed this content into your website or blog,
-            simply copy and paste code provided below:
-          </p>
-          <input
-            id="embedded"
-            className="input"
-            type="text"
-            defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
-          />
-          <button className="snippet-button embed" onClick={this.copyClipboard}>Copy</button>
+          <div className="snippet-embed-content">
+            <span className="snippet-embed-close" onClick={this.toggleEmbed} role="presentation" />
+            <p className="snippet-embed-text">
+              In order to embed this content into your website or blog,
+              simply copy and paste code provided below:
+            </p>
+            <input
+              id="embedded"
+              className="input"
+              type="text"
+              defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
+            />
+            <button className="snippet-button embed" onClick={this.copyClipboard}>Copy</button>
+          </div>
         </div>
         <div className="snippet-code">
           <AceEditor
