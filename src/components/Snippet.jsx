@@ -105,6 +105,7 @@ class Snippet extends React.Component {
               highlightGutterLine: false,
               showFoldWidgets: false,
               useWorker: false,
+              fontSize: '14px',
               maxLines: Infinity,
               showPrintMargin: false,
             }}

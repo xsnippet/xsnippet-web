@@ -127,6 +127,7 @@ class NewSnippet extends React.Component {
               setOptions={{
                 showFoldWidgets: false,
                 useWorker: false,
+                fontSize: '14px',
                 maxLines: Infinity,
                 showPrintMargin: false,
               }}
