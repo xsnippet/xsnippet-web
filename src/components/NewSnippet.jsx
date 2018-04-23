@@ -130,6 +130,7 @@ class NewSnippet extends React.Component {
                 maxLines: Infinity,
                 showPrintMargin: false,
               }}
+              editorProps={{ $blockScrolling: Infinity }}
               value={this.state.content}
               onChange={(content) => { this.setState({ content }); }}
             />
