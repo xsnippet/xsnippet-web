@@ -86,13 +86,17 @@ button-group-width = 312px
         background-color: button-embed-hover
 
   &-embed
+    display: block
     position: relative
-    min-height: 84px
-    padding: 15px 20px
+    max-height: 180px
+    transition: max-height .5s ease-in
     background-color: snippet-header-embed
     border-left: 40px solid snippet-header-embed-dark
     &.false
-      display: none
+      max-height: 0
+      transition: max-height .5s ease-out
+    &-content
+      padding: 15px 20px
     &-text
       padding-bottom: 10px
       color: text-dark
