@@ -111,6 +111,7 @@ class Snippet extends React.Component {
               maxLines: Infinity,
               showPrintMargin: false,
             }}
+            editorProps={{ $blockScrolling: Infinity }}
             value={`${snippet.get('content')}`}
           />
         </div>
