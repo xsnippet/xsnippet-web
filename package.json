@@ -23,7 +23,7 @@
       "./tests/testSetup.js"
     ],
     "moduleNameMapper": {
-      "^.+\\.(css|styl|svg)$": "identity-obj-proxy"
+      "^.+\\.(css|styl|svg|jpg)$": "identity-obj-proxy"
     }
   },
   "dependencies": {
