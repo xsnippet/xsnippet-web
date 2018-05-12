@@ -12,7 +12,7 @@ const Sidebar = () => (
         </NavLink>
       </li>
       <li className="sidebar-item sidebar-item-border">
-        <NavLink to="/recent" activeClassName="active" title="Recent Snippet">
+        <NavLink to="/recent" activeClassName="active" title="Recent Snippets">
           <i className="icon-recent" />
         </NavLink>
       </li>
