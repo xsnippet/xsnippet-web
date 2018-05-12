@@ -11,7 +11,8 @@
     }],
     "react/prop-types": [0],
     "jsx-a11y/click-events-have-key-events": [0],
-    "quote-props": ["error", "consistent"]
+    "quote-props": ["error", "consistent"],
+    "import/no-named-as-default": [0]
   },
   "plugins": ["jest"]
 }

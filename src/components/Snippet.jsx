@@ -11,7 +11,7 @@ import { downloadSnippet, copyToClipboard, formatDate } from '../helpers';
 
 import '../styles/Snippet.styl';
 
-class Snippet extends React.Component {
+export class Snippet extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isShowEmbed: false };
@@ -66,9 +66,11 @@ class Snippet extends React.Component {
             <span className="snippet-data-lang">{syntax}</span>
             <div>
               <a href={rawUrl} className="snippet-button">Raw</a>
-              <button className="snippet-button" onClick={this.download}>Download</button>
+              <button className="snippet-button snippet-button-download" onClick={this.download}>
+                Download
+              </button>
               <button
-                className={`snippet-button ${this.state.isShowEmbed}`}
+                className={`toggle-embed snippet-button ${this.state.isShowEmbed}`}
                 key="snippet-details"
                 onClick={this.toggleEmbed}
                 onKeyPress={this.toggleEmbed}
