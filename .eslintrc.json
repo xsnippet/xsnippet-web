@@ -13,5 +13,8 @@
     "jsx-a11y/click-events-have-key-events": [0],
     "quote-props": ["error", "consistent"]
   },
+  "globals": {
+    "cy": false
+  },
   "plugins": ["jest"]
 }

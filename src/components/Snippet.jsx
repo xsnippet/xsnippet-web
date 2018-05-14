@@ -68,7 +68,7 @@ class Snippet extends React.Component {
               <a href={rawUrl} className="snippet-button">Raw</a>
               <button className="snippet-button" onClick={this.download}>Download</button>
               <button
-                className={`snippet-button ${this.state.isShowEmbed}`}
+                className={`toggle-embed snippet-button ${this.state.isShowEmbed}`}
                 key="snippet-details"
                 onClick={this.toggleEmbed}
                 onKeyPress={this.toggleEmbed}
