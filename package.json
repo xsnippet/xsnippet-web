@@ -22,6 +22,8 @@
     "setupFiles": [
       "./tests/testSetup.js"
     ],
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
     "moduleNameMapper": {
       "^.+\\.(css|styl|svg|jpg)$": "identity-obj-proxy"
     }
@@ -78,6 +80,6 @@
     "lint": "eslint --ignore-path .gitignore --ext js,jsx .",
     "build": "webpack",
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
-    "test": "jest"
+    "test": "jest --coverage"
   }
 }
