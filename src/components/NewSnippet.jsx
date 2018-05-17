@@ -7,6 +7,9 @@ import brace from 'brace';
 import 'brace/ext/modelist';
 import 'brace/theme/textmate';
 
+import Joi from 'joi';
+
+import Notification from './common/Notification';
 import ListBoxWithSearch from './ListBoxWithSearch';
 import * as actions from '../actions';
 
@@ -15,11 +18,15 @@ import '../styles/NewSnippet.styl';
 class NewSnippet extends React.Component {
   constructor(props) {
     super(props);
+    this.schema = Joi.object().keys({
+      content: Joi.string().required(),
+    });
     this.state = {
       content: '',
       title: '',
       tags: [],
-      syntax: '', // eslint-disable-line react/no-unused-state
+      syntax: '',
+      validationError: null,
     };
     this.onKeyPress = (e) => {
       // e.target.nodeName !=== 'TEXTAREA' is an ugly hack to allow enter
@@ -66,7 +73,7 @@ class NewSnippet extends React.Component {
   }
 
   onSyntaxClick(syntax) {
-    this.setState({ syntax }); // eslint-disable-line react/no-unused-state
+    this.setState({ syntax });
   }
 
   onInputChange(e) {
@@ -78,7 +85,19 @@ class NewSnippet extends React.Component {
   postSnippet(e) {
     e.preventDefault();
     const { dispatch, history } = this.props;
-    dispatch(actions.postSnippet(this.state, json => history.push(`/${json.id}`)));
+    const { error } = Joi.validate({ content: this.state.content.trim() }, this.schema);
+
+    this.setState({ validationError: error });
+
+    if (error === null) {
+      const {
+        content, title, tags, syntax,
+      } = this.state;
+
+      dispatch(actions.postSnippet({
+        content, title, tags, syntax,
+      }, json => history.push(`/${json.id}`)));
+    }
   }
 
   render() {
@@ -137,6 +156,10 @@ class NewSnippet extends React.Component {
             />
 
             <div className="new-snippet-code-bottom-bar">
+              <Notification
+                message="Content is required :("
+                show={!!this.state.validationError}
+              />
               <input type="submit" value="POST SNIPPET" />
             </div>
           </div>
