@@ -160,6 +160,7 @@ module.exports = () => {
             // we need to transpile them as well; otherwise, UglifyJS will
             // fail to minify the sources.
             path.resolve(__dirname, 'node_modules', 'joi'),
+            path.resolve(__dirname, 'node_modules', 'hoek'),
             path.resolve(__dirname, 'node_modules', 'topo'),
             path.resolve(__dirname, 'node_modules', 'isemail'),
           ],
