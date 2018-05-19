@@ -2,18 +2,14 @@ const path = require('path');
 const process = require('process');
 
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 const glob = require('glob');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = () => {
-  // Use NODE_ENV environment variable to guess desired built type. Assume
-  // production if nothing is passed.
-  const isProduction = (process.env.NODE_ENV || 'production') === 'production';
   const syntaxes = process.env.SYNTAXES
     ? process.env.SYNTAXES.split(',').map(item => item.trim())
     : [
@@ -115,7 +111,11 @@ module.exports = () => {
       'yaml',
       'django'];
 
-  let conf = {
+  const conf = {
+    // Assume we are targeting production environments by default; the value
+    // could be overridden via '--mode' CLI argument.
+    mode: 'production',
+
     // Expose source map even for production because XSnippet is an Open Source
     // project and we have no intentions to hide its internals while being able
     // to debug production is pretty valuable.
@@ -171,25 +171,23 @@ module.exports = () => {
         // CSS modules, so CSS classes can't be accessed within JSX sources.
         {
           test: /\.(styl|css)$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  modules: false,
-                  minimize: isProduction,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: false,
+                minimize: true,
 
-                  // Enable source maps if they are specified in devtool
-                  // option. God-Knows-Why css-loader doesn't check devtool
-                  // value in order to initialize its sourceMap value, hence
-                  // this line.
-                  sourceMap: true,
-                },
+                // Enable source maps if they are specified in devtool
+                // option. God-Knows-Why css-loader doesn't check devtool
+                // value in order to initialize its sourceMap value, hence
+                // this line.
+                sourceMap: true,
               },
-              { loader: 'stylus-loader' },
-            ],
-          }),
+            },
+            { loader: 'stylus-loader' },
+          ],
         },
 
         // Just copy these files to output "As Is", if they are imported from
@@ -201,22 +199,40 @@ module.exports = () => {
         },
       ],
     },
+
+    optimization: {
+      // Enable split chunks logic for everything, including entry chunks,
+      // because we want vendors to be separated in either case. The key idea
+      // here is that vendors are rarely changed; therefore, they are good
+      // candidates to be cached on clients.
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
+
     plugins: [
+      // Worker is a sort of background linter integrated in AceEditor that
+      // can show errors for some syntaxes (e.g. JavaScript or XML). It's
+      // pretty heavy (~1Mb) and we have no plans to use it, so we just
+      // aggressively strip this code out of build.
+      new webpack.IgnorePlugin(/worker/, /brace/),
+
       // Each time we change something, a new version of bundled assets is
       // produced. Since we use hash in filenames in order to invalidate cache
       // on change, we end up having multiple outdated copies in output
       // directory. Let's cleanup it before produce a fresh build.
       new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
 
-      // Many libraries will key off the process.env.NODE_ENV variable to
-      // determine what should be included in the library. For example, when
-      // not in production some libraries may add additional logging and
-      // testing to make debugging easier. We do not know which default they
-      // use, so let's set 'production' explicitly and let user to override
-      // this value.
+      // Propagate (and set) environment variables down to the application. We
+      // use them to configure application behaviour.
       new webpack.EnvironmentPlugin({
-        NODE_ENV: 'production',
         RAW_SNIPPETS_URL_FORMAT: '//xsnippet.org/%s/raw',
+      }),
+
+      // Similar to JavaScript, we use [chunkhash] in order to invalidate
+      // browsers cache on new deployments.
+      new MiniCssExtractPlugin({
+        filename: '[name].[chunkhash].css',
       }),
 
       // Generate index.html based on passed template, populating it with
@@ -225,27 +241,6 @@ module.exports = () => {
         template: path.resolve(__dirname, 'src', 'index.html'),
         favicon: path.resolve(__dirname, 'src', 'assets', 'favicon.ico'),
       }),
-
-      // Extract third party libraries into 'vendors' bundle. Unfortunately
-      // this splitting can't help us to preserve the same hash for vendors if
-      // only application sources are changed due to number of reasons. There
-      // are some solution but they don't work foo all cases. So let's do not
-      // even try to do so.
-      //
-      // Further readings:
-      //
-      //  * https://github.com/webpack/webpack/issues/1315
-      //  * https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendors',
-        minChunks: ({ resource }) => /node_modules/.test(resource),
-      }),
-
-      // The loaders pipeline for stylesheets end up with in-memory CSS, so all
-      // we need is to persist it on disk. We truncate [contenthash] down to 20
-      // characters in order to be consistend with [chunkhash] used for
-      // JavaScript bundles.
-      new ExtractTextPlugin('[name].[contenthash:20].css'),
     ],
 
     // Enable importing .js & .jsx files without specifying their extensions.
@@ -257,23 +252,6 @@ module.exports = () => {
       net: 'empty',
     },
   };
-
-  if (isProduction) {
-    conf = merge(conf, {
-      plugins: [
-        // Worker is a sort of background linter integrated in AceEditor that
-        // can show errors for some syntaxes (e.g. JavaScript or XML). It's
-        // pretty heavy (~1Mb) and we have no plans to use it, so we just
-        // aggressively strip this code out of build.
-        new webpack.IgnorePlugin(/worker/, /brace/),
-
-        // Enable source maps if they are specified in devtool option. By some
-        // funny reason UglifyJSPlugin does not check devtool option and won't
-        // produce them unless its sourceMap option set to true.
-        new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
-      ],
-    });
-  }
 
   return conf;
 };
