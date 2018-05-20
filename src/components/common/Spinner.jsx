@@ -1,5 +1,5 @@
 import React from 'react';
-import SpinnerImg from '../../assets/ripple.svg';
+import SpinnerImg from '../../assets/icons/ripple.svg';
 
 import '../../styles/common/Spinner.styl';
 
