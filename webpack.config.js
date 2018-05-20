@@ -239,7 +239,7 @@ module.exports = () => {
       // produced JavaScript bundles.
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'),
-        favicon: path.resolve(__dirname, 'src', 'assets', 'favicon.ico'),
+        favicon: path.resolve(__dirname, 'src', 'assets', 'icons', 'favicon.ico'),
       }),
     ],
 

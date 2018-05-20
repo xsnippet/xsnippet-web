@@ -2,11 +2,11 @@ import React from 'react';
 import Title from './common/Title';
 
 import '../styles/AboutUs.styl';
-import RomanImage from '../assets/roman.jpg';
-import IhorImage from '../assets/ihor.jpg';
-import OlhaImage from '../assets/olha.jpg';
-import AinuraImage from '../assets/ainura.jpg';
-import KaterynaImage from '../assets/kateryna.jpg';
+import RomanImage from '../assets/photos/roman.jpg';
+import IhorImage from '../assets/photos/ihor.jpg';
+import OlhaImage from '../assets/photos/olha.jpg';
+import AinuraImage from '../assets/photos/ainura.jpg';
+import KaterynaImage from '../assets/photos/kateryna.jpg';
 
 const About = () => (
   [
