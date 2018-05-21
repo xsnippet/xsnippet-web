@@ -1,4 +1,5 @@
 import parseLinkHeader from 'parse-link-header';
+import * as misc from '../misc';
 
 export const setRecentSnippets = snippets => ({
   type: 'SET_RECENT_SNIPPETS',
@@ -14,7 +15,7 @@ export const fetchRecentSnippets = marker => (dispatch) => {
   let qs = '';
   if (marker) { qs = `&marker=${marker}`; }
 
-  return fetch(`//api.xsnippet.org/snippets?limit=20${qs}`)
+  return fetch(misc.getApiUri(`/snippets?limit=20${qs}`))
     .then((response) => {
       const links = parseLinkHeader(response.headers.get('Link'));
 
@@ -30,7 +31,7 @@ export const setSnippet = snippet => ({
 });
 
 export const fetchSnippet = id => dispatch => (
-  fetch(`//api.xsnippet.org/snippets/${id}`)
+  fetch(misc.getApiUri(`/snippets/${id}`))
     .then(response => response.json())
     .then(json => dispatch(setSnippet(json)))
 );
@@ -41,13 +42,13 @@ export const setSyntaxes = syntaxes => ({
 });
 
 export const fetchSyntaxes = dispatch => (
-  fetch('//api.xsnippet.org/syntaxes')
+  fetch(misc.getApiUri('/syntaxes'))
     .then(response => response.json())
     .then(json => dispatch(setSyntaxes(json)))
 );
 
 export const postSnippet = (snippet, onSuccess) => dispatch => (
-  fetch('//api.xsnippet.org/snippets', {
+  fetch(misc.getApiUri('/snippets'), {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

@@ -8,6 +8,7 @@ import 'brace/theme/textmate';
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
 import * as misc from '../misc';
+import conf from '../conf';
 
 import '../styles/Snippet.styl';
 
@@ -50,7 +51,7 @@ export class Snippet extends React.Component {
     const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
     const mode = modesByName[snippet.get('syntax')] || modesByName.text;
     const syntax = mode.caption;
-    const rawUrl = process.env.RAW_SNIPPETS_URL_FORMAT.replace('%s', snippet.get('id'));
+    const rawUrl = conf.RAW_SNIPPET_URI_FORMAT.replace('%s', snippet.get('id'));
 
     return (
       <div className="snippet" key="Snippet">

@@ -1,6 +1,8 @@
 import brace from 'brace';
 import 'brace/ext/modelist';
 
+import conf from '../conf';
+
 export const regExpEscape = string => string.replace(/[-[\]{}()*+?.,\\^$|]/g, '\\$&');
 
 export function download(text, name, mime) {
@@ -48,4 +50,8 @@ export function formatDate(d) {
   const ISOdate = d.split('T')[0];
 
   return ISOdate.split('-').reverse().join('.');
+}
+
+export function getApiUri(endpoint) {
+  return `${conf.API_BASE_URI}${endpoint}`;
 }
