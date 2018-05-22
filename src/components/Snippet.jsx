@@ -7,7 +7,7 @@ import 'brace/theme/textmate';
 
 import Spinner from './common/Spinner';
 import * as actions from '../actions';
-import { downloadSnippet, copyToClipboard, formatDate } from '../helpers';
+import * as misc from '../misc';
 
 import '../styles/Snippet.styl';
 
@@ -18,7 +18,7 @@ export class Snippet extends React.Component {
     this.toggleEmbed = this.toggleEmbed.bind(this);
     this.download = this.download.bind(this);
     this.copyClipboard = (e) => {
-      copyToClipboard(e, 'embedded');
+      misc.copyToClipboard(e, 'embedded');
     };
     this.onEditorLoad = (editor) => {
       // we want to disable built-in find in favor of browser's one
@@ -34,7 +34,7 @@ export class Snippet extends React.Component {
   }
 
   download() {
-    downloadSnippet(this.props.snippet);
+    misc.downloadSnippet(this.props.snippet);
   }
 
   toggleEmbed() {
@@ -60,7 +60,7 @@ export class Snippet extends React.Component {
             <div className="snippet-data-tags">
               {snippet.get('tags').map(item => <span className="snippet-data-tag" key={item}>{item}</span>)}
             </div>
-            <span className="snippet-data-meta">{formatDate(snippet.get('created_at'))}, by Guest</span>
+            <span className="snippet-data-meta">{misc.formatDate(snippet.get('created_at'))}, by Guest</span>
           </div>
           <div className="snippet-data-actions">
             <span className="snippet-data-lang">{syntax}</span>

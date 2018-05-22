@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import brace from 'brace';
 
-import { downloadSnippet, formatDate } from '../helpers';
+import * as misc from '../misc';
 
 const RecentSnippetItem = ({ snippet }) => {
   const { modesByName } = brace.acequire('ace/ext/modelist');
   const mode = modesByName[snippet.get('syntax')] || modesByName.text;
   const syntax = mode.caption;
   const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
-  const download = () => downloadSnippet(snippet);
+  const download = () => misc.downloadSnippet(snippet);
   const rawUrl = process.env.RAW_SNIPPETS_URL_FORMAT.replace('%s', snippet.get('id'));
 
   return (
@@ -21,7 +21,7 @@ const RecentSnippetItem = ({ snippet }) => {
             {snippet.get('tags').map(item => <span className="recent-snippet-meta-tag" key={item}>{item}</span>)}
           </div>
         </div>
-        <span className="recent-snippet-meta-info">{formatDate(snippet.get('created_at'))}, by Guest</span>
+        <span className="recent-snippet-meta-info">{misc.formatDate(snippet.get('created_at'))}, by Guest</span>
       </div>
       <div className="recent-snippet-actions">
         <span className="recent-snippet-lang">{syntax}</span>

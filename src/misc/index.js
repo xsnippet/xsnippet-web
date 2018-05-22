@@ -1,9 +1,9 @@
 import brace from 'brace';
 import 'brace/ext/modelist';
 
-const regExpEscape = string => string.replace(/[-[\]{}()*+?.,\\^$|]/g, '\\$&');
+export const regExpEscape = string => string.replace(/[-[\]{}()*+?.,\\^$|]/g, '\\$&');
 
-function download(text, name, mime) {
+export function download(text, name, mime) {
   // It seems it's the only way to initiate file downloading from JavaScript
   // as of Jan 7, 2018. If you read this and know a better way, please submit
   // a pull request! ;)
@@ -19,7 +19,7 @@ function download(text, name, mime) {
   document.body.removeChild(element);
 }
 
-function downloadSnippet(snippet) {
+export function downloadSnippet(snippet) {
   const { modesByName } = brace.acequire('ace/ext/modelist');
 
   // Despite using AceEditor's modes as syntaxes, we can imagine other setup
@@ -36,7 +36,7 @@ function downloadSnippet(snippet) {
   download(content, name, 'text/plain');
 }
 
-function copyToClipboard(e, id) {
+export function copyToClipboard(e, id) {
   document.getElementById(id).select();
   document.execCommand('copy');
   e.target.focus();
@@ -44,10 +44,8 @@ function copyToClipboard(e, id) {
 
 // This function is here just because I don't want to pull the whole moment.js
 // only for one tiny date
-function formatDate(d) {
+export function formatDate(d) {
   const ISOdate = d.split('T')[0];
 
   return ISOdate.split('-').reverse().join('.');
 }
-
-export { regExpEscape, downloadSnippet, copyToClipboard, formatDate };
