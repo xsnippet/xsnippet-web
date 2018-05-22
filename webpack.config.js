@@ -109,6 +109,9 @@ module.exports = () => {
       'xml',
       'yaml',
       'django']
+  const assetsPath = process.env.ASSETS_PATH == null
+    ? '/'
+    : process.env.ASSETS_PATH
 
   const conf = {
     // Assume we are targeting production environments by default; the value
@@ -145,7 +148,7 @@ module.exports = () => {
     output: {
       filename: '[name].[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: process.env.ASSET_PATH || '/',
+      publicPath: assetsPath,
     },
 
     module: {
@@ -219,6 +222,7 @@ module.exports = () => {
       new webpack.EnvironmentPlugin({
         API_BASE_URI: null,
         RAW_SNIPPET_URI_FORMAT: null,
+        RUNTIME_CONF_URI: `${assetsPath}conf.json`,
       }),
 
       // Similar to JavaScript, we use [chunkhash] in order to invalidate
