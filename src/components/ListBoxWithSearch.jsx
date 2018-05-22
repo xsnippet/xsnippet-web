@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ListBox from './ListBox';
-import { regExpEscape } from '../helpers';
+import * as misc from '../misc';
 
 class ListBoxWithSearch extends React.PureComponent {
   constructor(props) {
@@ -31,7 +31,7 @@ class ListBoxWithSearch extends React.PureComponent {
     // Filter out only those items that match search query. If no query is
     // set, do nothing and use the entire set.
     if (searchQuery) {
-      const regExp = new RegExp(regExpEscape(searchQuery), 'gi');
+      const regExp = new RegExp(misc.regExpEscape(searchQuery), 'gi');
       items = items.filter(item => item.name.match(regExp));
     }
 
