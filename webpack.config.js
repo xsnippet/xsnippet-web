@@ -215,9 +215,11 @@ module.exports = () => {
       new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
 
       // Propagate (and set) environment variables down to the application. We
-      // use them to configure application behaviour.
+      // use them to configure application behaviour. Please note, 'null' here
+      // means 'unset'.
       new webpack.EnvironmentPlugin({
-        RAW_SNIPPETS_URL_FORMAT: '//xsnippet.org/%s/raw',
+        API_BASE_URI: null,
+        RAW_SNIPPET_URI_FORMAT: null,
       }),
 
       // Similar to JavaScript, we use [chunkhash] in order to invalidate

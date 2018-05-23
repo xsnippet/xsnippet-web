@@ -35,7 +35,6 @@ describe('Snippet', () => {
   });
 
   it('should show snippet if snippet was passed as props', () => {
-    process.env.RAW_SNIPPETS_URL_FORMAT = '//xsnippet.org/%s/raw';
     const wrapper = shallow(<Snippet snippet={snippet} />, { disableLifecycleMethods: true });
 
     expect(wrapper.type()).not.toEqual(Spinner);
