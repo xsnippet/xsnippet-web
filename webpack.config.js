@@ -1,13 +1,12 @@
-const path = require('path');
-const process = require('process');
+const path = require('path')
+const process = require('process')
 
-const webpack = require('webpack');
-const glob = require('glob');
+const webpack = require('webpack')
+const glob = require('glob')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = () => {
   const syntaxes = process.env.SYNTAXES
@@ -109,7 +108,7 @@ module.exports = () => {
       'vhdl',
       'xml',
       'yaml',
-      'django'];
+      'django']
 
   const conf = {
     // Assume we are targeting production environments by default; the value
@@ -244,7 +243,7 @@ module.exports = () => {
     node: {
       net: 'empty',
     },
-  };
+  }
 
-  return conf;
-};
+  return conf
+}

@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-import '../styles/Sidebar.styl';
+import '../styles/Sidebar.styl'
 
 const Sidebar = () => (
   <nav className="sidebar" key="navigation">
@@ -23,6 +23,6 @@ const Sidebar = () => (
       </li>
     </ul>
   </nav>
-);
+)
 
-export default Sidebar;
+export default Sidebar

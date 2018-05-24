@@ -1,57 +1,57 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import AceEditor from 'react-ace';
-import brace from 'brace';
+import React from 'react'
+import { connect } from 'react-redux'
+import AceEditor from 'react-ace'
+import brace from 'brace'
 
-import 'brace/theme/textmate';
+import 'brace/theme/textmate'
 
-import Spinner from './common/Spinner';
-import * as actions from '../actions';
-import * as misc from '../misc';
-import conf from '../conf';
+import Spinner from './common/Spinner'
+import * as actions from '../actions'
+import * as misc from '../misc'
+import conf from '../conf'
 
-import '../styles/Snippet.styl';
+import '../styles/Snippet.styl'
 
 export class Snippet extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { isShowEmbed: false };
-    this.toggleEmbed = this.toggleEmbed.bind(this);
-    this.download = this.download.bind(this);
+    super(props)
+    this.state = { isShowEmbed: false }
+    this.toggleEmbed = this.toggleEmbed.bind(this)
+    this.download = this.download.bind(this)
     this.copyClipboard = (e) => {
-      misc.copyToClipboard(e, 'embedded');
-    };
+      misc.copyToClipboard(e, 'embedded')
+    }
     this.onEditorLoad = (editor) => {
       // we want to disable built-in find in favor of browser's one
-      editor.commands.removeCommand('find');
-    };
+      editor.commands.removeCommand('find')
+    }
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    const { id } = this.props.match.params;
+    const { dispatch } = this.props
+    const { id } = this.props.match.params
 
-    dispatch(actions.fetchSnippet(Number(id)));
+    dispatch(actions.fetchSnippet(Number(id)))
   }
 
   download() {
-    misc.downloadSnippet(this.props.snippet);
+    misc.downloadSnippet(this.props.snippet)
   }
 
   toggleEmbed() {
-    this.setState(prevState => ({ isShowEmbed: !prevState.isShowEmbed }));
+    this.setState(prevState => ({ isShowEmbed: !prevState.isShowEmbed }))
   }
 
   render() {
-    const { snippet } = this.props;
-    const { modesByName } = brace.acequire('ace/ext/modelist');
+    const { snippet } = this.props
+    const { modesByName } = brace.acequire('ace/ext/modelist')
 
-    if (!snippet) return <Spinner />;
+    if (!snippet) return <Spinner />
 
-    const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
-    const mode = modesByName[snippet.get('syntax')] || modesByName.text;
-    const syntax = mode.caption;
-    const rawUrl = conf.RAW_SNIPPET_URI_FORMAT.replace('%s', snippet.get('id'));
+    const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`
+    const mode = modesByName[snippet.get('syntax')] || modesByName.text
+    const syntax = mode.caption
+    const rawUrl = conf.RAW_SNIPPET_URI_FORMAT.replace('%s', snippet.get('id'))
 
     return (
       <div className="snippet" key="Snippet">
@@ -119,10 +119,10 @@ export class Snippet extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
 export default connect((state, ownProps) => ({
   snippet: state.getIn(['snippets', Number(ownProps.match.params.id)]),
-}))(Snippet);
+}))(Snippet)

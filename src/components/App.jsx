@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import Header from './Header';
-import Main from './Main';
-import Sidebar from './Sidebar';
+import Header from './Header'
+import Main from './Main'
+import Sidebar from './Sidebar'
 
-import '../styles/App.styl';
+import '../styles/App.styl'
 
 const App = () => (
   [
@@ -14,6 +14,6 @@ const App = () => (
       <Main />
     </div>,
   ]
-);
+)
 
-export default App;
+export default App
