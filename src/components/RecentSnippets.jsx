@@ -1,56 +1,56 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import RecentSnippetItem from './RecentSnippetItem';
-import * as actions from '../actions';
+import RecentSnippetItem from './RecentSnippetItem'
+import * as actions from '../actions'
 
-import '../styles/RecentSnippets.styl';
+import '../styles/RecentSnippets.styl'
 
 class RecentSnippets extends React.Component {
   constructor(props) {
-    super(props);
-    this.newerSetOfSnippets = this.newerSetOfSnippets.bind(this);
-    this.olderSetOfSnippets = this.olderSetOfSnippets.bind(this);
+    super(props)
+    this.newerSetOfSnippets = this.newerSetOfSnippets.bind(this)
+    this.olderSetOfSnippets = this.olderSetOfSnippets.bind(this)
     this.scrollTop = () => {
-      window.scroll({ top: 0, behavior: 'smooth' });
-    };
+      window.scroll({ top: 0, behavior: 'smooth' })
+    }
   }
 
   componentDidMount() {
-    const { dispatch, recent, pagination } = this.props;
-    let marker = null;
+    const { dispatch, recent, pagination } = this.props
+    let marker = null
 
     if (pagination.get('prev')) {
-      marker = recent.get(0) + 1;
+      marker = recent.get(0) + 1
     }
 
-    dispatch(actions.fetchRecentSnippets(marker));
+    dispatch(actions.fetchRecentSnippets(marker))
   }
 
   newerSetOfSnippets() {
-    const { dispatch, pagination } = this.props;
-    const prev = pagination.get('prev');
+    const { dispatch, pagination } = this.props
+    const prev = pagination.get('prev')
 
     if (prev) {
-      const marker = Number(prev.marker);
+      const marker = Number(prev.marker)
 
-      dispatch(actions.fetchRecentSnippets(marker));
+      dispatch(actions.fetchRecentSnippets(marker))
     }
-    this.scrollTop();
+    this.scrollTop()
   }
 
   olderSetOfSnippets() {
-    const { dispatch, pagination } = this.props;
-    const marker = Number(pagination.get('next').marker);
+    const { dispatch, pagination } = this.props
+    const marker = Number(pagination.get('next').marker)
 
-    dispatch(actions.fetchRecentSnippets(marker));
-    this.scrollTop();
+    dispatch(actions.fetchRecentSnippets(marker))
+    this.scrollTop()
   }
 
   render() {
-    const { snippets, recent, pagination } = this.props;
-    const older = pagination.get('next');
-    const newer = pagination.get('prev');
+    const { snippets, recent, pagination } = this.props
+    const older = pagination.get('next')
+    const newer = pagination.get('prev')
 
     return ([
       <ul className="recent-snippet" key="recent-snippet">
@@ -72,7 +72,7 @@ class RecentSnippets extends React.Component {
           Older &rsaquo;
         </span>
       </div>,
-    ]);
+    ])
   }
 }
 
@@ -80,4 +80,4 @@ export default connect(state => ({
   snippets: state.get('snippets'),
   recent: state.get('recent'),
   pagination: state.get('pagination'),
-}))(RecentSnippets);
+}))(RecentSnippets)

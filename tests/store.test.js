@@ -1,7 +1,7 @@
-import fetchMock from 'fetch-mock';
-import createStore from '../src/store';
+import fetchMock from 'fetch-mock'
+import createStore from '../src/store'
 
-import * as actions from '../src/actions';
+import * as actions from '../src/actions'
 
 describe('actions', () => {
   it('should create an action to set recent snippets', () => {
@@ -16,9 +16,9 @@ describe('actions', () => {
         content: 'batman',
         syntax: 'Python',
       },
-    ];
-    const store = createStore();
-    store.dispatch(actions.setRecentSnippets(snippets));
+    ]
+    const store = createStore()
+    store.dispatch(actions.setRecentSnippets(snippets))
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -36,8 +36,8 @@ describe('actions', () => {
       },
       syntaxes: [],
       pagination: {},
-    });
-  });
+    })
+  })
 
   it('should create an action to set pagination links', () => {
     const links = {
@@ -57,17 +57,17 @@ describe('actions', () => {
         rel: 'prev',
         url: '//api.xsnippet.org/snippets?limit=20',
       },
-    };
-    const store = createStore();
-    store.dispatch(actions.setPaginationLinks(links));
+    }
+    const store = createStore()
+    store.dispatch(actions.setPaginationLinks(links))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
       snippets: {},
       syntaxes: [],
       pagination: links,
-    });
-  });
+    })
+  })
 
   it('should create an action to fetch recent snippets with marker', async () => {
     const snippets = [
@@ -81,8 +81,8 @@ describe('actions', () => {
         content: 'batman',
         syntax: 'Python',
       },
-    ];
-    const links = '<//api.xsnippet.org/snippets?limit=20>; rel="first", <//api.xsnippet.org/snippets?limit=20&marker=19>; rel="next", <//api.xsnippet.org/snippets?limit=20&marker=59>; rel="prev"';
+    ]
+    const links = '<//api.xsnippet.org/snippets?limit=20>; rel="first", <//api.xsnippet.org/snippets?limit=20&marker=19>; rel="next", <//api.xsnippet.org/snippets?limit=20&marker=59>; rel="prev"'
 
     fetchMock.getOnce(
       '//api.xsnippet.org/snippets?limit=20&marker=39',
@@ -90,10 +90,10 @@ describe('actions', () => {
         headers: { Link: links },
         body: snippets,
       },
-    );
+    )
 
-    const store = createStore();
-    await store.dispatch(actions.fetchRecentSnippets(39));
+    const store = createStore()
+    await store.dispatch(actions.fetchRecentSnippets(39))
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -129,8 +129,8 @@ describe('actions', () => {
           url: '//api.xsnippet.org/snippets?limit=20&marker=59',
         },
       },
-    });
-  });
+    })
+  })
 
   it('should create an action to fetch recent snippets without marker', async () => {
     const snippets = [
@@ -144,8 +144,8 @@ describe('actions', () => {
         content: 'batman',
         syntax: 'Python',
       },
-    ];
-    const links = '<//api.xsnippet.org/snippets?limit=20>; rel="first", <//api.xsnippet.org/snippets?limit=20&marker=39>; rel="next"';
+    ]
+    const links = '<//api.xsnippet.org/snippets?limit=20>; rel="first", <//api.xsnippet.org/snippets?limit=20&marker=39>; rel="next"'
 
     fetchMock.getOnce(
       '//api.xsnippet.org/snippets?limit=20',
@@ -153,10 +153,10 @@ describe('actions', () => {
         headers: { Link: links },
         body: snippets,
       },
-    );
+    )
 
-    const store = createStore();
-    await store.dispatch(actions.fetchRecentSnippets());
+    const store = createStore()
+    await store.dispatch(actions.fetchRecentSnippets())
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -186,17 +186,17 @@ describe('actions', () => {
           url: '//api.xsnippet.org/snippets?limit=20&marker=39',
         },
       },
-    });
-  });
+    })
+  })
 
   it('should create an action to set snippet', () => {
     const snippet = {
       id: 3,
       content: 'not batman',
       syntax: 'Go',
-    };
-    const store = createStore();
-    store.dispatch(actions.setSnippet(snippet));
+    }
+    const store = createStore()
+    store.dispatch(actions.setSnippet(snippet))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -209,20 +209,20 @@ describe('actions', () => {
       },
       syntaxes: [],
       pagination: {},
-    });
-  });
+    })
+  })
 
   it('should create an action to fetch snippet', async () => {
     const snippet = {
       id: 3,
       content: 'not batman',
       syntax: 'Go',
-    };
+    }
 
-    fetchMock.getOnce(`//api.xsnippet.org/snippets/${snippet.id}`, JSON.stringify(snippet));
+    fetchMock.getOnce(`//api.xsnippet.org/snippets/${snippet.id}`, JSON.stringify(snippet))
 
-    const store = createStore();
-    await store.dispatch(actions.fetchSnippet(snippet.id));
+    const store = createStore()
+    await store.dispatch(actions.fetchSnippet(snippet.id))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -235,49 +235,49 @@ describe('actions', () => {
       },
       syntaxes: [],
       pagination: {},
-    });
-  });
+    })
+  })
 
   it('should create an action to set syntaxes', () => {
-    const syntaxes = ['JavaScript', 'Python', 'Java', 'Go', 'Plain Text'];
-    const store = createStore();
-    store.dispatch(actions.setSyntaxes(syntaxes));
+    const syntaxes = ['JavaScript', 'Python', 'Java', 'Go', 'Plain Text']
+    const store = createStore()
+    store.dispatch(actions.setSyntaxes(syntaxes))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
       snippets: {},
       pagination: {},
       syntaxes,
-    });
-  });
+    })
+  })
 
   it('should create an action to fetch syntaxes', async () => {
-    const syntaxes = ['JavaScript', 'Python', 'Java', 'Go', 'Plain Text'];
+    const syntaxes = ['JavaScript', 'Python', 'Java', 'Go', 'Plain Text']
 
-    fetchMock.getOnce('//api.xsnippet.org/syntaxes', JSON.stringify(syntaxes));
+    fetchMock.getOnce('//api.xsnippet.org/syntaxes', JSON.stringify(syntaxes))
 
-    const store = createStore();
-    await store.dispatch(actions.fetchSyntaxes);
+    const store = createStore()
+    await store.dispatch(actions.fetchSyntaxes)
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
       snippets: {},
       pagination: {},
       syntaxes,
-    });
-  });
+    })
+  })
 
   it('should create an action to post snippet', async () => {
     const snippet = {
       id: 4,
       content: 'Batman',
       syntax: 'JavaScript',
-    };
+    }
 
-    fetchMock.postOnce('//api.xsnippet.org/snippets', JSON.stringify(snippet));
+    fetchMock.postOnce('//api.xsnippet.org/snippets', JSON.stringify(snippet))
 
-    const store = createStore();
-    await store.dispatch(actions.postSnippet(snippet, () => {}));
+    const store = createStore()
+    await store.dispatch(actions.postSnippet(snippet, () => {}))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -290,6 +290,6 @@ describe('actions', () => {
       },
       syntaxes: [],
       pagination: {},
-    });
-  });
-});
+    })
+  })
+})

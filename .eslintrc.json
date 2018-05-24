@@ -1,18 +1,16 @@
 {
-  "extends": "airbnb",
+  "extends": ["standard", "standard-jsx"],
   "env": {
     "browser": true,
-    "jest/globals": true
+    "jest": true
   },
   "rules": {
-    "jsx-a11y/anchor-is-valid": ["error", {
-      "components": ["Link"],
-      "specialLink": ["to"]
+    "comma-dangle": ["error", "always-multiline"],
+    "space-before-function-paren": ["error", {
+        "anonymous": "always",
+        "asyncArrow": "always",
+        "named": "never"
     }],
-    "react/prop-types": [0],
-    "jsx-a11y/click-events-have-key-events": [0],
-    "quote-props": ["error", "consistent"],
-    "import/no-named-as-default": [0]
-  },
-  "plugins": ["jest"]
+    "jsx-quotes": ["error", "prefer-double"]
+  }
 }

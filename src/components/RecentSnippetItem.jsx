@@ -1,17 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import brace from 'brace';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import brace from 'brace'
 
-import * as misc from '../misc';
-import conf from '../conf';
+import * as misc from '../misc'
+import conf from '../conf'
 
 const RecentSnippetItem = ({ snippet }) => {
-  const { modesByName } = brace.acequire('ace/ext/modelist');
-  const mode = modesByName[snippet.get('syntax')] || modesByName.text;
-  const syntax = mode.caption;
-  const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
-  const download = () => misc.downloadSnippet(snippet);
-  const rawUrl = conf.RAW_SNIPPET_URI_FORMAT.replace('%s', snippet.get('id'));
+  const { modesByName } = brace.acequire('ace/ext/modelist')
+  const mode = modesByName[snippet.get('syntax')] || modesByName.text
+  const syntax = mode.caption
+  const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`
+  const download = () => misc.downloadSnippet(snippet)
+  const rawUrl = conf.RAW_SNIPPET_URI_FORMAT.replace('%s', snippet.get('id'))
 
   return (
     <li className="recent-snippet-item">
@@ -33,7 +33,7 @@ const RecentSnippetItem = ({ snippet }) => {
         </div>
       </div>
     </li>
-  );
-};
+  )
+}
 
-export default RecentSnippetItem;
+export default RecentSnippetItem
