@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import Search from './Search'
 import '../styles/Header.styl'
 import Logo from '../assets/icons/xsnippet.svg'
 
@@ -15,11 +16,13 @@ const Header = () => (
       <div className="header-slogan">
         <span className="header-slogan-x">X</span>SNIPPET
       </div>
-      <div className="header-sign-in">
-        <NavLink to="/sign-in">
-          <span>Sign in</span>
-          <i className="icon-user" />
-        </NavLink>
+      <div className="header-actions">
+        <Search />
+        <div className="header-sign-in">
+          <NavLink to="/sign-in">
+            <span>Sign in</span><i className="icon-user" />
+          </NavLink>
+        </div>
       </div>
     </div>
   </header>
