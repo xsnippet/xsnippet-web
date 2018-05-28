@@ -1,38 +1,38 @@
-import React from 'react';
+import React from 'react'
 
-import ListBox from './ListBox';
-import { regExpEscape } from '../helpers';
+import ListBox from './ListBox'
+import * as misc from '../misc'
 
 class ListBoxWithSearch extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       searchQuery: null,
-    };
-    this.onSearch = this.onSearch.bind(this);
+    }
+    this.onSearch = this.onSearch.bind(this)
   }
 
   onSearch(e) {
-    this.setState({ searchQuery: e.target.value.trim() });
+    this.setState({ searchQuery: e.target.value.trim() })
   }
 
   render() {
-    const { searchQuery } = this.state;
-    let { items } = this.props;
+    const { searchQuery } = this.state
+    let { items } = this.props
 
     // Normalize items arrays so each item is always an object.
     items = items.map((item) => {
       if (item !== Object(item)) {
-        return { name: item, value: item };
+        return { name: item, value: item }
       }
-      return item;
-    });
+      return item
+    })
 
     // Filter out only those items that match search query. If no query is
     // set, do nothing and use the entire set.
     if (searchQuery) {
-      const regExp = new RegExp(regExpEscape(searchQuery), 'gi');
-      items = items.filter(item => item.name.match(regExp));
+      const regExp = new RegExp(misc.regExpEscape(searchQuery), 'gi')
+      items = items.filter(item => item.name.match(regExp))
     }
 
     return (
@@ -47,8 +47,8 @@ class ListBoxWithSearch extends React.PureComponent {
           />
         </div>,
       ]
-    );
+    )
   }
 }
 
-export default ListBoxWithSearch;
+export default ListBoxWithSearch

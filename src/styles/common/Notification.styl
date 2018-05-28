@@ -1,0 +1,23 @@
+@import './variables.styl'
+
+@keyframes slideIn {
+  0% { margin-right: -216px; }
+  100% { margin-right: 0 }
+}
+
+.notification
+  display: none
+  position absolute
+  top: 11px
+  right: 240px
+  padding: 11px 25px
+  background-color: color-putty-yellow-s46
+  color: text-light
+  border-radius: 4px
+  font-family: font-roboto
+  font-weight: 300
+  z-index: 1
+  &.has-error
+    display: block
+    animation: slideIn .5s ease-in
+

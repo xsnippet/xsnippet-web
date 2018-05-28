@@ -1,93 +1,112 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import AceEditor from 'react-ace';
-import Tags from 'react-tagging-input';
+import React from 'react'
+import { connect } from 'react-redux'
+import AceEditor from 'react-ace'
+import Tags from 'react-tagging-input'
 
-import brace from 'brace';
-import 'brace/ext/modelist';
-import 'brace/theme/textmate';
+import brace from 'brace'
+import 'brace/ext/modelist'
+import 'brace/theme/textmate'
 
-import ListBoxWithSearch from './ListBoxWithSearch';
-import * as actions from '../actions';
+import Joi from 'joi'
 
-import '../styles/NewSnippet.styl';
+import Notification from './common/Notification'
+import ListBoxWithSearch from './ListBoxWithSearch'
+import * as actions from '../actions'
+
+import '../styles/NewSnippet.styl'
 
 class NewSnippet extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.schema = Joi.object().keys({
+      content: Joi.string().required(),
+    })
     this.state = {
       content: '',
       title: '',
       tags: [],
-      syntax: '', // eslint-disable-line react/no-unused-state
-    };
+      syntax: '',
+      validationError: null,
+    }
     this.onKeyPress = (e) => {
       // e.target.nodeName !=== 'TEXTAREA' is an ugly hack to allow enter
       // to insert "newline" into code editor. We need to figure out
       // a better way to handle this.
       if (e.which === 13 && e.target.nodeName !== 'TEXTAREA') { // keyCode for Enter button
-        e.preventDefault();
+        e.preventDefault()
       }
-    };
+    }
     this.recalcLangHeaderHeight = () => {
-      const newSnippetHeaderHeight = document.getElementsByClassName('new-snippet-code-header')[0].offsetHeight;
+      const newSnippetHeaderHeight = document.getElementsByClassName('new-snippet-code-header')[0].offsetHeight
 
       document.getElementsByClassName('new-snippet-lang-header')[0]
-        .setAttribute('style', `height:${newSnippetHeaderHeight}px`);
-    };
+        .setAttribute('style', `height:${newSnippetHeaderHeight}px`)
+    }
     this.onEditorLoad = (editor) => {
       // we want to disable built-in find in favor of browser's one
-      editor.commands.removeCommand('find');
-    };
-    this.postSnippet = this.postSnippet.bind(this);
-    this.onSyntaxClick = this.onSyntaxClick.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onTagAdded = this.onTagAdded.bind(this);
-    this.onTagRemoved = this.onTagRemoved.bind(this);
+      editor.commands.removeCommand('find')
+    }
+    this.postSnippet = this.postSnippet.bind(this)
+    this.onSyntaxClick = this.onSyntaxClick.bind(this)
+    this.onInputChange = this.onInputChange.bind(this)
+    this.onTagAdded = this.onTagAdded.bind(this)
+    this.onTagRemoved = this.onTagRemoved.bind(this)
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(actions.fetchSyntaxes);
+    const { dispatch } = this.props
+    dispatch(actions.fetchSyntaxes)
   }
 
   onTagAdded(tag) {
     if (tag) {
       this.setState({ tags: [...this.state.tags, tag] }, () => {
-        this.recalcLangHeaderHeight();
-      });
+        this.recalcLangHeaderHeight()
+      })
     }
   }
 
   onTagRemoved(tag) {
     this.setState({ tags: this.state.tags.filter(item => item !== tag) }, () => {
-      this.recalcLangHeaderHeight();
-    });
+      this.recalcLangHeaderHeight()
+    })
   }
 
   onSyntaxClick(syntax) {
-    this.setState({ syntax }); // eslint-disable-line react/no-unused-state
+    this.setState({ syntax })
   }
 
   onInputChange(e) {
-    const { name, value } = e.target;
+    const { name, value } = e.target
 
-    this.setState({ [name]: value });
+    this.setState({ [name]: value })
   }
 
   postSnippet(e) {
-    e.preventDefault();
-    const { dispatch, history } = this.props;
-    dispatch(actions.postSnippet(this.state, json => history.push(`/${json.id}`)));
+    e.preventDefault()
+    const { dispatch, history } = this.props
+    const { error } = Joi.validate({ content: this.state.content.trim() }, this.schema)
+
+    this.setState({ validationError: error })
+
+    if (error === null) {
+      const {
+        content, title, tags, syntax,
+      } = this.state
+
+      dispatch(actions.postSnippet({
+        content, title, tags, syntax,
+      }, json => history.push(`/${json.id}`)))
+    }
   }
 
   render() {
-    const { modesByName } = brace.acequire('ace/ext/modelist');
-    const mode = modesByName[this.state.syntax] || modesByName.text;
+    const { modesByName } = brace.acequire('ace/ext/modelist')
+    const mode = modesByName[this.state.syntax] || modesByName.text
     const syntaxes = this.props.syntaxes.map(item => ({
       name: modesByName[item].caption,
       value: item,
-    }));
+    }))
 
     return (
       <form
@@ -127,16 +146,20 @@ class NewSnippet extends React.Component {
               setOptions={{
                 showFoldWidgets: false,
                 useWorker: false,
-                fontSize: '14px',
+                fontSize: '13px',
                 maxLines: Infinity,
                 showPrintMargin: false,
               }}
               editorProps={{ $blockScrolling: Infinity }}
               value={this.state.content}
-              onChange={(content) => { this.setState({ content }); }}
+              onChange={(content) => { this.setState({ content }) }}
             />
 
             <div className="new-snippet-code-bottom-bar">
+              <Notification
+                message="Content is required :("
+                show={!!this.state.validationError}
+              />
               <input type="submit" value="POST SNIPPET" />
             </div>
           </div>
@@ -148,10 +171,10 @@ class NewSnippet extends React.Component {
           />
         </div>
       </form>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   syntaxes: state.get('syntaxes'),
-}))(NewSnippet);
+}))(NewSnippet)

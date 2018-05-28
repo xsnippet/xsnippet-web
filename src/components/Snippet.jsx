@@ -1,56 +1,57 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import AceEditor from 'react-ace';
-import brace from 'brace';
+import React from 'react'
+import { connect } from 'react-redux'
+import AceEditor from 'react-ace'
+import brace from 'brace'
 
-import 'brace/theme/textmate';
+import 'brace/theme/textmate'
 
-import Spinner from './common/Spinner';
-import * as actions from '../actions';
-import { downloadSnippet, copyToClipboard, formatDate } from '../helpers';
+import Spinner from './common/Spinner'
+import * as actions from '../actions'
+import * as misc from '../misc'
+import conf from '../conf'
 
-import '../styles/Snippet.styl';
+import '../styles/Snippet.styl'
 
-class Snippet extends React.Component {
+export class Snippet extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { isShowEmbed: false };
-    this.toggleEmbed = this.toggleEmbed.bind(this);
-    this.download = this.download.bind(this);
+    super(props)
+    this.state = { isShowEmbed: false }
+    this.toggleEmbed = this.toggleEmbed.bind(this)
+    this.download = this.download.bind(this)
     this.copyClipboard = (e) => {
-      copyToClipboard(e, 'embedded');
-    };
+      misc.copyToClipboard(e, 'embedded')
+    }
     this.onEditorLoad = (editor) => {
       // we want to disable built-in find in favor of browser's one
-      editor.commands.removeCommand('find');
-    };
+      editor.commands.removeCommand('find')
+    }
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    const { id } = this.props.match.params;
+    const { dispatch } = this.props
+    const { id } = this.props.match.params
 
-    dispatch(actions.fetchSnippet(Number(id)));
+    dispatch(actions.fetchSnippet(Number(id)))
   }
 
   download() {
-    downloadSnippet(this.props.snippet);
+    misc.downloadSnippet(this.props.snippet)
   }
 
   toggleEmbed() {
-    this.setState(prevState => ({ isShowEmbed: !prevState.isShowEmbed }));
+    this.setState(prevState => ({ isShowEmbed: !prevState.isShowEmbed }))
   }
 
   render() {
-    const { snippet } = this.props;
-    const { modesByName } = brace.acequire('ace/ext/modelist');
+    const { snippet } = this.props
+    const { modesByName } = brace.acequire('ace/ext/modelist')
 
-    if (!snippet) return <Spinner />;
+    if (!snippet) return <Spinner />
 
-    const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`;
-    const mode = modesByName[snippet.get('syntax')] || modesByName.text;
-    const syntax = mode.caption;
-    const rawUrl = process.env.RAW_SNIPPETS_URL_FORMAT.replace('%s', snippet.get('id'));
+    const snippetTitle = snippet.get('title') || `#${snippet.get('id')}, Untitled`
+    const mode = modesByName[snippet.get('syntax')] || modesByName.text
+    const syntax = mode.caption
+    const rawUrl = conf.RAW_SNIPPET_URI_FORMAT.replace('%s', snippet.get('id'))
 
     return (
       <div className="snippet" key="Snippet">
@@ -60,13 +61,15 @@ class Snippet extends React.Component {
             <div className="snippet-data-tags">
               {snippet.get('tags').map(item => <span className="snippet-data-tag" key={item}>{item}</span>)}
             </div>
-            <span className="snippet-data-meta">{formatDate(snippet.get('created_at'))}, by Guest</span>
+            <span className="snippet-data-meta">{misc.formatDate(snippet.get('created_at'))}, by Guest</span>
           </div>
           <div className="snippet-data-actions">
             <span className="snippet-data-lang">{syntax}</span>
             <div>
               <a href={rawUrl} className="snippet-button">Raw</a>
-              <button className="snippet-button" onClick={this.download}>Download</button>
+              <button className="snippet-button snippet-button-download" onClick={this.download}>
+                Download
+              </button>
               <button
                 className={`toggle-embed snippet-button ${this.state.isShowEmbed}`}
                 key="snippet-details"
@@ -107,7 +110,7 @@ class Snippet extends React.Component {
               highlightGutterLine: false,
               showFoldWidgets: false,
               useWorker: false,
-              fontSize: '14px',
+              fontSize: '13px',
               maxLines: Infinity,
               showPrintMargin: false,
             }}
@@ -116,10 +119,10 @@ class Snippet extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
 export default connect((state, ownProps) => ({
   snippet: state.getIn(['snippets', Number(ownProps.match.params.id)]),
-}))(Snippet);
+}))(Snippet)

@@ -8,5 +8,4 @@ dist
 .DS_Store
 npm-debug.log
 /.idea
-.vscode
-cypress/videos
+coverage

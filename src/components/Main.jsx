@@ -1,13 +1,13 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import NewSnippet from './NewSnippet';
-import RecentSnippets from './RecentSnippets';
-import Snippet from './Snippet';
-import About from './About';
-import SignIn from './SignIn';
+import NewSnippet from './NewSnippet'
+import RecentSnippets from './RecentSnippets'
+import Snippet from './Snippet'
+import About from './About'
+import SignIn from './SignIn'
 
-import '../styles/Main.styl';
+import '../styles/Main.styl'
 
 const Main = () => (
   <main className="main">
@@ -19,6 +19,6 @@ const Main = () => (
       <Route exact path="/:id(\d+)" component={Snippet} />
     </Switch>
   </main>
-);
+)
 
-export default Main;
+export default Main
