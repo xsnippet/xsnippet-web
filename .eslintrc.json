@@ -12,5 +12,9 @@
         "named": "never"
     }],
     "jsx-quotes": ["error", "prefer-double"]
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
   }
 }
