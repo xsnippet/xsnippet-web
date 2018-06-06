@@ -2,7 +2,6 @@ const path = require('path')
 const process = require('process')
 
 const webpack = require('webpack')
-const glob = require('glob')
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -128,25 +127,13 @@ module.exports = () => {
     },
 
     entry: {
-      app: [
-        path.resolve(__dirname, 'src', 'index.jsx'),
-
-        // Bundle AceEditor's syntaxes along with main application. There are
-        // around 150 syntaxes and we, of course, do not want to import all of
-        // them from within the application, hence this hack.
-        ...glob.sync(path.resolve(
-          __dirname,
-          'node_modules',
-          'brace',
-          'mode',
-          `@(${syntaxes.join('|')}).js`,
-        )),
-      ],
+      app: path.resolve(__dirname, 'src', 'index.jsx'),
     },
 
     // Use [chunkhash] in order to invalidate browsers cache on new deployments.
     output: {
       filename: '[name].[chunkhash].js',
+      chunkFilename: '[name].[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: assetsPath,
     },
@@ -200,6 +187,17 @@ module.exports = () => {
       // candidates to be cached on clients.
       splitChunks: {
         chunks: 'all',
+        cacheGroups: {
+          // AceEditor's modes (aka syntaxes) are pretty heavy, and since they
+          // are not essential, we better download them asynchronously when
+          // the app is loaded. First step to accomplish this goal is to
+          // create a separate bundle by defining a new cache group.
+          syntaxes: {
+            test: /[\\/]brace[\\/]mode[\\/]/,
+            name: 'syntaxes',
+            priority: -5,
+          },
+        },
       },
     },
 
@@ -209,6 +207,18 @@ module.exports = () => {
       // pretty heavy (~1Mb) and we have no plans to use it, so we just
       // aggressively strip this code out of build.
       new webpack.IgnorePlugin(/worker/, /brace/),
+
+      // Webpack, when meets dynamic imports with variables, heuristically
+      // figures out what needs to be bundle and bundles everything it can
+      // reach to. In our case we have a clear understanding which syntaxes
+      // we want to distribute within the application, so let's strip
+      // everything else out.
+      //
+      // https://webpack.js.org/api/module-methods/#import-<Paste>
+      new webpack.IgnorePlugin(
+        new RegExp(`/(?!(?:${syntaxes.join('|')}).js$).*js$`),
+        /brace[\\/]mode/
+      ),
 
       // Each time we change something, a new version of bundled assets is
       // produced. Since we use hash in filenames in order to invalidate cache
@@ -223,6 +233,7 @@ module.exports = () => {
         API_BASE_URI: null,
         RAW_SNIPPET_URI_FORMAT: null,
         RUNTIME_CONF_URI: `${assetsPath}conf.json`,
+        SYNTAXES: syntaxes,
       }),
 
       // Similar to JavaScript, we use [chunkhash] in order to invalidate
