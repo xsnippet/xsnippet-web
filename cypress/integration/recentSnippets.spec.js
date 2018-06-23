@@ -1,12 +1,9 @@
 describe('Recent snippets', () => {
-  it('should visit recent snippet page', () => {
+  const SNIPPETS_MAX_LIMIT = 20
+
+  it('should visit recent snippet page and load last 20 snippets', () => {
     cy.visit('/recent')
-  })
-
-  it('should have loaded last 20 snippets', () => {
-    const defaulAmountOfSnippets = 20
-
-    cy.get('.recent-snippet-item').should('have.length', defaulAmountOfSnippets)
+      .get('.recent-snippet-item').should('have.length', SNIPPETS_MAX_LIMIT)
   })
 
   it('should do nothing on Prev button click', () => {

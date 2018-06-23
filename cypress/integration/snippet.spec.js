@@ -19,7 +19,7 @@ describe('Snippet', () => {
     cy.get('.toggle-embed').click().should('have.class', 'true')
 
     cy.get('.snippet-embed').should('be.visible')
-  });
+  })
 
   it('should hide embed content on close button', () => {
     cy.get('.snippet-embed-close').as('closeEmbed')

@@ -4,6 +4,9 @@
     "browser": true,
     "jest": true
   },
+  "globals": {
+    "cy": false
+  },
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "space-before-function-paren": ["error", {
@@ -11,9 +14,10 @@
         "asyncArrow": "always",
         "named": "never"
     }],
-    "jsx-quotes": ["error", "prefer-double"],
-    "globals": {
-      "cy": false
-    }
+    "jsx-quotes": ["error", "prefer-double"]
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
   }
 }

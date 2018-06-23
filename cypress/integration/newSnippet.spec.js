@@ -1,16 +1,13 @@
 describe('New Snippet Form', () => {
-  it('should visit the app', () => {
-    cy.visit('/')
-  })
+  const SYNTAXES_LENGTH = 97
 
-  it('focuses the editor on load', () => {
-    cy.focused().should('have.class', 'ace_text-input')
+  it('should visit the app and focused on editor', () => {
+    cy.visit('/')
+      .focused().should('have.class', 'ace_text-input')
   })
 
   it('should have list of 97 syntaxes', () => {
-    const syntaxesLength = 97
-
-    cy.get('.new-snippet-lang-item').should('have.length', syntaxesLength)
+    cy.get('.new-snippet-lang-item').should('have.length', SYNTAXES_LENGTH)
   })
 
   it('fills title field for new snippet', () => {
@@ -20,13 +17,13 @@ describe('New Snippet Form', () => {
       .should('have.value', title)
   })
 
-  it('should add type', () => {
-    cy.get('.react-tags > input').type('tag1{enter}').type('tag2{enter}')
+  it('should add tags', () => {
+    cy.get('.ReactTags__tagInputField').type('tag1{enter}').type('tag2{enter}')
 
-    cy.get('.react-tags__container li').should('have.length', 2)
+    cy.get('.ReactTags__tag').should('have.length', 2)
   })
 
-  it('should have 2 left syntaxes', () => {
+  it('should have 2 syntaxes left', () => {
     cy.get('.new-snippet-lang-header > .input').type('java')
 
     cy.get('.new-snippet-lang-item').should('have.length', 2)
@@ -65,6 +62,6 @@ describe('New Snippet Form', () => {
 
   it('should post snippet', () => {
     // cy.get('.new-snippet').submit()
-    // TODO: check wether snippet has been posted
+    // TODO: check whether snippet has been posted
   })
 })

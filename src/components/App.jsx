@@ -24,6 +24,13 @@ class App extends React.Component {
       })
       .then(json => Object.assign(conf, json))
       .then(() => this.setState({ isLoading: false }))
+
+    // AceEditor's modes (aka syntaxes) are pretty heavy, and since they are
+    // not essential, we better download them asynchronously when the app is
+    // loaded and ready to be used.
+    for (const syntax of process.env.SYNTAXES) {
+      import(`brace/mode/${syntax}.js`)
+    }
   }
 
   render() {
