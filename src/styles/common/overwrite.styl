@@ -18,44 +18,53 @@
 .new-snippet .ace_editor
   min-height 100% !important
 
-.react-tags
-  basic-input()
-  width: 47%
-  padding: 4px 5px 0
-  min-height: 29px
-  border-radius: 3px
-  background-color: snippet-header-normal
-  input
+.snippet-code .ace_text-input-ios
+  position: relative !important
+
+.ReactTags
+  &__tags
     basic-input()
+    width: 47%
+    padding: 3px 5px 0
+    min-height: 29px
+    border-radius: 3px
+    background-color: snippet-header-normal
+  &__tag
+    display: inline-block
+    margin: 0 4px 4px 0
+    padding: 0 8px
+    font-size: 12px
+    font-weight: 300
+    line-height: 18px
+    color: text-light
+    border-radius: 9.5px
+    background-color: rgba(snippet-header-light, .7)
+    letter-spacing: 0.4px
+    white-space: nowrap
+    &:last-child
+      margin-right: 0
+    &:hover
+      border-color: text-light
+    .ReactTags__remove
+      margin-left: 3px
+      cursor: pointer
+
+  &__tagInput
     display: inline
+    color: text-light
+  &__tagInputField
+    basic-input()
     width: auto
     padding: 2px 0 4px 0
     border-radius: 3px
     background-color: snippet-header-normal
-  .react-tags__container
-    display: inline
-    color: text-light
-    &:empty + input
-      width: 100%
-    li
-      display: inline-block
-      margin: 0 4px 4px 0
-      padding: 0 8px
-      font-size: 12px
-      font-weight: 300
-      line-height: 18px
-      color: text-light
-      border-radius: 9.5px
-      background-color: rgba(snippet-header-light, .7)
-      letter-spacing: 0.4px
-      white-space: nowrap
-      &:last-shild
-        margin-right: 0
-      &:hover
-        border-color: text-light
-      a
-        margin-left: 3px
-        cursor: pointer
 
-.snippet-code .ace_text-input-ios
-  position: relative !important
+.ReactTags__selected > .ReactTags__tagInput
+  width: 100%
+  & .ReactTags__tagInputField
+    width: 100%
+
+.ReactTags__tag + .ReactTags__tagInput
+  width: auto
+  & .ReactTags__tagInputField
+    width: auto
