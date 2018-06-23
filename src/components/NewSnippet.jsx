@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
-import Tags from 'react-tagging-input'
+import { WithContext as Tags } from 'react-tag-input'
 
 import brace from 'brace'
 import 'brace/ext/modelist'
@@ -21,20 +21,18 @@ class NewSnippet extends React.Component {
     this.schema = Joi.object().keys({
       content: Joi.string().required(),
     })
+    this.keys = {
+      TAB: 9,
+      SPACE: 32,
+      ENTER: 13,
+      COMMA: 188,
+    }
     this.state = {
       content: '',
       title: '',
       tags: [],
       syntax: '',
       validationError: null,
-    }
-    this.onKeyPress = (e) => {
-      // e.target.nodeName !=== 'TEXTAREA' is an ugly hack to allow enter
-      // to insert "newline" into code editor. We need to figure out
-      // a better way to handle this.
-      if (e.which === 13 && e.target.nodeName !== 'TEXTAREA') { // keyCode for Enter button
-        e.preventDefault()
-      }
     }
     this.recalcLangHeaderHeight = () => {
       const newSnippetHeaderHeight = document.getElementsByClassName('new-snippet-code-header')[0].offsetHeight
@@ -51,6 +49,7 @@ class NewSnippet extends React.Component {
     this.onInputChange = this.onInputChange.bind(this)
     this.onTagAdded = this.onTagAdded.bind(this)
     this.onTagRemoved = this.onTagRemoved.bind(this)
+    this.onTagBlur = this.onTagBlur.bind(this)
   }
 
   componentDidMount() {
@@ -59,17 +58,23 @@ class NewSnippet extends React.Component {
   }
 
   onTagAdded(tag) {
-    if (tag) {
+    if (tag && tag.text) {
       this.setState({ tags: [...this.state.tags, tag] }, () => {
         this.recalcLangHeaderHeight()
       })
     }
   }
 
-  onTagRemoved(tag) {
-    this.setState({ tags: this.state.tags.filter(item => item !== tag) }, () => {
+  onTagRemoved(i) {
+    const { tags } = this.state
+
+    this.setState({ tags: tags.filter((tag, index) => index !== i) }, () => {
       this.recalcLangHeaderHeight()
     })
+  }
+
+  onTagBlur(tag) {
+    this.onTagAdded({ id: tag, text: tag })
   }
 
   onSyntaxClick(syntax) {
@@ -95,7 +100,7 @@ class NewSnippet extends React.Component {
       } = this.state
 
       dispatch(actions.postSnippet({
-        content, title, tags, syntax,
+        content, title, tags: tags.map(tag => tag.text), syntax,
       }, json => history.push(`/${json.id}`)))
     }
   }
@@ -112,7 +117,6 @@ class NewSnippet extends React.Component {
       <form
         className="new-snippet"
         key="New Snippet"
-        onKeyPress={this.onKeyPress}
         onSubmit={this.postSnippet}
         role="presentation"
       >
@@ -127,12 +131,14 @@ class NewSnippet extends React.Component {
               onChange={this.onInputChange}
             />
             <Tags
-              tags={this.state.tags}
               placeholder="Tags"
-              onAdded={this.onTagAdded}
-              onRemoved={this.onTagRemoved}
-              addKeys={[32, 13, 9]}
-              uniqueTags
+              tags={this.state.tags}
+              handleDelete={this.onTagRemoved}
+              handleAddition={this.onTagAdded}
+              handleInputBlur={this.onTagBlur}
+              delimiters={
+                [this.keys.TAB, this.keys.SPACE, this.keys.ENTER, this.keys.COMMA]
+              }
             />
           </div>
           <div className="new-snippet-code">
