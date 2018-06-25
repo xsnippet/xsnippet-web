@@ -1,9 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { Map } from 'immutable'
 
 import { Snippet } from '../../src/components/Snippet'
 import Spinner from '../../src/components/common/Spinner'
+import * as misc from '../../src/misc'
 
 describe('Snippet', () => {
   const match = { params: { id: 1 } }
@@ -94,6 +95,22 @@ describe('Snippet', () => {
     const downloadButton = wrapper.find('.snippet-button-download')
 
     downloadButton.simulate('click')
+
+    expect(spy).toHaveBeenCalled()
+  })
+
+  it('should trigger copy handler on Copy button click', () => {
+    misc.copyToClipboard = jest.fn()
+
+    const wrapper = mount(<Snippet snippet={snippet} match={match} dispatch={jest.fn()} />)
+    const instance = wrapper.instance()
+    const spy = jest.spyOn(instance, 'copyClipboard')
+
+    instance.forceUpdate()
+
+    const copyButton = wrapper.find('.snippet-embed-content .snippet-button')
+
+    copyButton.simulate('click')
 
     expect(spy).toHaveBeenCalled()
   })
