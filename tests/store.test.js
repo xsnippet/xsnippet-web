@@ -44,18 +44,18 @@ describe('actions', () => {
       first: {
         limit: '20',
         rel: 'first',
-        url: '//api.xsnippet.org/snippets?limit=20',
+        url: '//api.xsnippet.org/v1/snippets?limit=20',
       },
       next: {
         limit: '20',
         marker: 28,
         rel: 'next',
-        url: '//api.xsnippet.org/snippets?limit=20&marker=28',
+        url: '//api.xsnippet.org/v1/snippets?limit=20&marker=28',
       },
       prev: {
         limit: '20',
         rel: 'prev',
-        url: '//api.xsnippet.org/snippets?limit=20',
+        url: '//api.xsnippet.org/v1/snippets?limit=20',
       },
     }
     const store = createStore()
@@ -82,10 +82,10 @@ describe('actions', () => {
         syntax: 'Python',
       },
     ]
-    const links = '<//api.xsnippet.org/snippets?limit=20>; rel="first", <//api.xsnippet.org/snippets?limit=20&marker=19>; rel="next", <//api.xsnippet.org/snippets?limit=20&marker=59>; rel="prev"'
+    const links = '<//api.xsnippet.org/v1/snippets?limit=20>; rel="first", <//api.xsnippet.org/v1/snippets?limit=20&marker=19>; rel="next", <//api.xsnippet.org/v1/snippets?limit=20&marker=59>; rel="prev"'
 
     fetchMock.getOnce(
-      '//api.xsnippet.org/snippets?limit=20&marker=39',
+      '//api.xsnippet.org/v1/snippets?limit=20&marker=39',
       {
         headers: { Link: links },
         body: snippets,
@@ -114,19 +114,19 @@ describe('actions', () => {
         first: {
           limit: '20',
           rel: 'first',
-          url: '//api.xsnippet.org/snippets?limit=20',
+          url: '//api.xsnippet.org/v1/snippets?limit=20',
         },
         next: {
           limit: '20',
           marker: '19',
           rel: 'next',
-          url: '//api.xsnippet.org/snippets?limit=20&marker=19',
+          url: '//api.xsnippet.org/v1/snippets?limit=20&marker=19',
         },
         prev: {
           limit: '20',
           marker: '59',
           rel: 'prev',
-          url: '//api.xsnippet.org/snippets?limit=20&marker=59',
+          url: '//api.xsnippet.org/v1/snippets?limit=20&marker=59',
         },
       },
     })
@@ -145,10 +145,10 @@ describe('actions', () => {
         syntax: 'Python',
       },
     ]
-    const links = '<//api.xsnippet.org/snippets?limit=20>; rel="first", <//api.xsnippet.org/snippets?limit=20&marker=39>; rel="next"'
+    const links = '<//api.xsnippet.org/v1/snippets?limit=20>; rel="first", <//api.xsnippet.org/v1/snippets?limit=20&marker=39>; rel="next"'
 
     fetchMock.getOnce(
-      '//api.xsnippet.org/snippets?limit=20',
+      '//api.xsnippet.org/v1/snippets?limit=20',
       {
         headers: { Link: links },
         body: snippets,
@@ -177,13 +177,13 @@ describe('actions', () => {
         first: {
           limit: '20',
           rel: 'first',
-          url: '//api.xsnippet.org/snippets?limit=20',
+          url: '//api.xsnippet.org/v1/snippets?limit=20',
         },
         next: {
           limit: '20',
           marker: '39',
           rel: 'next',
-          url: '//api.xsnippet.org/snippets?limit=20&marker=39',
+          url: '//api.xsnippet.org/v1/snippets?limit=20&marker=39',
         },
       },
     })
@@ -219,7 +219,7 @@ describe('actions', () => {
       syntax: 'Go',
     }
 
-    fetchMock.getOnce(`//api.xsnippet.org/snippets/${snippet.id}`, JSON.stringify(snippet))
+    fetchMock.getOnce(`//api.xsnippet.org/v1/snippets/${snippet.id}`, JSON.stringify(snippet))
 
     const store = createStore()
     await store.dispatch(actions.fetchSnippet(snippet.id))
@@ -254,7 +254,7 @@ describe('actions', () => {
   it('should create an action to fetch syntaxes', async () => {
     const syntaxes = ['JavaScript', 'Python', 'Java', 'Go', 'Plain Text']
 
-    fetchMock.getOnce('//api.xsnippet.org/syntaxes', JSON.stringify(syntaxes))
+    fetchMock.getOnce('//api.xsnippet.org/v1/syntaxes', JSON.stringify(syntaxes))
 
     const store = createStore()
     await store.dispatch(actions.fetchSyntaxes)
@@ -274,7 +274,7 @@ describe('actions', () => {
       syntax: 'JavaScript',
     }
 
-    fetchMock.postOnce('//api.xsnippet.org/snippets', JSON.stringify(snippet))
+    fetchMock.postOnce('//api.xsnippet.org/v1/snippets', JSON.stringify(snippet))
 
     const store = createStore()
     await store.dispatch(actions.postSnippet(snippet, () => {}))

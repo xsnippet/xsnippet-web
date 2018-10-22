@@ -15,7 +15,7 @@ export const fetchRecentSnippets = marker => (dispatch) => {
   let qs = ''
   if (marker) { qs = `&marker=${marker}` }
 
-  return fetch(misc.getApiUri(`/snippets?limit=20${qs}`))
+  return fetch(misc.getApiUri(`snippets?limit=20${qs}`))
     .then((response) => {
       const links = parseLinkHeader(response.headers.get('Link'))
 
@@ -31,7 +31,7 @@ export const setSnippet = snippet => ({
 })
 
 export const fetchSnippet = id => dispatch => (
-  fetch(misc.getApiUri(`/snippets/${id}`))
+  fetch(misc.getApiUri(`snippets/${id}`))
     .then(response => response.json())
     .then(json => dispatch(setSnippet(json)))
 )
@@ -42,13 +42,13 @@ export const setSyntaxes = syntaxes => ({
 })
 
 export const fetchSyntaxes = dispatch => (
-  fetch(misc.getApiUri('/syntaxes'))
+  fetch(misc.getApiUri('syntaxes'))
     .then(response => response.json())
     .then(json => dispatch(setSyntaxes(json)))
 )
 
 export const postSnippet = (snippet, onSuccess) => dispatch => (
-  fetch(misc.getApiUri('/snippets'), {
+  fetch(misc.getApiUri('snippets'), {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
