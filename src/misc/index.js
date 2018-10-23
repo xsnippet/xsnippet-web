@@ -52,6 +52,6 @@ export function formatDate(d) {
   return ISOdate.split('-').reverse().join('.')
 }
 
-export function getApiUri(endpoint) {
-  return `${conf.API_BASE_URI}${endpoint}`
+export function getApiUri(endpoint, version = 'v1') {
+  return `${conf.API_BASE_URI}/${version}/${endpoint}`
 }
