@@ -23,7 +23,6 @@ lang-bar-width-tablet = 170px
   &-code
     flex: 1
     position: relative
-    padding: 0 0 63px 0
     &-wrapper
       display: flex
       flex-flow: column nowrap
@@ -33,36 +32,28 @@ lang-bar-width-tablet = 170px
       background-color: snippet-header-light
       .input
         basic-input()
-        width: 47%
+        width: 40%
         border-radius: 3px
         background-color: snippet-header-normal
       & > input
-        margin-right: 5%
-    &-bottom-bar
-      position: absolute
-      bottom: 0
-      left: 0
-      right: 0
-      text-align: right
-      padding: 5px
-      border-top: 1px solid border-light
-      & > input
-        position: relative
-        min-width: 200px
-        padding: 11px
-        margin: 5px 16px 7px 0
-        border: none
-        background-color: snippet-post-button
-        color: text-light
-        font-size: 15px
-        text-align: center
-        z-index: 2
-        -webkit-appearance: none // we need this styles to overwrite safary's styles for input with type='submit'
-        -webkit-border-radius: 0
-        &:hover,
-        &:focus
-          background-color: snippet-post-button-active
-          cursor: pointer
+        margin-right: 3%
+    &-post-button.post
+      position: relative
+      min-width: 175px
+      padding: 6px
+      margin: 0 0 0 3%
+      border: none
+      background-color: snippet-post-button
+      color: text-light
+      font-size: 15px
+      text-align: center
+      z-index: 2
+      -webkit-appearance: none // we need this styles to overwrite safary's styles for input with type='submit'
+      -webkit-border-radius: 0
+      &:hover,
+      &:focus
+        background-color: snippet-post-button-active
+        cursor: pointer
 
   &-lang
     &-wrapper
@@ -102,22 +93,24 @@ lang-bar-width-tablet = 170px
         border-bottom: none
         background-color: language-bar-bg-active
 
-@media (max-width: tablet-breakpoint)
+@media (max-width: high-tablet-breakpoint)
   .new-snippet
     &-code,
     &-lang
       &-header
         flex-flow: column nowrap
-        min-height: 105px
+        min-height: 143px
     &-code
       &-wrapper
         width: "calc(100% - %s)" % lang-bar-width-tablet
       &-header
         .input
-          width: 100%
-          margin-bottom: 8px
         .ReactTags__tags
           width: 100%
+          margin-bottom: 8px
+        .new-snippet-code-post-button
+          width: 100%
+          margin-left: 0
         & > input
           margin-right: 0
     &-lang

@@ -120,6 +120,10 @@ class NewSnippet extends React.Component {
         onSubmit={this.postSnippet}
         role="presentation"
       >
+        <Notification
+          message="Content is required :("
+          show={!!this.state.validationError}
+        />
         <div className="new-snippet-code-wrapper">
           <div className="new-snippet-code-header">
             <input
@@ -140,6 +144,7 @@ class NewSnippet extends React.Component {
                 [this.keys.TAB, this.keys.SPACE, this.keys.ENTER, this.keys.COMMA]
               }
             />
+            <input className="new-snippet-code-post-button post" type="submit" value="POST SNIPPET" />
           </div>
           <div className="new-snippet-code">
             <AceEditor
@@ -160,14 +165,6 @@ class NewSnippet extends React.Component {
               value={this.state.content}
               onChange={(content) => { this.setState({ content }) }}
             />
-
-            <div className="new-snippet-code-bottom-bar">
-              <Notification
-                message="Content is required :("
-                show={!!this.state.validationError}
-              />
-              <input type="submit" value="POST SNIPPET" />
-            </div>
           </div>
         </div>
         <div className="new-snippet-lang-wrapper">

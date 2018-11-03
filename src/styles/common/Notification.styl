@@ -8,16 +8,21 @@
 .notification
   display: none
   position absolute
-  top: 11px
-  right: 240px
+  top: 17px
+  left: 50%
+  transform: translateX(-50%)
   padding: 11px 25px
   background-color: color-putty-yellow-s46
   color: text-light
   border-radius: 4px
   font-family: font-roboto
   font-weight: 300
-  z-index: 1
+  z-index: 10
   &.has-error
     display: block
-    animation: slideIn .5s ease-in
+    animation: animatetop .5s ease-in
 
+@keyframes animatetop {
+  from { top: -300px; opacity: 0 }
+  to { top: 0; opacity: 1 }
+}
