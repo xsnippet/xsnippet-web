@@ -5,7 +5,6 @@ import '../styles/AboutUs.styl'
 import RomanImage from '../assets/photos/roman.jpg'
 import IhorImage from '../assets/photos/ihor.jpg'
 import OlhaImage from '../assets/photos/olha.jpg'
-import AinuraImage from '../assets/photos/ainura.jpg'
 import KaterynaImage from '../assets/photos/kateryna.jpg'
 
 const About = () => (
@@ -55,13 +54,6 @@ const About = () => (
       </p>
       <ul className="about-us-team-list">
         <li className="about-us-team-item">
-          <img src={KaterynaImage} alt="Kateryna Zharikova" />
-          <div>
-            <span className="about-us-team-member">Kateryna Zharikova</span>
-            <p className="about-us-paragraph small">UI Designer</p>
-          </div>
-        </li>
-        <li className="about-us-team-item">
           <img src={IhorImage} alt="Ihor Kalnytskyi" />
           <div>
             <span className="about-us-team-member">Ihor Kalnytskyi</span>
@@ -83,10 +75,10 @@ const About = () => (
           </div>
         </li>
         <li className="about-us-team-item">
-          <img src={AinuraImage} alt="Ainura Aliieva" />
+          <img src={KaterynaImage} alt="Kateryna Zharikova" />
           <div>
-            <span className="about-us-team-member">Ainura Aliieva</span>
-            <p className="about-us-paragraph small">Front-end developer</p>
+            <span className="about-us-team-member">Kateryna Zharikova</span>
+            <p className="about-us-paragraph small">UI Designer</p>
           </div>
         </li>
       </ul>
