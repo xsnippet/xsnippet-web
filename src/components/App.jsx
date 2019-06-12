@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Header from './Header'
-import Main from './Main'
 import Sidebar from './Sidebar'
+import NewSnippet from './NewSnippet'
+import RecentSnippets from './RecentSnippets'
+import Snippet from './Snippet'
+import About from './About'
+import SignIn from './SignIn'
+
 import Spinner from './common/Spinner'
 import conf from '../conf'
 
@@ -38,13 +44,23 @@ class App extends React.Component {
       return <Spinner />
     }
 
-    return [
-      <Header key="header" />,
-      <div className="content" key="content">
-        <Sidebar />
-        <Main />
-      </div>,
-    ]
+    return (
+      <Router>
+        <Fragment>
+          <Header key="header" />
+          <div className="content" key="content">
+            <Sidebar />
+            <main className="main">
+              <Route exact path="/" component={NewSnippet} />
+              <Route exact path="/recent" component={RecentSnippets} />
+              <Route exact path="/:id(\d+)" component={Snippet} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/sign-in" component={SignIn} />
+            </main>
+          </div>
+        </Fragment>
+      </Router>
+    )
   }
 }
 
