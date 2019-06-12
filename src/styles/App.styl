@@ -8,3 +8,14 @@ html, body, body > div
 .content
   display: flex
   min-height: 100%
+
+.main
+  padding: 27px 20px;
+  width: "calc(100% - %s)" % offset
+  min-width: 480px
+  min-height: 100%
+  margin-top: offset
+  margin-left: offset
+  overflow-y: auto
+  background-color: site-bg
+  font-family: font-quicksand
