@@ -1,53 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import ListBox from './ListBox'
+
 import { regExpEscape } from '../misc/reqExp'
 
-class ListBoxWithSearch extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      searchQuery: null,
-    }
+const ListBoxWithSearch = props => {
+  let { items } = props
+
+  const [ searchQuery, setSearchQuery ] = useState(null)
+
+  const onSearch = e => {
+    setSearchQuery(e.target.value.trim())
   }
 
-  onSearch = e => {
-    this.setState({ searchQuery: e.target.value.trim() })
-  }
-
-  render() {
-    const { searchQuery } = this.state
-    let { items } = this.props
-
-    // Normalize items arrays so each item is always an object.
-    items = items.map((item) => {
-      if (item !== Object(item)) {
-        return { name: item, value: item }
-      }
-      return item
-    })
-
-    // Filter out only those items that match search query. If no query is
-    // set, do nothing and use the entire set.
-    if (searchQuery) {
-      const regExp = new RegExp(regExpEscape(searchQuery), 'gi')
-      items = items.filter(item => item.name.match(regExp))
+  // Normalize items arrays so each item is always an object.
+  items = items.map((item) => {
+    if (item !== Object(item)) {
+      return { name: item, value: item }
     }
 
-    return (
-      [
-        <div className="new-snippet-lang-header" key="Syntax input">
-          <input className="input" placeholder="Type to search..." onChange={this.onSearch} />
-        </div>,
-        <div className="new-snippet-lang-list-wrapper" key="Syntax list">
-          <ListBox
-            items={items}
-            onClick={this.props.onClick}
-          />
-        </div>,
-      ]
-    )
+    return item
+  })
+
+  // Filter out only those items that match search query. If no query is
+  // set, do nothing and use the entire set.
+  if (searchQuery) {
+    const regExp = new RegExp(regExpEscape(searchQuery), 'gi')
+    items = items.filter(item => item.name.match(regExp))
   }
+
+  return (
+    [
+      <div className="new-snippet-lang-header" key="Syntax input">
+        <input className="input" placeholder="Type to search..." onChange={onSearch} />
+      </div>,
+      <div className="new-snippet-lang-list-wrapper" key="Syntax list">
+        <ListBox
+          items={items}
+          onClick={props.onClick}
+        />
+      </div>,
+    ]
+  )
 }
 
 export default ListBoxWithSearch
