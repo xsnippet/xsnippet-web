@@ -1,7 +1,16 @@
 import fetchMock from 'fetch-mock'
 import createStore from '../src/store'
 
-import * as actions from '../src/actions'
+import {
+  setRecentSnippets,
+  setPaginationLinks,
+  fetchRecentSnippets,
+  setSnippet,
+  setSyntaxes,
+  fetchSnippet,
+  fetchSyntaxes,
+  postSnippet,
+} from '../src/actions'
 
 describe('actions', () => {
   it('should create an action to set recent snippets', () => {
@@ -18,7 +27,7 @@ describe('actions', () => {
       },
     ]
     const store = createStore()
-    store.dispatch(actions.setRecentSnippets(snippets))
+    store.dispatch(setRecentSnippets(snippets))
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -59,7 +68,7 @@ describe('actions', () => {
       },
     }
     const store = createStore()
-    store.dispatch(actions.setPaginationLinks(links))
+    store.dispatch(setPaginationLinks(links))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -93,7 +102,7 @@ describe('actions', () => {
     )
 
     const store = createStore()
-    await store.dispatch(actions.fetchRecentSnippets(39))
+    await store.dispatch(fetchRecentSnippets(39))
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -156,7 +165,7 @@ describe('actions', () => {
     )
 
     const store = createStore()
-    await store.dispatch(actions.fetchRecentSnippets())
+    await store.dispatch(fetchRecentSnippets())
 
     expect(store.getState().toJS()).toEqual({
       recent: [1, 2],
@@ -196,7 +205,7 @@ describe('actions', () => {
       syntax: 'Go',
     }
     const store = createStore()
-    store.dispatch(actions.setSnippet(snippet))
+    store.dispatch(setSnippet(snippet))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -222,7 +231,7 @@ describe('actions', () => {
     fetchMock.getOnce(`//api.xsnippet.org/v1/snippets/${snippet.id}`, JSON.stringify(snippet))
 
     const store = createStore()
-    await store.dispatch(actions.fetchSnippet(snippet.id))
+    await store.dispatch(fetchSnippet(snippet.id))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -241,7 +250,7 @@ describe('actions', () => {
   it('should create an action to set syntaxes', () => {
     const syntaxes = ['JavaScript', 'Python', 'Java', 'Go', 'Plain Text']
     const store = createStore()
-    store.dispatch(actions.setSyntaxes(syntaxes))
+    store.dispatch(setSyntaxes(syntaxes))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -257,7 +266,7 @@ describe('actions', () => {
     fetchMock.getOnce('//api.xsnippet.org/v1/syntaxes', JSON.stringify(syntaxes))
 
     const store = createStore()
-    await store.dispatch(actions.fetchSyntaxes)
+    await store.dispatch(fetchSyntaxes)
 
     expect(store.getState().toJS()).toEqual({
       recent: [],
@@ -277,7 +286,7 @@ describe('actions', () => {
     fetchMock.postOnce('//api.xsnippet.org/v1/snippets', JSON.stringify(snippet))
 
     const store = createStore()
-    await store.dispatch(actions.postSnippet(snippet, () => {}))
+    await store.dispatch(postSnippet(snippet, () => {}))
 
     expect(store.getState().toJS()).toEqual({
       recent: [],

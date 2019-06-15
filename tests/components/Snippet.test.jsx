@@ -77,24 +77,4 @@ describe('Snippet', () => {
 
     expect(title.text()).toEqual(`#${snippet.get('id')}, Untitled`)
   })
-
-  it('should trigger toggleEmbed after Embed button was clicked', () => {
-    const spy = jest.spyOn(Snippet.prototype, 'toggleEmbed')
-    const wrapper = shallow(<Snippet snippet={snippet} />, { disableLifecycleMethods: true })
-    const embedButton = wrapper.find('.toggle-embed')
-
-    embedButton.simulate('click')
-
-    expect(spy).toHaveBeenCalled()
-  })
-
-  it('should trigger download after Download button was clicked', () => {
-    const spy = jest.spyOn(Snippet.prototype, 'download')
-    const wrapper = shallow(<Snippet snippet={snippet} />, { disableLifecycleMethods: true })
-    const downloadButton = wrapper.find('.snippet-button-download')
-
-    downloadButton.simulate('click')
-
-    expect(spy).toHaveBeenCalled()
-  })
 })

@@ -7,7 +7,6 @@ class ListBox extends React.Component {
     this.state = {
       selected: null,
     }
-    this.onClick = this.onClick.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,7 +28,7 @@ class ListBox extends React.Component {
     }
   }
 
-  onClick(e) {
+  onClick = e => {
     const { value } = e.target.dataset
 
     this.setState({ selected: value })
