@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState, useCallback } from 'react'
 
 import ListBox from './ListBox'
 
 import { regExpEscape } from '../misc/reqExp'
 
-const ListBoxWithSearch = props => {
-  let { items } = props
-
+const ListBoxWithSearch = ({ items, onClick }) => {
   const [ searchQuery, setSearchQuery ] = useState(null)
 
-  const onSearch = e => {
+  const onSearch = useCallback(e => {
     setSearchQuery(e.target.value.trim())
-  }
+  })
 
   // Normalize items arrays so each item is always an object.
   items = items.map((item) => {
@@ -30,17 +28,17 @@ const ListBoxWithSearch = props => {
   }
 
   return (
-    [
+    <Fragment>
       <div className="new-snippet-lang-header" key="Syntax input">
         <input className="input" placeholder="Type to search..." onChange={onSearch} />
-      </div>,
+      </div>
       <div className="new-snippet-lang-list-wrapper" key="Syntax list">
         <ListBox
           items={items}
-          onClick={props.onClick}
+          onClick={onClick}
         />
-      </div>,
-    ]
+      </div>
+    </Fragment>
   )
 }
 

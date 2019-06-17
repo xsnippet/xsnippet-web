@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
 import { WithContext as Tags } from 'react-tag-input'
@@ -17,25 +17,18 @@ import { validateSnippet } from '../entries/snippetValidation'
 import { delimeterKeys } from '../entries/keyboardKeys'
 import { defaultOptions } from '../entries/aceEditorOptions'
 
+import useForm from '../hooks/useForm'
+
 import '../styles/NewSnippet.styl'
 
-const recalcLangHeaderHeight = () => {
-  const mainHeader = 'new-snippet-code-header'
-  const langHeader = 'new-snippet-lang-header'
-
-  const height = document.getElementsByClassName(mainHeader)[0].offsetHeight
-
-  document.getElementsByClassName(langHeader)[0].setAttribute('style', `height:${height}px`)
-}
-
-const NewSnippet = props => {
-  const { dispatch, history } = props
-
-  const [ syntax, setSyntax ] = useState('')
-  const [ content, setContent ] = useState('')
-  const [ title, setTitle ] = useState('')
-  const [ tags, setTags ] = useState([])
-  const [ validationError, setValidationError ] = useState(null)
+const NewSnippet = ({ dispatch, history, syntaxes }) => {
+  const snippetHeader = useRef()
+  const {
+    values: { title = '', syntax = '', content = '', tags = [] },
+    error,
+    handleChange,
+    handleSubmit,
+  } = useForm(post, validate)
 
   useEffect(() => {
     dispatch(fetchSyntaxes)
@@ -45,82 +38,72 @@ const NewSnippet = props => {
     recalcLangHeaderHeight()
   }, [tags])
 
+  function validate() {
+    return validateSnippet({ content: content.trim() })
+  }
+
+  function post() {
+    dispatch(postSnippet({
+      content, title, tags: tags.map(tag => tag.text), syntax,
+    }, json => history.push(`/${json.id}`)))
+  }
+
+  const recalcLangHeaderHeight = () => {
+    const height = snippetHeader.current.offsetHeight
+
+    document.getElementsByClassName('new-snippet-lang-header')[0]
+      .setAttribute('style', `height:${height}px`)
+  }
+
+  const onTagBlur = tag => onTagAdded({ id: tag, text: tag })
+
   const onTagAdded = tag => {
     if (tag && tag.text) {
-      setTags([...tags, tag])
+      return { tags: [...tags, tag] }
     }
   }
 
   const onTagRemoved = i => {
-    setTags(tags.filter((tag, index) => index !== i))
+    return { tags: tags.filter((tag, index) => index !== i) }
   }
 
-  const onTagBlur = tag => {
-    onTagAdded({ id: tag, text: tag })
-  }
-
-  const onSyntaxClick = syntax => {
-    setSyntax(syntax)
-  }
-
-  const onTitleChange = e => {
-    const { value } = e.target
-
-    setTitle(value)
-  }
-
-  const validate = () => validateSnippet({ content: content.trim() })
-
-  const post = e => {
-    e.preventDefault()
-    const { error } = validate()
-
-    setValidationError(error)
-
-    if (!error) {
-      dispatch(postSnippet({
-        content, title, tags: tags.map(tag => tag.text), syntax,
-      }, json => history.push(`/${json.id}`)))
-    }
-  }
+  const handleSyntax = syntax => ({ syntax })
+  const handleContent = content => ({ content })
 
   const getSyntaxes = () => {
     const { modesByName } = getModesByName()
 
-    return props.syntaxes.map(item => ({
+    return syntaxes.map(item => ({
       name: modesByName[item].caption,
       value: item,
     }))
   }
 
-  const renderValidationError = () => (validationError && <Notification
-    message="Content is required :("
-    show={!!validationError}
-  />)
+  const renderValidationError = () => (error && <Notification message={error} />)
 
   return (
     <form
       className="new-snippet"
       key="New Snippet"
-      onSubmit={post}
+      onSubmit={handleSubmit}
       role="presentation"
     >
       <div className="new-snippet-code-wrapper">
-        <div className="new-snippet-code-header">
+        <div className="new-snippet-code-header" ref={snippetHeader}>
           <input
             className="input"
             placeholder="Title"
             name="title"
             type="text"
             value={title}
-            onChange={onTitleChange}
+            onChange={handleChange}
           />
           <Tags
             placeholder="Tags"
             tags={tags}
-            handleDelete={onTagRemoved}
-            handleAddition={onTagAdded}
-            handleInputBlur={onTagBlur}
+            handleDelete={(value) => handleChange(value, onTagRemoved)}
+            handleAddition={(value) => handleChange(value, onTagAdded)}
+            handleInputBlur={(value) => handleChange(value, onTagBlur)}
             delimiters={delimeterKeys}
           />
         </div>
@@ -135,7 +118,7 @@ const NewSnippet = props => {
             setOptions={defaultOptions}
             editorProps={{ $blockScrolling: Infinity }}
             value={content}
-            onChange={(value) => setContent(value)}
+            onChange={(value) => handleChange(value, handleContent)}
           />
           <div className="new-snippet-code-bottom-bar">
             {renderValidationError()}
@@ -146,7 +129,7 @@ const NewSnippet = props => {
       <div className="new-snippet-lang-wrapper">
         <ListBoxWithSearch
           items={getSyntaxes()}
-          onClick={onSyntaxClick}
+          onClick={(syntax) => handleChange(syntax, handleSyntax)}
         />
       </div>
     </form>

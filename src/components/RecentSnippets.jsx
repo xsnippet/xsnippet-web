@@ -11,14 +11,11 @@ const scrollTop = () => {
   window.scroll({ top: 0, behavior: 'smooth' })
 }
 
-const RecentSnippets = props => {
-  const { dispatch, pagination, snippets, recent } = props
-
+const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
   const older = pagination.get('next')
   const newer = pagination.get('prev')
 
   useEffect(() => {
-    const { dispatch, recent, pagination } = props
     let marker = null
 
     if (pagination.get('prev')) {

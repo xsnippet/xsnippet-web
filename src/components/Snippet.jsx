@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
 
@@ -18,24 +18,23 @@ import { existingSnippetOptions } from '../entries/aceEditorOptions'
 
 import '../styles/Snippet.styl'
 
-const copyToClipboard = (e, id = 'embedded') => {
-  document.getElementById(id).select()
-  document.execCommand('copy')
-  e.target.focus()
-}
-
 const Snippet = props => {
   const { snippet, dispatch } = props
-
-  if (!snippet) return <Spinner />
-
   const [ isShowEmbed, setIsShowEmbed ] = useState(false)
+  const embeddedRef = useRef()
 
   useEffect(() => {
     const { id } = props.match.params
 
     dispatch(fetchSnippet(Number(id)))
   }, [])
+
+  if (!snippet) return <Spinner />
+
+  const copyToClipboard = () => {
+    embeddedRef.current.select()
+    document.execCommand('copy')
+  }
 
   const download = () => {
     downloadSnippet(props.snippet)
@@ -58,7 +57,7 @@ const Snippet = props => {
           simply copy and paste code provided below:
         </p>
         <input
-          id="embedded"
+          ref={embeddedRef}
           className="input"
           type="text"
           defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
