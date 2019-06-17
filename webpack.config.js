@@ -177,6 +177,10 @@ module.exports = () => {
           include: path.resolve(__dirname, 'src'),
           use: ['file-loader'],
         },
+        {
+          test: /\.(jpg|png|gif|svg)$/,
+          loader: 'image-webpack-loader',
+        },
       ],
     },
 
