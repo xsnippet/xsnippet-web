@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useMemo } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
 import { WithContext as Tags } from 'react-tag-input'
@@ -70,14 +70,14 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
   const handleSyntax = syntax => ({ syntax })
   const handleContent = content => ({ content })
 
-  const getSyntaxes = () => {
+  const memoizedSyntaxes = useMemo(() => {
     const { modesByName } = getModesByName()
 
     return syntaxes.map(item => ({
       name: modesByName[item].caption,
       value: item,
     }))
-  }
+  }, [syntaxes])
 
   const renderValidationError = () => (error && <Notification message={error} />)
 
@@ -128,7 +128,7 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
       </div>
       <div className="new-snippet-lang-wrapper">
         <ListBoxWithSearch
-          items={getSyntaxes()}
+          items={memoizedSyntaxes}
           onClick={(syntax) => handleChange(syntax, handleSyntax)}
         />
       </div>
