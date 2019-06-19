@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
 import { WithContext as Tags } from 'react-tag-input'
@@ -7,166 +7,133 @@ import 'brace/theme/textmate'
 
 import Notification from './common/Notification'
 import ListBoxWithSearch from './ListBoxWithSearch'
+
 import { fetchSyntaxes, postSnippet } from '../actions'
 
-import { validateSnippet } from '../entries/snippetValidation'
-import { getCurrentModeName, getModesByName } from '../misc/modes'
 import { onEditorLoad } from '../misc/editor'
-import { recalcLangHeaderHeight } from '../misc/dom'
+import { getCurrentModeName, getModesByName } from '../misc/modes'
 
+import { validateSnippet } from '../entries/snippetValidation'
 import { delimeterKeys } from '../entries/keyboardKeys'
 import { defaultOptions } from '../entries/aceEditorOptions'
 
+import useForm from '../hooks/useForm'
+
 import '../styles/NewSnippet.styl'
 
-class NewSnippet extends React.Component {
-  constructor(props) {
-    super(props)
+const NewSnippet = ({ dispatch, history, syntaxes }) => {
+  const snippetHeader = useRef()
+  const {
+    values: { title = '', syntax = '', content = '', tags = [] },
+    error,
+    handleChange,
+    handleSubmit,
+  } = useForm(post, validate)
 
-    this.state = {
-      content: '',
-      title: '',
-      tags: [],
-      syntax: '',
-      validationError: null,
-    }
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props
+  useEffect(() => {
     dispatch(fetchSyntaxes)
-  }
+  }, [])
 
-  onTagAdded = tag => {
-    if (tag && tag.text) {
-      this.setState({ tags: [...this.state.tags, tag] }, () => {
-        recalcLangHeaderHeight()
-      })
-    }
-  }
+  useEffect(() => {
+    recalcLangHeaderHeight()
+  }, [tags])
 
-  onTagRemoved = i => {
-    const { tags } = this.state
-
-    this.setState({ tags: tags.filter((tag, index) => index !== i) }, () => {
-      recalcLangHeaderHeight()
-    })
-  }
-
-  onTagBlur = tag => {
-    this.onTagAdded({ id: tag, text: tag })
-  }
-
-  onSyntaxClick = syntax => {
-    this.setState({ syntax })
-  }
-
-  onInputChange = e => {
-    const { name, value } = e.target
-
-    this.setState({ [name]: value })
-  }
-
-  validate = () => {
-    const { content } = this.state
-
+  function validate() {
     return validateSnippet({ content: content.trim() })
   }
 
-  post = e => {
-    e.preventDefault()
-    const { dispatch, history } = this.props
-    const { error } = this.validate()
+  function post() {
+    dispatch(postSnippet({
+      content, title, tags: tags.map(tag => tag.text), syntax,
+    }, json => history.push(`/${json.id}`)))
+  }
 
-    this.setState({ validationError: error })
+  const recalcLangHeaderHeight = () => {
+    const height = snippetHeader.current.offsetHeight
 
-    if (!error) {
-      const {
-        content, title, tags, syntax,
-      } = this.state
+    document.getElementsByClassName('new-snippet-lang-header')[0]
+      .setAttribute('style', `height:${height}px`)
+  }
 
-      dispatch(postSnippet({
-        content, title, tags: tags.map(tag => tag.text), syntax,
-      }, json => history.push(`/${json.id}`)))
+  const onTagBlur = tag => onTagAdded({ id: tag, text: tag })
+
+  const onTagAdded = tag => {
+    if (tag && tag.text) {
+      return { tags: [...tags, tag] }
     }
   }
 
-  getSyntaxes = () => {
+  const onTagRemoved = i => {
+    return { tags: tags.filter((tag, index) => index !== i) }
+  }
+
+  const handleSyntax = syntax => ({ syntax })
+  const handleContent = content => ({ content })
+
+  const getSyntaxes = () => {
     const { modesByName } = getModesByName()
 
-    return this.props.syntaxes.map(item => ({
+    return syntaxes.map(item => ({
       name: modesByName[item].caption,
       value: item,
     }))
   }
 
-  renderValidationError = () => {
-    const { validationError } = this.state
+  const renderValidationError = () => (error && <Notification message={error} />)
 
-    return validationError && <Notification
-      message="Content is required :("
-      show={!!validationError}
-    />
-  }
-
-  render() {
-    const { syntax, content, title, tags } = this.state
-
-    return (
-      <form
-        className="new-snippet"
-        key="New Snippet"
-        onSubmit={this.post}
-        role="presentation"
-      >
-        <div className="new-snippet-code-wrapper">
-          <div className="new-snippet-code-header">
-            <input
-              className="input"
-              placeholder="Title"
-              name="title"
-              type="text"
-              value={title}
-              onChange={this.onInputChange}
-            />
-            <Tags
-              placeholder="Tags"
-              tags={tags}
-              handleDelete={this.onTagRemoved}
-              handleAddition={this.onTagAdded}
-              handleInputBlur={this.onTagBlur}
-              delimiters={delimeterKeys}
-            />
-          </div>
-          <div className="new-snippet-code">
-            <AceEditor
-              mode={getCurrentModeName(syntax)}
-              width="100%"
-              height="100%"
-              focus
-              theme="textmate"
-              onLoad={onEditorLoad}
-              setOptions={defaultOptions}
-              editorProps={{ $blockScrolling: Infinity }}
-              value={content}
-              onChange={(content) => { this.setState({ content }) }}
-            />
-
-            <div className="new-snippet-code-bottom-bar">
-              {this.renderValidationError()}
-              <input type="submit" value="POST SNIPPET" />
-            </div>
-          </div>
-        </div>
-        <div className="new-snippet-lang-wrapper">
-          <ListBoxWithSearch
-            items={this.getSyntaxes()}
-            onClick={this.onSyntaxClick}
+  return (
+    <form
+      className="new-snippet"
+      key="New Snippet"
+      onSubmit={handleSubmit}
+      role="presentation"
+    >
+      <div className="new-snippet-code-wrapper">
+        <div className="new-snippet-code-header" ref={snippetHeader}>
+          <input
+            className="input"
+            placeholder="Title"
+            name="title"
+            type="text"
+            value={title}
+            onChange={handleChange}
+          />
+          <Tags
+            placeholder="Tags"
+            tags={tags}
+            handleDelete={(value) => handleChange(value, onTagRemoved)}
+            handleAddition={(value) => handleChange(value, onTagAdded)}
+            handleInputBlur={(value) => handleChange(value, onTagBlur)}
+            delimiters={delimeterKeys}
           />
         </div>
-      </form>
-    )
-  }
+        <div className="new-snippet-code">
+          <AceEditor
+            mode={getCurrentModeName(syntax)}
+            width="100%"
+            height="100%"
+            focus
+            theme="textmate"
+            onLoad={onEditorLoad}
+            setOptions={defaultOptions}
+            editorProps={{ $blockScrolling: Infinity }}
+            value={content}
+            onChange={(value) => handleChange(value, handleContent)}
+          />
+          <div className="new-snippet-code-bottom-bar">
+            {renderValidationError()}
+            <input type="submit" value="POST SNIPPET" />
+          </div>
+        </div>
+      </div>
+      <div className="new-snippet-lang-wrapper">
+        <ListBoxWithSearch
+          items={getSyntaxes()}
+          onClick={(syntax) => handleChange(syntax, handleSyntax)}
+        />
+      </div>
+    </form>
+  )
 }
 
 export default connect(state => ({

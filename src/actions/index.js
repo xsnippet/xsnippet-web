@@ -47,7 +47,7 @@ export const fetchSyntaxes = dispatch => (
     .then(json => dispatch(setSyntaxes(json)))
 )
 
-export const postSnippet = (snippet, onSuccess) => dispatch => (
+export const postSnippet = (snippet, onSuccess, onError = () => {}) => dispatch => (
   fetch(getApiUri('snippets'), {
     method: 'POST',
     headers: {
@@ -61,4 +61,5 @@ export const postSnippet = (snippet, onSuccess) => dispatch => (
       dispatch(setSnippet(json))
       onSuccess(json)
     })
+    .catch(onError)
 )

@@ -1,15 +1,21 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import RecentSnippetItem from './RecentSnippetItem'
+
 import { fetchRecentSnippets } from '../actions'
-import { scrollTop } from '../misc/dom'
 
 import '../styles/RecentSnippets.styl'
 
-class RecentSnippets extends React.Component {
-  componentDidMount() {
-    const { dispatch, recent, pagination } = this.props
+const scrollTop = () => {
+  window.scroll({ top: 0, behavior: 'smooth' })
+}
+
+const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
+  const older = pagination.get('next')
+  const newer = pagination.get('prev')
+
+  useEffect(() => {
     let marker = null
 
     if (pagination.get('prev')) {
@@ -17,10 +23,9 @@ class RecentSnippets extends React.Component {
     }
 
     dispatch(fetchRecentSnippets(marker))
-  }
+  }, [])
 
-  newerSetOfSnippets = () => {
-    const { dispatch, pagination } = this.props
+  const newerSetOfSnippets = () => {
     const prev = pagination.get('prev')
 
     if (prev) {
@@ -32,51 +37,41 @@ class RecentSnippets extends React.Component {
     scrollTop()
   }
 
-  olderSetOfSnippets = () => {
-    const { dispatch, pagination } = this.props
+  const olderSetOfSnippets = () => {
     const marker = Number(pagination.get('next').marker)
 
     dispatch(fetchRecentSnippets(marker))
+
     scrollTop()
   }
 
-  renderRecentSnippets() {
-    const { snippets, recent } = this.props
+  const renderRecentSnippets = () => (
+    <ul className="recent-snippet" key="recent-snippet">
+      {recent.map(id => <RecentSnippetItem key={id} snippet={snippets.get(id)} />)}
+    </ul>
+  )
 
-    return (
-      <ul className="recent-snippet" key="recent-snippet">
-        {recent.map(id => <RecentSnippetItem key={id} snippet={snippets.get(id)} />)}
-      </ul>
-    )
-  }
-
-  render() {
-    const { pagination } = this.props
-    const older = pagination.get('next')
-    const newer = pagination.get('prev')
-
-    return (
-      <Fragment>
-        {this.renderRecentSnippets()}
-        <div className="pagination" key="pagination">
-          <span
-            className={`pagination-item next ${newer ? '' : 'disabled'}`}
-            onClick={this.newerSetOfSnippets}
-            role="presentation"
-          >
-            &lsaquo; Newer
-          </span>
-          <span
-            className={`pagination-item prev ${older ? '' : 'disabled'}`}
-            onClick={this.olderSetOfSnippets}
-            role="presentation"
-          >
-            Older &rsaquo;
-          </span>
-        </div>
-      </Fragment>
-    )
-  }
+  return (
+    <Fragment>
+      {renderRecentSnippets()}
+      <div className="pagination" key="pagination">
+        <span
+          className={`pagination-item next ${newer ? '' : 'disabled'}`}
+          onClick={newerSetOfSnippets}
+          role="presentation"
+        >
+          &lsaquo; Newer
+        </span>
+        <span
+          className={`pagination-item prev ${older ? '' : 'disabled'}`}
+          onClick={olderSetOfSnippets}
+          role="presentation"
+        >
+          Older &rsaquo;
+        </span>
+      </div>
+    </Fragment>
+  )
 }
 
 export default connect(state => ({

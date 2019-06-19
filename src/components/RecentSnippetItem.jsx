@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { getCurrentModeCaption } from '../misc/modes'
 import { downloadSnippet } from '../misc/download'
+import { getCurrentModeCaption } from '../misc/modes'
 import { getSnippetTitle, formatDate } from '../misc/snippet'
 import { getRawUrl } from '../misc/url'
 
