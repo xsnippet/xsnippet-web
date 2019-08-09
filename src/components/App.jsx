@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Header from './Header'
@@ -12,15 +12,15 @@ import SignIn from './SignIn'
 import Spinner from './common/Spinner'
 import conf from '../conf'
 
+import useReactGA from '../hooks/useReactGA'
+
 import '../styles/App.styl'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoading: true,
-    }
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true)
+  const { initialize } = useReactGA()
 
+  useEffect(() => {
     fetch(process.env.RUNTIME_CONF_URI)
       .then((response) => {
         if (response.status === 404) {
@@ -29,7 +29,7 @@ class App extends React.Component {
         return response.json()
       })
       .then(json => Object.assign(conf, json))
-      .then(() => this.setState({ isLoading: false }))
+      .then(() => setIsLoading(false))
 
     // AceEditor's modes (aka syntaxes) are pretty heavy, and since they are
     // not essential, we better download them asynchronously when the app is
@@ -37,31 +37,31 @@ class App extends React.Component {
     for (const syntax of process.env.SYNTAXES) {
       import(`brace/mode/${syntax}.js`)
     }
+
+    initialize()
+  }, [])
+
+  if (isLoading) {
+    return <Spinner />
   }
 
-  render() {
-    if (this.state.isLoading) {
-      return <Spinner />
-    }
-
-    return (
-      <Router>
-        <Fragment>
-          <Header key="header" />
-          <div className="content" key="content">
-            <Sidebar />
-            <main className="main">
-              <Route exact path="/" component={NewSnippet} />
-              <Route exact path="/recent" component={RecentSnippets} />
-              <Route exact path="/:id(\d+)" component={Snippet} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/sign-in" component={SignIn} />
-            </main>
-          </div>
-        </Fragment>
-      </Router>
-    )
-  }
+  return (
+    <Router>
+      <Fragment>
+        <Header />
+        <div className="content">
+          <Sidebar />
+          <main className="main">
+            <Route exact path="/" component={NewSnippet} />
+            <Route exact path="/recent" component={RecentSnippets} />
+            <Route exact path="/:id(\d+)" component={Snippet} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/sign-in" component={SignIn} />
+          </main>
+        </div>
+      </Fragment>
+    </Router>
+  )
 }
 
 export default App

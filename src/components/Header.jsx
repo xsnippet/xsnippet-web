@@ -5,7 +5,7 @@ import '../styles/Header.styl'
 import Logo from '../assets/icons/xsnippet.svg'
 
 const Header = () => (
-  <header className="header" key="header">
+  <header className="header">
     <div className="header-logo">
       <NavLink exact to="/">
         <img src={Logo} alt="XSnippet" />

@@ -6,4 +6,6 @@ export default {
   // When expanded with a snippet ID, it points to a raw snippet page (i.e. a
   // plain/text page with snippet content and without markup).
   RAW_SNIPPET_URI_FORMAT: process.env.RAW_SNIPPET_URI_FORMAT || '//xsnippet.org/%s/raw',
+
+  TRACKING_ID: process.env.TRACKING_ID,
 }

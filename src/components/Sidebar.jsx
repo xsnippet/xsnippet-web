@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import '../styles/Sidebar.styl'
 
 const Sidebar = () => (
-  <nav className="sidebar" key="navigation">
+  <nav className="sidebar">
     <ul className="sidebar-list">
       <li className="sidebar-item">
         <NavLink exact to="/" activeClassName="active" title="New Snippet">

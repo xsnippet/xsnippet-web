@@ -13,16 +13,22 @@ import { fetchSyntaxes, postSnippet } from '../actions'
 import { onEditorLoad } from '../misc/editor'
 import { getCurrentModeName, getModesByName } from '../misc/modes'
 
-import { validateSnippet } from '../entries/snippetValidation'
-import { delimeterKeys } from '../entries/keyboardKeys'
-import { defaultOptions } from '../entries/aceEditorOptions'
+import {
+  validateSnippet,
+  delimeterKeys,
+  defaultOptions,
+  categories,
+  actions,
+} from '../entries'
 
+import useReactGA from '../hooks/useReactGA'
 import useForm from '../hooks/useForm'
 
 import '../styles/NewSnippet.styl'
 
 const NewSnippet = ({ dispatch, history, syntaxes }) => {
   const snippetHeader = useRef()
+  const { gaEvent } = useReactGA()
   const {
     values: { title = '', syntax = '', content = '', tags = [] },
     error,
@@ -43,9 +49,16 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
   }
 
   function post() {
-    dispatch(postSnippet({
-      content, title, tags: tags.map(tag => tag.text), syntax,
-    }, json => history.push(`/${json.id}`)))
+    const snippet = {
+      content,
+      title,
+      tags: tags.map(tag => tag.text),
+      syntax,
+    }
+
+    gaEvent({ category: categories.SNIPPET, action: actions.SNIPPET_CREATED, value: snippet })
+
+    dispatch(postSnippet({ ...snippet }, json => history.push(`/${json.id}`)))
   }
 
   const recalcLangHeaderHeight = () => {

@@ -1,6 +1,7 @@
 import * as redux from 'redux'
 import thunk from 'redux-thunk'
 
+import analytics from './middlewares'
 import reducer from '../reducers'
 
 function createStore() {
@@ -9,7 +10,7 @@ function createStore() {
   // of an action, or to dispatch only if a certain condition is met. The
   // former is the case for XSnippet Web since we need to fetch data via HTTP
   // API first and then dispatch it to store.
-  return redux.createStore(reducer, redux.applyMiddleware(thunk))
+  return redux.createStore(reducer, redux.applyMiddleware(thunk, analytics))
 }
 
 export default createStore

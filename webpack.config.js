@@ -238,6 +238,7 @@ module.exports = () => {
         RAW_SNIPPET_URI_FORMAT: null,
         RUNTIME_CONF_URI: `${assetsPath}conf.json`,
         SYNTAXES: syntaxes,
+        TRACKING_ID: null,
       }),
 
       // Similar to JavaScript, we use [chunkhash] in order to invalidate

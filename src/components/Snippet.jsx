@@ -14,7 +14,7 @@ import { getCurrentModeCaption } from '../misc/modes'
 import { getSnippetTitle, formatDate } from '../misc/snippet'
 import { getRawUrl } from '../misc/url'
 
-import { existingSnippetOptions } from '../entries/aceEditorOptions'
+import { existingSnippetOptions } from '../entries'
 
 import '../styles/Snippet.styl'
 
@@ -76,7 +76,7 @@ const Snippet = props => {
   const renderMetadata = () => (<span className="snippet-data-meta">{formatDate(snippet.get('created_at'))}, by Guest</span>)
 
   return (
-    <div className="snippet" key="Snippet">
+    <div className="snippet">
       <div className="snippet-header">
         <div className="snippet-data">
           <span className="snippet-data-title">{title}</span>

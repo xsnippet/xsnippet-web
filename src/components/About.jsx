@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Title from './common/Title'
 
 import '../styles/AboutUs.styl'
@@ -8,9 +8,9 @@ import OlhaImage from '../assets/photos/olha.jpg'
 import KaterynaImage from '../assets/photos/kateryna.jpg'
 
 const About = () => (
-  [
-    <div className="about-us" key="about">
-      <Title title="About" key="About title" />
+  <Fragment>
+    <div className="about-us">
+      <Title title="About" />
       <p className="about-us-paragraph">
         XSnippet is an open source web-service for sharing code snippets on
         the Internet. Years ago it was started as educational project, and
@@ -46,9 +46,9 @@ const About = () => (
       <a className="about-us-github" href="http://github.com/xsnippet/">
         http://github.com/xsnippet/
       </a>
-    </div>,
-    <div className="about-us" key="team">
-      <Title title="Our Team" key="Team title" />
+    </div>
+    <div className="about-us">
+      <Title title="Our Team" />
       <p className="about-us-paragraph">
         Modern XSnippet incarnation has been designed and developed by these fine people:
       </p>
@@ -82,8 +82,8 @@ const About = () => (
           </div>
         </li>
       </ul>
-    </div>,
-  ]
+    </div>
+  </Fragment>
 )
 
 export default About
