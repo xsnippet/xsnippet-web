@@ -3,6 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars'
 
 const ListBox = (props) => {
   const [ selected, setSelected ] = useState(null)
+  const { items, className } = props
 
   useEffect(() => {
     // Consumers can either pass selected item via props, or let the component
@@ -31,15 +32,13 @@ const ListBox = (props) => {
   }
 
   const renderItems = () => {
-    const { items } = props
-
     if (!items.size) {
-      return <li className="new-snippet-lang-empty">No results found</li>
+      return <li className={`${className}-empty`}>No results found</li>
     }
 
     return items.map(item => (
       <li
-        className={`new-snippet-lang-item ${item.value === selected ? 'active' : ''}`}
+        className={`${className}-item ${item.value === selected ? 'active' : ''}`}
         data-value={item.value}
         key={item.value}
       >
@@ -53,7 +52,7 @@ const ListBox = (props) => {
     //       this component is a good candidate to be extracted into separate
     //       library.
     <Scrollbars>
-      <ul className="new-snippet-lang-list" role="presentation" onClick={onClick}>
+      <ul className={`${className}-list`} role="presentation" onClick={onClick}>
         {renderItems()}
       </ul>
     </Scrollbars>
