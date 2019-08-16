@@ -6,7 +6,7 @@ import { WithContext as Tags } from 'react-tag-input'
 import 'brace/theme/textmate'
 
 import Notification from './common/Notification'
-import ListBoxWithSearch from './ListBoxWithSearch'
+import ListBox from './ListBox'
 
 import { fetchSyntaxes, postSnippet } from '../actions'
 
@@ -17,9 +17,12 @@ import { validateSnippet } from '../entries/snippetValidation'
 import { delimeterKeys } from '../entries/keyboardKeys'
 import { defaultOptions } from '../entries/aceEditorOptions'
 
+import withSearch from '../hoc/withSearch'
 import useForm from '../hooks/useForm'
 
 import '../styles/NewSnippet.styl'
+
+const ListBoxWithSearch = withSearch(ListBox)
 
 const NewSnippet = ({ dispatch, history, syntaxes }) => {
   const snippetHeader = useRef()
@@ -128,6 +131,7 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
       </div>
       <div className="new-snippet-lang-wrapper">
         <ListBoxWithSearch
+          className="new-snippet-lang"
           items={memoizedSyntaxes}
           onClick={(syntax) => handleChange(syntax, handleSyntax)}
         />
