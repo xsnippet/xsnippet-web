@@ -8,7 +8,7 @@ button-group-width = 312px
   flex-flow: column nowrap
   background-color: snippet-content-light
   box-shadow: 0 2px 2px 0 border-dark
-  &-header
+  &__header
     display: flex
     flex-flow: row nowrap
     justify-content: space-between
@@ -19,7 +19,7 @@ button-group-width = 312px
     border-left: 40px solid snippet-header-border
     font-family: font-roboto
 
-  &-data
+  &__data
     display: flex
     flex-flow: column nowrap
     justify-content: space-between
@@ -57,7 +57,7 @@ button-group-width = 312px
       &:last-shild
         margin-right: 0
 
-  &-button
+  &__button
     margin-right: 10px
     padding: 11px 21px
     color: text-light
@@ -71,11 +71,11 @@ button-group-width = 312px
     text-decoration: none
     &:last-child
       margin-right: 0
-    &.true
+    &--show
     &:hover
       background-color: text-light
       color: button-active
-    &.embed
+    &--embed
       margin-left: 10px
       padding: 8px 18px
       font-size: 12px
@@ -85,7 +85,7 @@ button-group-width = 312px
         color: text-light
         background-color: button-embed-hover
 
-  &-embed
+  &__embed
     display: block
     position: relative
     max-height: 180px
@@ -93,7 +93,7 @@ button-group-width = 312px
     background-color: snippet-header-embed
     border-left: 40px solid snippet-header-embed-dark
     overflow: hidden
-    &.false
+    &--hide
       max-height: 0
       transition: max-height .5s ease-out
     &-content
@@ -135,22 +135,25 @@ button-group-width = 312px
 
 @media (max-width: tablet-breakpoint)
   .snippet
-    &-header
+    &__header
       flex-flow: column nowrap
-    &-data
+
+    &__data
       max-width: 100%
       &-lang
         padding-bottom: 8px
       &-title
         font-size: 17px
         line-height: 17px
-    &-button
+
+    &__button
       padding: 9px 16px
       font-size: 12px
-      &.embed
+      &--embed
         margin-top: 8px
         margin-left: 0
-    &-embed
+
+    &__embed
       &-close
         display: none
       & input

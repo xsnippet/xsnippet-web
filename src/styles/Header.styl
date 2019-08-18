@@ -13,13 +13,15 @@
   height: offset
   z-index: 5
   box-shadow: 0 2px 2px 0 border-dark
-  &-inner
+
+  &__inner
     display: flex
     flex-flow: row nowrap
     justify-content: space-between
     align-items: center
     width: "calc(100% - %s)" % offset
-  &-logo
+
+  &__logo
     width: offset
     height: offset
     background-color: header-logo-bg
@@ -30,7 +32,8 @@
       align-items: center
     & img
       width: 78%
-  &-slogan
+
+  &__slogan
     color:text-dark
     font-family: font-raleway
     font-size: 23px
@@ -39,7 +42,8 @@
     letter-spacing: .6px
     &-x
       color: text-green
-  &-sign-in
+
+  &__sign-in
     display: none
     pointer-events: none
     margin-right: 20px

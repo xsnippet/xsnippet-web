@@ -7,12 +7,14 @@
   margin-top: offset
   background-color: sidebar-bg-normal
   z-index: 6
-  &-list
+
+  &__list
     width: 100%
-  &-item
+
+  &__item
     position: relative
     height: offset
-    &-border
+    &--border
       border-bottom: 1px solid rgba(color-white-smoke-white-s0, .1)
     & a
       display: flex
@@ -21,6 +23,7 @@
       align-items: center
       height: 100%
       text-decoration: none
+
       &.active,
       &:hover
         background-color: sidebar-bg-active

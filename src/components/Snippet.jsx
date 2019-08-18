@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
+import bemi from 'bemi'
 
 import 'brace/theme/textmate'
 
@@ -17,6 +18,8 @@ import { getRawUrl } from '../misc/url'
 import { existingSnippetOptions } from '../entries/aceEditorOptions'
 
 import '../styles/Snippet.styl'
+
+const block = bemi('snippet')
 
 const Snippet = props => {
   const { snippet, dispatch } = props
@@ -49,10 +52,10 @@ const Snippet = props => {
   const rawUrl = getRawUrl(snippet.get('id'))
 
   const renderEmbed = () => (
-    <div className={`snippet-embed ${isShowEmbed}`}>
-      <div className="snippet-embed-content">
-        <span className="snippet-embed-close" onClick={toggleEmbed} role="presentation" />
-        <p className="snippet-embed-text">
+    <div className={block.e('embed', { show: isShowEmbed, hide: !isShowEmbed })}>
+      <div className={block.e('embed-content')}>
+        <span className={block.e('embed-close')} onClick={toggleEmbed} role="presentation" />
+        <p className={block.e('embed-text')}>
           In order to embed this content into your website or blog,
           simply copy and paste code provided below:
         </p>
@@ -62,36 +65,36 @@ const Snippet = props => {
           type="text"
           defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
         />
-        <button className="snippet-button embed" onClick={copyToClipboard}>Copy</button>
+        <button className={block.e('button', 'embed')} onClick={copyToClipboard}>Copy</button>
       </div>
     </div>
   )
 
   const renderTags = () => (
-    <div className="snippet-data-tags">
-      {snippet.get('tags').map(item => <span className="snippet-data-tag" key={item}>{item}</span>)}
+    <div className={block.e('data-tags')}>
+      {snippet.get('tags').map(item => <span className={block.e('data-tag')} key={item}>{item}</span>)}
     </div>
   )
 
-  const renderMetadata = () => (<span className="snippet-data-meta">{formatDate(snippet.get('created_at'))}, by Guest</span>)
+  const renderMetadata = () => (<span className={block.e('data-meta')}>{formatDate(snippet.get('created_at'))}, by Guest</span>)
 
   return (
-    <div className="snippet" key="Snippet">
-      <div className="snippet-header">
-        <div className="snippet-data">
-          <span className="snippet-data-title">{title}</span>
+    <div className={block.b()}>
+      <div className={block.e('header')}>
+        <div className={block.e('data')}>
+          <span className={block.e('data-title')}>{title}</span>
           {renderTags()}
           {renderMetadata()}
         </div>
-        <div className="snippet-data-actions">
-          <span className="snippet-data-lang">{syntax}</span>
+        <div className={block.e('data-actions')}>
+          <span className={block.e('data-lang')}>{syntax}</span>
           <div>
-            <a href={rawUrl} className="snippet-button">Raw</a>
-            <button className="snippet-button snippet-button-download" onClick={download}>
+            <a href={rawUrl} className={block.e('button')}>Raw</a>
+            <button className={block.e('button', 'download')} onClick={download}>
               Download
             </button>
             <button
-              className={`toggle-embed snippet-button ${isShowEmbed}`}
+              className={`${block.e('button', { show: isShowEmbed, hide: !isShowEmbed })} toggle-embed`}
               key="snippet-details"
               onClick={toggleEmbed}
               onKeyPress={toggleEmbed}
@@ -102,7 +105,7 @@ const Snippet = props => {
         </div>
       </div>
       {renderEmbed()}
-      <div className="snippet-code">
+      <div className={block.e('code')}>
         <AceEditor
           mode={snippet.get('syntax')}
           width="100%"
