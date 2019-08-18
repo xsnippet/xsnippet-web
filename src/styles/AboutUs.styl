@@ -1,48 +1,50 @@
 @import './common/variables.styl'
 
-.about-us
+.about
   padding: 22px 20px
   margin-bottom: 10px
   background-color: snippet-content-light
-  border-left: 8px solid about-us-border
+  border-left: 8px solid about-border
   box-shadow: 0 2px 2px 0 border-dark
   font-family: font-roboto
   & .title
     font-size: 24px
-    color: about-us-title
-  &-paragraph
-    color: about-us-paragraph
+    color: about-title
+  &__paragraph
+    color: about-paragraph
     font-weight: 300
     letter-spacing: .1px
     font-size: 14px
     line-height: 22px
-    &.small
+    &--small
       font-size: 12px
-  &-repo
+    &--padded
+      padding-bottom: 24px
+
+  &__repo
     display: block
     padding-bottom: 3px
     color: text-dark
     font-size: 14px
     &-list
       margin-left: 37px
-      margin-top: 24px
       list-style: disc
-      color: about-us-point
-      & + .about-us-paragraph
-        padding-top: 8px
-        padding-bottom: 5px
+      color: about-point
+      & + .about__paragraph
+        padding: 8px 0 5px
     &-item
       padding-bottom: 14px
-  &-github
+
+  &__github
     color: snippet-border
     font-size: 14px
     font-weight: 300
     letter-spacing: .1px
-  &-team
+
+  &__team
     &-list
       display: flex
       flex-flow: row wrap
-      padding-top: 39px
     &-item
       width: 50%
       display: inline-flex
@@ -53,19 +55,19 @@
         border-radius: 50%
         width: 100px
         height: 100px
-        background-color: about-us-image-backup
+        background-color: about-image-backup
         & + div
           padding-left: 20px
           padding-top: 15px
     &-member
       display: block
-      padding-bottom: 11px
-      color: about-us-point
+      padding-bottom: 6px
+      color: about-point
       font-size: 12px
 
 @media (max-width: mid-tablet-breakpoint)
-  .about-us
-    &-team
+  .about
+    &__team
       &-list
         flex-flow: column nowrap
       &-item
@@ -80,8 +82,8 @@
             padding-left: 0
 
 @media (min-width: mid-desktop-breakpoint)
-  .about-us
-    &-team
+  .about
+    &__team
       &-list
         flex-flow: row nowrap
       &-item
