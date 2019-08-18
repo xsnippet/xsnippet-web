@@ -29,11 +29,11 @@
     }
   },
   "dependencies": {
+    "bemi": "0.0.4",
     "brace": "^0.11.0",
     "immutable": "^3.8.2",
     "joi": "^13.2.0",
     "parse-link-header": "^1.0.1",
-    "prop-types": "^15.6.0",
     "react": "^16.8.6",
     "react-ace": "^5.9.0",
     "react-custom-scrollbars": "^4.2.1",
