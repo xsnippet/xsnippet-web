@@ -10,8 +10,8 @@ lang-bar-width-tablet = 170px
   min-height: 83vh
   background-color: snippet-content-light
   box-shadow: 0 2px 2px 0 border-dark
-  &-code,
-  &-lang
+  &__code,
+  &__lang
     &-header
       display: flex
       flex-flow: row nowrap
@@ -20,7 +20,7 @@ lang-bar-width-tablet = 170px
       padding: 20px 20px 19px
       box-sizing: border-box
 
-  &-code
+  &__code
     flex: 1
     position: relative
     padding: 0 0 63px 0
@@ -64,7 +64,7 @@ lang-bar-width-tablet = 170px
           background-color: snippet-post-button-active
           cursor: pointer
 
-  &-lang
+  &__lang
     &-wrapper
       display: flex
       flex-flow: column nowrap
@@ -104,12 +104,13 @@ lang-bar-width-tablet = 170px
 
 @media (max-width: tablet-breakpoint)
   .new-snippet
-    &-code,
-    &-lang
+    &__code,
+    &__lang
       &-header
         flex-flow: column nowrap
         min-height: 105px
-    &-code
+
+    &__code
       &-wrapper
         width: "calc(100% - %s)" % lang-bar-width-tablet
       &-header
@@ -120,6 +121,7 @@ lang-bar-width-tablet = 170px
           width: 100%
         & > input
           margin-right: 0
-    &-lang
+
+    &__lang
       &-wrapper
         width: lang-bar-width-tablet

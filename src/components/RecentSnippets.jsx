@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
+import bemi from 'bemi'
 
 import RecentSnippetItem from './RecentSnippetItem'
 
@@ -10,6 +11,9 @@ import '../styles/RecentSnippets.styl'
 const scrollTop = () => {
   window.scroll({ top: 0, behavior: 'smooth' })
 }
+
+const rsi = bemi('recent-snippet')
+const pag = bemi('pagination')
 
 const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
   const older = pagination.get('next')
@@ -46,7 +50,7 @@ const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
   }
 
   const renderRecentSnippets = () => (
-    <ul className="recent-snippet" key="recent-snippet">
+    <ul className={rsi.b()}>
       {recent.map(id => <RecentSnippetItem key={id} snippet={snippets.get(id)} />)}
     </ul>
   )
@@ -54,16 +58,16 @@ const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
   return (
     <Fragment>
       {renderRecentSnippets()}
-      <div className="pagination" key="pagination">
+      <div className={pag.b()}>
         <span
-          className={`pagination-item next ${newer ? '' : 'disabled'}`}
+          className={pag.e('item', { next: true, disabled: !newer })}
           onClick={newerSetOfSnippets}
           role="presentation"
         >
           &lsaquo; Newer
         </span>
         <span
-          className={`pagination-item prev ${older ? '' : 'disabled'}`}
+          className={pag.e('item', { prev: true, disabled: !older })}
           onClick={olderSetOfSnippets}
           role="presentation"
         >

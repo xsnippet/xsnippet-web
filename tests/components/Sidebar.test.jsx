@@ -7,7 +7,7 @@ import Sidebar from '../../src/components/Sidebar'
 describe('Sidebar', () => {
   it('should have three items', () => {
     const wrapper = shallow(<Sidebar />)
-    const navList = wrapper.find('.sidebar-list')
+    const navList = wrapper.find('.sidebar__list')
 
     expect(navList.children()).toHaveLength(3)
   })
