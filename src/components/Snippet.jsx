@@ -21,15 +21,14 @@ import '../styles/Snippet.styl'
 
 const block = bemi('snippet')
 
-const Snippet = props => {
-  const { snippet, dispatch } = props
+const Snippet = ({ snippet, fetchSnippet, match }) => {
   const [ isShowEmbed, setIsShowEmbed ] = useState(false)
   const embeddedRef = useRef()
 
   useEffect(() => {
-    const { id } = props.match.params
+    const { id } = match.params
 
-    dispatch(fetchSnippet(Number(id)))
+    fetchSnippet(Number(id))
   }, [])
 
   if (!snippet) return <Spinner />
@@ -40,7 +39,7 @@ const Snippet = props => {
   }
 
   const download = () => {
-    downloadSnippet(props.snippet)
+    downloadSnippet(snippet)
   }
 
   const toggleEmbed = () => {
@@ -121,6 +120,12 @@ const Snippet = props => {
   )
 }
 
-export default connect((state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
   snippet: state.getIn(['snippets', Number(ownProps.match.params.id)]),
-}))(Snippet)
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchSnippet: id => dispatch(fetchSnippet(Number(id))),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Snippet)

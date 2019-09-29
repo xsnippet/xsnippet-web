@@ -27,7 +27,7 @@ const ListBoxWithSearch = withSearch(ListBox)
 
 const newSnippet = bemi('new-snippet')
 
-const NewSnippet = ({ dispatch, history, syntaxes }) => {
+const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
   const snippetHeader = useRef()
   const {
     values: { title = '', syntax = '', content = '', tags = [] },
@@ -37,7 +37,7 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
   } = useForm(post, validate)
 
   useEffect(() => {
-    dispatch(fetchSyntaxes)
+    fetchSyntaxes()
   }, [])
 
   useEffect(() => {
@@ -49,9 +49,7 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
   }
 
   function post() {
-    dispatch(postSnippet({
-      content, title, tags: tags.map(tag => tag.text), syntax,
-    }, json => history.push(`/${json.id}`)))
+    postSnippet({ content, title, tags: tags.map(tag => tag.text), syntax, cb: json => history.push(`/${json.id}`) })
   }
 
   const recalcLangHeaderHeight = () => {
@@ -143,6 +141,15 @@ const NewSnippet = ({ dispatch, history, syntaxes }) => {
   )
 }
 
-export default connect(state => ({
+const mapStateToProps = state => ({
   syntaxes: state.get('syntaxes'),
-}))(NewSnippet)
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchSyntaxes: () => dispatch(fetchSyntaxes),
+  postSnippet: ({ content, title, tags, syntax, cb }) => dispatch(postSnippet({
+    content, title, tags, syntax,
+  }, cb)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewSnippet)
