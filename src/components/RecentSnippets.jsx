@@ -15,7 +15,7 @@ const scrollTop = () => {
 const rsi = bemi('recent-snippet')
 const pag = bemi('pagination')
 
-const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
+const RecentSnippets = ({ fetchRecentSnippets, pagination, snippets, recent }) => {
   const older = pagination.get('next')
   const newer = pagination.get('prev')
 
@@ -26,7 +26,7 @@ const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
       marker = recent.get(0) + 1
     }
 
-    dispatch(fetchRecentSnippets(marker))
+    fetchRecentSnippets(marker)
   }, [])
 
   const newerSetOfSnippets = () => {
@@ -35,7 +35,7 @@ const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
     if (prev) {
       const marker = Number(prev.marker)
 
-      dispatch(fetchRecentSnippets(marker))
+      fetchRecentSnippets(marker)
     }
 
     scrollTop()
@@ -44,7 +44,7 @@ const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
   const olderSetOfSnippets = () => {
     const marker = Number(pagination.get('next').marker)
 
-    dispatch(fetchRecentSnippets(marker))
+    fetchRecentSnippets(marker)
 
     scrollTop()
   }
@@ -78,8 +78,14 @@ const RecentSnippets = ({ dispatch, pagination, snippets, recent }) => {
   )
 }
 
-export default connect(state => ({
+const mapStateToProps = state => ({
   snippets: state.get('snippets'),
   recent: state.get('recent'),
   pagination: state.get('pagination'),
-}))(RecentSnippets)
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchRecentSnippets: marker => dispatch(fetchRecentSnippets(marker)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecentSnippets)
