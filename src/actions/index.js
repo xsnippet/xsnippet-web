@@ -1,14 +1,30 @@
 import parseLinkHeader from 'parse-link-header'
 import { getApiUri } from '../misc/url'
+import {
+  SET_RECENT_SNIPPETS,
+  SET_PAGINATION_LINKS,
+  SET_SNIPPET,
+  SET_SYNTAXES,
+} from './types'
 
 export const setRecentSnippets = snippets => ({
-  type: 'SET_RECENT_SNIPPETS',
+  type: SET_RECENT_SNIPPETS,
   snippets,
 })
 
 export const setPaginationLinks = links => ({
-  type: 'SET_PAGINATION_LINKS',
+  type: SET_PAGINATION_LINKS,
   links,
+})
+
+export const setSnippet = snippet => ({
+  type: SET_SNIPPET,
+  snippet,
+})
+
+export const setSyntaxes = syntaxes => ({
+  type: SET_SYNTAXES,
+  syntaxes,
 })
 
 export const fetchRecentSnippets = marker => (dispatch) => {
@@ -25,21 +41,11 @@ export const fetchRecentSnippets = marker => (dispatch) => {
     .then(json => dispatch(setRecentSnippets(json)))
 }
 
-export const setSnippet = snippet => ({
-  type: 'SET_SNIPPET',
-  snippet,
-})
-
 export const fetchSnippet = id => dispatch => (
   fetch(getApiUri(`snippets/${id}`))
     .then(response => response.json())
     .then(json => dispatch(setSnippet(json)))
 )
-
-export const setSyntaxes = syntaxes => ({
-  type: 'SET_SYNTAXES',
-  syntaxes,
-})
 
 export const fetchSyntaxes = dispatch => (
   fetch(getApiUri('syntaxes'))
