@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import bemi from 'bemi'
 
+import SnippetTags from './common/SnippetTags'
+
 import { downloadSnippet } from '../misc/download'
 import { getCurrentModeCaption } from '../misc/modes'
 import { getSnippetTitle, formatDate } from '../misc/snippet'
@@ -21,9 +23,7 @@ const RecentSnippetItem = ({ snippet }) => {
       <div className={rsi.e('meta')}>
         <div>
           <Link to={`${snippet.get('id')}`} className={rsi.e('meta-title')}>{title}</Link>
-          <div className={rsi.e('meta-tags')}>
-            {snippet.get('tags').map(item => <span className={rsi.e('meta-tag')} key={item}>{item}</span>)}
-          </div>
+          <SnippetTags className={rsi} snippet={snippet} />
         </div>
         <span className={rsi.e('meta-info')}>{formatDate(snippet.get('created_at'))}, by Guest</span>
       </div>
