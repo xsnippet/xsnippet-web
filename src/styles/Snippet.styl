@@ -19,6 +19,21 @@ button-group-width = 312px
     border-left: 40px solid snippet-header-border
     font-family: font-roboto
 
+  &__meta
+    &-tags
+      margin: 10px 0
+    &-tag
+      margin-right: 5px
+      padding: 3px 8px
+      font-size: 12px
+      font-weight: 300
+      color: text-light
+      border-radius: 9.5px
+      background-color: rgba(text-light, .2)
+      letter-spacing: .4px
+      &:last-shild
+        margin-right: 0
+
   &__data
     display: flex
     flex-flow: column nowrap
@@ -32,8 +47,6 @@ button-group-width = 312px
       display: block
       margin-top: 7px
       font-size: 14px
-    &-tags
-      margin: 10px 0
     &-actions
       display: flex
       flex-flow: column nowrap
@@ -45,17 +58,6 @@ button-group-width = 312px
       color: snippet-header-data
       font-size: 12px
       font-weight: 300
-    &-tag
-      margin-right: 5px
-      padding: 3px 8px
-      font-size: 12px
-      font-weight: 300
-      color: text-light
-      border-radius: 9.5px
-      background-color: rgba(text-light, .2)
-      letter-spacing: .4px
-      &:last-shild
-        margin-right: 0
 
   &__button
     margin-right: 10px

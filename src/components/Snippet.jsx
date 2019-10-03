@@ -5,6 +5,7 @@ import bemi from 'bemi'
 
 import 'brace/theme/textmate'
 
+import SnippetTags from './common/SnippetTags'
 import Spinner from './common/Spinner'
 
 import { fetchSnippet } from '../actions'
@@ -69,12 +70,6 @@ const Snippet = ({ snippet, fetchSnippet, match }) => {
     </div>
   )
 
-  const renderTags = () => (
-    <div className={block.e('data-tags')}>
-      {snippet.get('tags').map(item => <span className={block.e('data-tag')} key={item}>{item}</span>)}
-    </div>
-  )
-
   const renderMetadata = () => (<span className={block.e('data-meta')}>{formatDate(snippet.get('created_at'))}, by Guest</span>)
 
   return (
@@ -82,7 +77,7 @@ const Snippet = ({ snippet, fetchSnippet, match }) => {
       <div className={block.e('header')}>
         <div className={block.e('data')}>
           <span className={block.e('data-title')}>{title}</span>
-          {renderTags()}
+          <SnippetTags className={block} snippet={snippet} />
           {renderMetadata()}
         </div>
         <div className={block.e('data-actions')}>
