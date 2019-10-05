@@ -45,8 +45,6 @@ const RecentSnippets = ({ fetchRecentSnippets, pagination, snippets, recent }) =
     const marker = Number(pagination.get('next').marker)
 
     fetchRecentSnippets(marker)
-
-    scrollTop()
   }
 
   const renderRecentSnippets = () => (
