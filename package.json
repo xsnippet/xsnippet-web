@@ -74,6 +74,7 @@
     "image-webpack-loader": "^5.0.0",
     "jest": "^22.0.4",
     "mini-css-extract-plugin": "^0.4.0",
+    "puppeteer": "^1.20.0",
     "style-loader": "^0.19.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
@@ -85,7 +86,8 @@
     "lint": "eslint --ignore-path .gitignore --ext js,jsx .",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test-e2e": "jest ./tests/e2e --verbose"
   },
   "private": true
 }
