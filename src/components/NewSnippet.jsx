@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useMemo } from 'react'
 import { connect } from 'react-redux'
 import AceEditor from 'react-ace'
 import { WithContext as Tags } from 'react-tag-input'
-import bemi from 'bemi'
 
 import 'brace/theme/textmate'
 
@@ -24,8 +23,6 @@ import useForm from '../hooks/useForm'
 import '../styles/NewSnippet.styl'
 
 const ListBoxWithSearch = withSearch(ListBox)
-
-const newSnippet = bemi('new-snippet')
 
 const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
   const snippetHeader = useRef()
@@ -55,7 +52,7 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
   const recalcLangHeaderHeight = () => {
     const height = snippetHeader.current.offsetHeight
 
-    document.getElementsByClassName(newSnippet.e('lang-header'))[0]
+    document.getElementsByClassName('new-snippet-lang-header')[0]
       .setAttribute('style', `height:${height}px`)
   }
 
@@ -87,13 +84,13 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
 
   return (
     <form
-      className={newSnippet.b()}
+      className="new-snippet"
       key="New Snippet"
       onSubmit={handleSubmit}
       role="presentation"
     >
-      <div className={newSnippet.e('code-wrapper')}>
-        <div className={newSnippet.e('code-header')} ref={snippetHeader}>
+      <div className="new-snippet-code-wrapper">
+        <div className="new-snippet-code-header" ref={snippetHeader}>
           <input
             className="input"
             placeholder="Title"
@@ -111,7 +108,7 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
             delimiters={delimeterKeys}
           />
         </div>
-        <div className={newSnippet.e('code')}>
+        <div className="new-snippet-code">
           <AceEditor
             mode={getCurrentModeName(syntax)}
             width="100%"
@@ -124,15 +121,15 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
             value={content}
             onChange={(value) => handleChange(value, handleContent)}
           />
-          <div className={newSnippet.e('code-bottom-bar')}>
+          <div className="new-snippet-code-bottom-bar">
             {renderValidationError()}
             <input type="submit" value="POST SNIPPET" />
           </div>
         </div>
       </div>
-      <div className={newSnippet.e('lang-wrapper')}>
+      <div className="new-snippet-lang-wrapper">
         <ListBoxWithSearch
-          className={newSnippet.e('lang')}
+          className="new-snippet-lang"
           items={memoizedSyntaxes}
           onClick={(syntax) => handleChange(syntax, handleSyntax)}
         />
