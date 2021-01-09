@@ -8,7 +8,7 @@ button-group-width = 312px
   flex-flow: column nowrap
   background-color: snippet-content-light
   box-shadow: 0 2px 2px 0 border-dark
-  &__header
+  &-header
     display: flex
     flex-flow: row nowrap
     justify-content: space-between
@@ -19,7 +19,7 @@ button-group-width = 312px
     border-left: 40px solid snippet-header-border
     font-family: font-roboto
 
-  &__meta
+  &-meta
     &-tags
       margin: 10px 0
     &-tag
@@ -34,7 +34,7 @@ button-group-width = 312px
       &:last-shild
         margin-right: 0
 
-  &__data
+  &-data
     display: flex
     flex-flow: column nowrap
     justify-content: space-between
@@ -59,7 +59,7 @@ button-group-width = 312px
       font-size: 12px
       font-weight: 300
 
-  &__button
+  &-button
     margin-right: 10px
     padding: 11px 21px
     color: text-light
@@ -73,11 +73,11 @@ button-group-width = 312px
     text-decoration: none
     &:last-child
       margin-right: 0
-    &--show
+    &.show
     &:hover
       background-color: text-light
       color: button-active
-    &--embed
+    &.embed
       margin-left: 10px
       padding: 8px 18px
       font-size: 12px
@@ -87,7 +87,7 @@ button-group-width = 312px
         color: text-light
         background-color: button-embed-hover
 
-  &__embed
+  &-embed
     display: block
     position: relative
     max-height: 180px
@@ -95,7 +95,7 @@ button-group-width = 312px
     background-color: snippet-header-embed
     border-left: 40px solid snippet-header-embed-dark
     overflow: hidden
-    &--hide
+    &.false
       max-height: 0
       transition: max-height .5s ease-out
     &-content
@@ -137,10 +137,10 @@ button-group-width = 312px
 
 @media (max-width: tablet-breakpoint)
   .snippet
-    &__header
+    &-header
       flex-flow: column nowrap
 
-    &__data
+    &-data
       max-width: 100%
       &-lang
         padding-bottom: 8px
@@ -148,14 +148,14 @@ button-group-width = 312px
         font-size: 17px
         line-height: 17px
 
-    &__button
+    &-button
       padding: 9px 16px
       font-size: 12px
-      &--embed
+      &.embed
         margin-top: 8px
         margin-left: 0
 
-    &__embed
+    &-embed
       &-close
         display: none
       & input

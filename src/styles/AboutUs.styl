@@ -10,18 +10,18 @@
   & .title
     font-size: 24px
     color: about-title
-  &__paragraph
+  &-paragraph
     color: about-paragraph
     font-weight: 300
     letter-spacing: .1px
     font-size: 14px
     line-height: 22px
-    &--small
+    &.small
       font-size: 12px
-    &--padded
+    &.padded
       padding-bottom: 24px
 
-  &__repo
+  &-repo
     display: block
     padding-bottom: 3px
     color: text-dark
@@ -35,13 +35,13 @@
     &-item
       padding-bottom: 14px
 
-  &__github
+  &-github
     color: snippet-border
     font-size: 14px
     font-weight: 300
     letter-spacing: .1px
 
-  &__team
+  &-team
     &-list
       display: flex
       flex-flow: row wrap
@@ -67,7 +67,7 @@
 
 @media (max-width: mid-tablet-breakpoint)
   .about
-    &__team
+    &-team
       &-list
         flex-flow: column nowrap
       &-item
@@ -83,7 +83,7 @@
 
 @media (min-width: mid-desktop-breakpoint)
   .about
-    &__team
+    &-team
       &-list
         flex-flow: row nowrap
       &-item
