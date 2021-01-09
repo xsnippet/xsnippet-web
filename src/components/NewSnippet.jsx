@@ -37,23 +37,12 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
     fetchSyntaxes()
   }, [])
 
-  useEffect(() => {
-    recalcLangHeaderHeight()
-  }, [tags])
-
   function validate() {
     return validateSnippet({ content: content.trim() })
   }
 
   function post() {
     postSnippet({ content, title, tags: tags.map(tag => tag.text), syntax, cb: json => history.push(`/${json.id}`) })
-  }
-
-  const recalcLangHeaderHeight = () => {
-    const height = snippetHeader.current.offsetHeight
-
-    document.getElementsByClassName('new-snippet-lang-header')[0]
-      .setAttribute('style', `height:${height}px`)
   }
 
   const onTagBlur = tag => onTagAdded({ id: tag, text: tag })
