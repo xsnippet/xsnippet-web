@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   push:
@@ -12,10 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
-    - run: |
-        npm install
-        npm run build
-        tar cvzf dist.tar.gz -C dist/ .
+    - run: npm install
+    - run: npm run build
+    - run: tar cvzf dist.tar.gz -C dist/ .
+    - run: echo "GIT_TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
     - uses: actions/create-release@v1
       id: create_release
       env:
@@ -25,9 +25,8 @@ jobs:
     - uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GIT_TAG_NAME: ${GITHUB_REF#refs/*/}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./dist.tar.gz
-        asset_name: xsnippet-web-${GIT_TAG_NAME}.tar.gz
+        asset_name: xsnippet-web-${{ env.GIT_TAG_NAME }}.tar.gz
         asset_content_type: application/gzip
