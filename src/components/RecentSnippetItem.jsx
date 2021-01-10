@@ -20,7 +20,7 @@ const RecentSnippetItem = ({ snippet }) => {
       <div className="recent-snippet-meta">
         <div>
           <Link to={`${snippet.get('id')}`} className="recent-snippet-meta-title">{title}</Link>
-          <SnippetTags className="recent-snippet-meta-tags" snippet={snippet} />
+          <SnippetTags className="recent-snippet" snippet={snippet} />
         </div>
         <span className="recent-snippet-meta-info">{formatDate(snippet.get('created_at'))}, by Guest</span>
       </div>
