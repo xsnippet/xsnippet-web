@@ -11,9 +11,10 @@
         "asyncArrow": "always",
         "named": "never"
     }],
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/jsx-fragments": "off"
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "allowImportExportEverywhere": true
   }

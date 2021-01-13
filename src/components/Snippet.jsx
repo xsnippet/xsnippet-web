@@ -20,7 +20,7 @@ import { existingSnippetOptions } from '../entries/aceEditorOptions'
 import '../styles/Snippet.styl'
 
 const Snippet = ({ snippet, fetchSnippet, match }) => {
-  const [ isShowEmbed, setIsShowEmbed ] = useState(false)
+  const [isShowEmbed, setIsShowEmbed] = useState(false)
   const embeddedRef = useRef()
 
   useEffect(() => {

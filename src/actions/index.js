@@ -57,7 +57,7 @@ export const postSnippet = (snippet, onSuccess, onError = () => {}) => dispatch 
   fetch(getApiUri('snippets'), {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(snippet),
