@@ -14,9 +14,9 @@ describe('Sidebar', () => {
 
   it('should have correct routes on sidebar items', () => {
     const routes = {
-      '0': '/',
-      '1': '/recent',
-      '2': '/about',
+      0: '/',
+      1: '/recent',
+      2: '/about',
     }
     const wrapper = shallow(<Sidebar />)
 
@@ -27,9 +27,9 @@ describe('Sidebar', () => {
 
   it('should have correct icons on sidebar items', () => {
     const icons = {
-      '0': 'icon-new',
-      '1': 'icon-recent',
-      '2': 'icon-about',
+      0: 'icon-new',
+      1: 'icon-recent',
+      2: 'icon-about',
     }
     const wrapper = shallow(<Sidebar />)
 
@@ -40,9 +40,9 @@ describe('Sidebar', () => {
 
   it('should have correct titles on sidebar items', () => {
     const titles = {
-      '0': 'New Snippet',
-      '1': 'Recent Snippets',
-      '2': 'About',
+      0: 'New Snippet',
+      1: 'Recent Snippets',
+      2: 'About',
     }
     const wrapper = shallow(<Sidebar />)
 

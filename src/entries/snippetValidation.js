@@ -27,7 +27,7 @@ const reasons = details => {
 
     errors.push(messages.has(reason)
       ? messages.get(reason)
-      : messages.get('default')
+      : messages.get('default'),
     )
   })
 

@@ -3,7 +3,7 @@ import React, { Fragment, useState, useCallback } from 'react'
 import { regExpEscape } from '../misc/reqExp'
 
 const withSearch = BaseComponent => (props) => {
-  const [ searchQuery, setSearchQuery ] = useState(null)
+  const [searchQuery, setSearchQuery] = useState(null)
   const { items, onClick, className } = props
 
   const onSearch = useCallback(e => {

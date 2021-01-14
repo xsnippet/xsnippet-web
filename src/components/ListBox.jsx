@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
 
 const ListBox = (props) => {
-  const [ selected, setSelected ] = useState(null)
+  const [selected, setSelected] = useState(null)
   const { items, className } = props
 
   useEffect(() => {
