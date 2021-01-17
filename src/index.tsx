@@ -5,12 +5,12 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import createStore from './store'
 
-const store = createStore()
+const store:any = createStore();
 
 ReactDOM.render(
   (
     <Provider store={store}>
       <App />
     </Provider>
-  ), document.getElementById('root'),
+  ), document.getElementById('root') as HTMLElement,
 )
