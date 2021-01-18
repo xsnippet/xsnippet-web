@@ -127,7 +127,7 @@ module.exports = () => {
     },
 
     entry: {
-      app: path.resolve(__dirname, 'src', 'index.jsx'),
+      app: path.resolve(__dirname, 'src', 'index.tsx'),
     },
 
     // Use [chunkhash] in order to invalidate browsers cache on new deployments.
@@ -140,9 +140,9 @@ module.exports = () => {
 
     module: {
       rules: [
-        // Transpile ES2015+ down to ES5.
+        // Transpile ES2015+ and ts to ES5.
         {
-          test: /\.jsx?$/,
+          test: /\.(t|j)sx?$/,
           include: path.resolve(__dirname, 'src'),
           use: ['babel-loader'],
         },
@@ -254,9 +254,9 @@ module.exports = () => {
       }),
     ],
 
-    // Enable importing .js & .jsx files without specifying their extensions.
+    // Enable importing .js & .jsx & .ts & .tsx files without specifying their extensions.
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
 
     node: {
