@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable'
 import { getApiUri } from '../../src/misc/url'
 import { formatDate, getSnippetTitle } from '../../src/misc/snippet'
 
@@ -23,14 +22,14 @@ describe('misc', () => {
     })
 
     it('should return propper title', () => {
-      expect(getSnippetTitle(fromJS(snippet))).toEqual(snippet.title)
+      expect(getSnippetTitle(snippet)).toEqual(snippet.title)
     })
 
     it('should return propper title', () => {
       const untitled = { ...snippet, title: undefined }
       const expected = `#${untitled.id}, Untitled`
 
-      expect(getSnippetTitle(fromJS(untitled))).toEqual(expected)
+      expect(getSnippetTitle(untitled)).toEqual(expected)
     })
   })
 

@@ -1,17 +1,15 @@
-import React, { useEffect, useRef, useMemo } from 'react'
-import { connect } from 'react-redux'
+import React, { useRef } from 'react'
 import AceEditor from 'react-ace'
 import { WithContext as Tags } from 'react-tag-input'
+import { useRecoilValueLoadable } from 'recoil'
 
 import 'brace/theme/textmate'
 
 import Notification from './common/Notification'
 import ListBox from './ListBox'
 
-import { fetchSyntaxes, postSnippet } from '../actions'
-
 import { onEditorLoad } from '../misc/editor'
-import { getCurrentModeName, getModesByName } from '../misc/modes'
+import { getCurrentModeName } from '../misc/modes'
 
 import { validateSnippet } from '../entries/snippetValidation'
 import { delimeterKeys } from '../entries/keyboardKeys'
@@ -19,12 +17,14 @@ import { defaultOptions } from '../entries/aceEditorOptions'
 
 import withSearch from '../hoc/withSearch'
 import useForm from '../hooks/useForm'
+import { syntaxesQuery } from '../store'
+import { postSnippet } from '../api'
 
 import '../styles/NewSnippet.styl'
 
 const ListBoxWithSearch = withSearch(ListBox)
 
-const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
+const NewSnippet = ({ history }) => {
   const snippetHeader = useRef()
   const {
     values: { title = '', syntax = '', content = '', tags = [] },
@@ -32,17 +32,16 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
     handleChange,
     handleSubmit,
   } = useForm(post, validate)
-
-  useEffect(() => {
-    fetchSyntaxes()
-  }, [])
+  const syntaxes = useRecoilValueLoadable(syntaxesQuery)
 
   function validate() {
     return validateSnippet({ content: content.trim() })
   }
 
   function post() {
-    postSnippet({ content, title, tags: tags.map(tag => tag.text), syntax, cb: json => history.push(`/${json.id}`) })
+    postSnippet({ content, title, tags: tags.map(tag => tag.text), syntax }, json => {
+      history.push(`/${json.id}`)
+    })
   }
 
   const onTagBlur = tag => onTagAdded({ id: tag, text: tag })
@@ -59,15 +58,6 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
 
   const handleSyntax = syntax => ({ syntax })
   const handleContent = content => ({ content })
-
-  const memoizedSyntaxes = useMemo(() => {
-    const { modesByName } = getModesByName()
-
-    return syntaxes.map(item => ({
-      name: modesByName[item].caption,
-      value: item,
-    }))
-  }, [syntaxes])
 
   const renderValidationError = () => (error && <Notification message={error} />)
 
@@ -119,7 +109,7 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
       <div className="new-snippet-lang-wrapper">
         <ListBoxWithSearch
           className="new-snippet-lang"
-          items={memoizedSyntaxes}
+          items={syntaxes.state === 'hasValue' ? syntaxes.contents : []}
           onClick={(syntax) => handleChange(syntax, handleSyntax)}
         />
       </div>
@@ -127,15 +117,4 @@ const NewSnippet = ({ fetchSyntaxes, postSnippet, history, syntaxes }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  syntaxes: state.get('syntaxes'),
-})
-
-const mapDispatchToProps = dispatch => ({
-  fetchSyntaxes: () => dispatch(fetchSyntaxes),
-  postSnippet: ({ content, title, tags, syntax, cb }) => dispatch(postSnippet({
-    content, title, tags, syntax,
-  }, cb)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewSnippet)
+export default NewSnippet
