@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  xsnippet-api:
+    image: xsnippet/xsnippet-api:v1.1.0
+    environment:
+      - XSNIPPET_SERVER_HOST=0.0.0.0
+      - XSNIPPET_SERVER_PORT=8000
+      - XSNIPPET_DATABASE_CONNECTION_URI=mongodb://database:27017/xsnippet
+      - XSNIPPET_SNIPPET_SYNTAXES=rust,python,javascript,markdown,json,d,css,html
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+  xsnippet-web-backend:
+    image: xsnippet/xsnippet-web-backend:v1.0.0
+    environment:
+      - XSNIPPET_WEB_PROXY_HOST=0.0.0.0
+      - XSNIPPET_WEB_PROXY_PORT=8000
+      - XSNIPPET_API_URL=http://xsnippet-api:8000
+    ports:
+      - 8001:8000
+    depends_on:
+      - xsnippet-api
+  database:
+    image: mongo:3

@@ -90,7 +90,9 @@
     "lint": "eslint --ignore-path .gitignore --ext js,jsx .",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "devenv-start": "API_BASE_URI=\"http://localhost:8080/_api\" RAW_SNIPPET_URI_FORMAT=\"http://localhost:8080/_web-backend/snippets/%s/raw\" npm start",
+    "devenv-up": "docker-compose -f devenv/docker-compose.yml up"
   },
   "private": true
 }
