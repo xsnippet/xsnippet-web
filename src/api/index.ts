@@ -1,7 +1,7 @@
 import parseLinkHeader from 'parse-link-header'
 
 import { getApiUri } from '../misc/url'
-import { Snippet, RawSnippet } from '../store'
+import { Snippet } from '../store'
 
 export const fetchSnippet = (id: number): Promise<Snippet> => {
   return fetch(getApiUri(`snippets/${id}`))
@@ -13,10 +13,10 @@ export const fetchSyntaxes = (): Promise<string[]> => {
     .then(response => response.json())
 }
 
-export const fetchRecentSnippets = (marker: number): Promise<{ snippets: Snippet[], pagination: any}> => {
+export const fetchRecentSnippets = (marker: number): Promise<{ snippets: Snippet[], pagination: parseLinkHeader.Links | null}> => {
   let qs = ''
   if (marker) { qs = `&marker=${marker}` }
-  let pagination = null
+  let pagination: parseLinkHeader.Links
 
   return fetch(getApiUri(`snippets?limit=20${qs}`))
     .then(response => {
@@ -26,7 +26,7 @@ export const fetchRecentSnippets = (marker: number): Promise<{ snippets: Snippet
     .then(snippets => ({ snippets, pagination }))
 }
 
-export const postSnippet = (snippet: RawSnippet, onSuccess: (snippet: Snippet) => void, onError = () => {}): Promise<void> => {
+export const postSnippet = (snippet: Partial<Snippet>, onSuccess: (snippet: Snippet) => void, onError = () => {}): Promise<void> => {
   return fetch(getApiUri('snippets'), {
     method: 'POST',
     headers: {

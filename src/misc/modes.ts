@@ -1,7 +1,7 @@
 import brace from 'brace'
 import 'brace/ext/modelist'
 
-interface Mode {
+type Mode = {
   caption: string;
   extRe: RegExp;
   extensions: string;
@@ -9,7 +9,7 @@ interface Mode {
   name: string;
 }
 
-interface NormalizedSyntax {
+type NormalizedSyntax = {
   name: string;
   value: string;
 }
