@@ -22,7 +22,7 @@ const RecentSnippets = () => {
   setSnippets(snippets)
 
   const getSetOfSnippets = (direction) => {
-    setMarker(Number(pagination[direction].marker))
+    setMarker(pagination[direction].marker)
     scrollTop()
   }
 

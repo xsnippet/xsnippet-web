@@ -4,12 +4,12 @@ import { fetchSnippet, fetchSyntaxes, fetchRecentSnippets } from '../api'
 import { normalizedSyntaxes } from '../misc/modes'
 
 export type Snippet = {
-  content: string;
-  created_at: string;
-  id: number;
-  syntax: string;
-  tags: string[];
+  id: string;
   title: string;
+  syntax: string;
+  content: string;
+  tags: string[];
+  created_at: string;
   updated_at: string;
 }
 
@@ -28,7 +28,7 @@ export const syntaxesQuery = selector({
 
 export const recentSnippetsQuery = selectorFamily({
   key: 'recentSnippetsQuery',
-  get: (marker: number) => async () => {
+  get: (marker: string) => async () => {
     const { snippets, pagination } = await fetchRecentSnippets(marker)
 
     return {
@@ -41,7 +41,7 @@ export const recentSnippetsQuery = selectorFamily({
 
 export const snippetById = selectorFamily({
   key: 'snippetById',
-  get: (id: number) => async ({ get }) => {
+  get: (id: string) => async ({ get }) => {
     const snippets = get(recentSnippetsState)
 
     if (snippets) {
