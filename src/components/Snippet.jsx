@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useRef } from 'react'
+import { useRecoilValueLoadable } from 'recoil'
 import AceEditor from 'react-ace'
 
 import 'brace/theme/textmate'
@@ -7,29 +7,23 @@ import 'brace/theme/textmate'
 import SnippetTags from './common/SnippetTags'
 import Spinner from './common/Spinner'
 
-import { fetchSnippet } from '../actions'
-
 import { downloadSnippet } from '../misc/download'
 import { onEditorLoad } from '../misc/editor'
-import { getCurrentModeCaption } from '../misc/modes'
-import { getSnippetTitle, formatDate } from '../misc/snippet'
-import { getRawUrl } from '../misc/url'
+import { getSnippetMetadata } from '../misc/snippet'
+import { snippetById } from '../store'
 
 import { existingSnippetOptions } from '../entries/aceEditorOptions'
 
 import '../styles/Snippet.styl'
 
-const Snippet = ({ snippet, fetchSnippet, match }) => {
+const Snippet = ({ match }) => {
   const [isShowEmbed, setIsShowEmbed] = useState(false)
+  const fetchedSnippet = useRecoilValueLoadable(snippetById(Number(match.params.id)))
   const embeddedRef = useRef()
 
-  useEffect(() => {
-    const { id } = match.params
+  if (fetchedSnippet.state !== 'hasValue') return <Spinner />
 
-    fetchSnippet(Number(id))
-  }, [])
-
-  if (!snippet) return <Spinner />
+  const snippet = fetchedSnippet.contents
 
   const copyToClipboard = () => {
     embeddedRef.current.select()
@@ -44,9 +38,7 @@ const Snippet = ({ snippet, fetchSnippet, match }) => {
     setIsShowEmbed(!isShowEmbed)
   }
 
-  const title = getSnippetTitle(snippet)
-  const syntax = getCurrentModeCaption(snippet.get('syntax'))
-  const rawUrl = getRawUrl(snippet.get('id'))
+  const { syntax, title, rawUrl, createdAt } = getSnippetMetadata(snippet)
 
   const renderEmbed = () => (
     <div className={`snippet-embed ${isShowEmbed}`}>
@@ -60,22 +52,20 @@ const Snippet = ({ snippet, fetchSnippet, match }) => {
           ref={embeddedRef}
           className="input"
           type="text"
-          defaultValue={`<script src='http://xsnippet.org/${snippet.get('id')}/embed/'></script>`}
+          defaultValue={`<script src='http://xsnippet.org/${snippet.id}/embed/'></script>`}
         />
         <button className="snippet-button embed" onClick={copyToClipboard}>Copy</button>
       </div>
     </div>
   )
 
-  const renderMetadata = () => (<span className="snippet-data-meta">{formatDate(snippet.get('created_at'))}, by Guest</span>)
-
   return (
     <div className="snippet">
       <div className="snippet-header">
         <div className="snippet-data">
           <span className="snippet-data-title">{title}</span>
-          <SnippetTags className="snippet" snippet={snippet} />
-          {renderMetadata()}
+          <SnippetTags className="snippet" tags={snippet.tags} id={snippet.id} />
+          <span className="snippet-data-meta">{createdAt}, by Guest</span>
         </div>
         <div className="snippet-data-actions">
           <span className="snippet-data-lang">{syntax}</span>
@@ -98,26 +88,18 @@ const Snippet = ({ snippet, fetchSnippet, match }) => {
       {renderEmbed()}
       <div className="snippet-code">
         <AceEditor
-          mode={snippet.get('syntax')}
+          mode={snippet.syntax}
           width="100%"
           height="100%"
           theme="textmate"
           onLoad={onEditorLoad}
           setOptions={existingSnippetOptions}
           editorProps={{ $blockScrolling: Infinity }}
-          value={`${snippet.get('content')}`}
+          value={`${snippet.content}`}
         />
       </div>
     </div>
   )
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  snippet: state.getIn(['snippets', Number(ownProps.match.params.id)]),
-})
-
-const mapDispatchToProps = dispatch => ({
-  fetchSnippet: id => dispatch(fetchSnippet(Number(id))),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Snippet)
+export default Snippet

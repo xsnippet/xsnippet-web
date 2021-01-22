@@ -1,9 +1,13 @@
 import React from 'react'
 
-const SnippetTags = ({ className, snippet }) => {
+const SnippetTags = ({ className, tags, id }) => {
+  if (!tags.length) {
+    return false
+  }
+
   return (
     <div className={`${className}-meta-tags`}>
-      {snippet.get('tags').map(item => <span className={`${className}-meta-tag`} key={item}>{item}</span>)}
+      {tags.map(item => <span className={`${className}-meta-tag`} key={`${item}-${id}`}>{item}</span>)}
     </div>
   )
 }

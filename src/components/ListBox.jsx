@@ -11,7 +11,7 @@ const ListBox = (props) => {
     // extend behaviour (e.g. some ListBoxWithSearchbar), while the latter -
     // when you want a standalone ListBox component.
     let select = props.selected || selected
-    const def = props.items.get(0)
+    const def = props.items[0]
 
     // If selected item is not a part of new items, aggressively fallback to
     // first item from the list. We're doing it to be protected from cases
@@ -32,7 +32,7 @@ const ListBox = (props) => {
   }
 
   const renderItems = () => {
-    if (!items.size) {
+    if (!items.length) {
       return <li className={`${className}-empty`}>No results found</li>
     }
 
