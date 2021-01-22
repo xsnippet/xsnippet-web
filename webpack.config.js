@@ -124,6 +124,17 @@ module.exports = () => {
 
     devServer: {
       historyApiFallback: true,
+      proxy: {
+        '/_api': {
+          target: 'http://localhost:8000',
+          pathRewrite: { '^/_api': '' },
+          headers: { Host: 'localhost:8000/_api' },
+        },
+        '/_web-backend': {
+          target: 'http://localhost:8001',
+          pathRewrite: { '^/_web-backend': '' },
+        },
+      },
     },
 
     entry: {
