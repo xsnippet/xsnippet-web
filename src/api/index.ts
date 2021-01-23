@@ -3,7 +3,7 @@ import parseLinkHeader from 'parse-link-header'
 import { getApiUri } from '../misc/url'
 import { Snippet } from '../store'
 
-export const fetchSnippet = (id: number): Promise<Snippet> => {
+export const fetchSnippet = (id: string): Promise<Snippet> => {
   return fetch(getApiUri(`snippets/${id}`))
     .then(response => response.json())
 }
@@ -13,7 +13,7 @@ export const fetchSyntaxes = (): Promise<string[]> => {
     .then(response => response.json())
 }
 
-export const fetchRecentSnippets = (marker: number): Promise<{ snippets: Snippet[], pagination: parseLinkHeader.Links | null}> => {
+export const fetchRecentSnippets = (marker: string): Promise<{ snippets: Snippet[], pagination: parseLinkHeader.Links | null}> => {
   let qs = ''
   if (marker) { qs = `&marker=${marker}` }
   let pagination: parseLinkHeader.Links

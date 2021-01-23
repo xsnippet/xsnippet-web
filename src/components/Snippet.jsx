@@ -18,7 +18,7 @@ import '../styles/Snippet.styl'
 
 const Snippet = ({ match }) => {
   const [isShowEmbed, setIsShowEmbed] = useState(false)
-  const fetchedSnippet = useRecoilValueLoadable(snippetById(Number(match.params.id)))
+  const fetchedSnippet = useRecoilValueLoadable(snippetById(match.params.id))
   const embeddedRef = useRef()
 
   if (fetchedSnippet.state !== 'hasValue') return <Spinner />
