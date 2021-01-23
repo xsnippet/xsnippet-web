@@ -23,7 +23,7 @@ export const syntaxesQuery = selector({
   get: async () => {
     const syntaxes = await fetchSyntaxes()
     return normalizedSyntaxes(syntaxes)
-  }
+  },
 })
 
 export const recentSnippetsQuery = selectorFamily({

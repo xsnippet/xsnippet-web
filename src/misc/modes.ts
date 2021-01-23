@@ -14,7 +14,7 @@ type NormalizedSyntax = {
   value: string;
 }
 
-export const getModesByName = () => brace.acequire('ace/ext/modelist')
+export const getModesByName = (): any => brace.acequire('ace/ext/modelist')
 
 export const getCurrentMode = (syntax: string): Mode => {
   const { modesByName } = getModesByName()

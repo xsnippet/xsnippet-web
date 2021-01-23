@@ -1,6 +1,7 @@
 import { getCurrentMode } from './modes'
+import { Snippet } from '../store'
 
-const download = (text, name, mime) => {
+const download = (text: string, name: string, mime: string): void => {
   // It seems it's the only way to initiate file downloading from JavaScript
   // as of Jan 7, 2018. If you read this and know a better way, please submit
   // a pull request! ;)
@@ -16,7 +17,7 @@ const download = (text, name, mime) => {
   document.body.removeChild(element)
 }
 
-export const downloadSnippet = snippet => {
+export const downloadSnippet = (snippet: Snippet): void => {
   // Despite using AceEditor's modes as syntaxes, we can imagine other setup
   // when more or even other syntaxes can be used on API side. Hence, we better
   // be prepared and fallback to "Text" mode if unknown syntaxes it is.
