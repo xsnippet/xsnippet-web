@@ -31,7 +31,7 @@ const About = () => (
           <span className="about-repo">xsnippet-web</span>
           <p className="about-paragraph">
             It provides a web-based user interface (SPA) and flies on top of
-            React/Redux stack;
+            React stack;
           </p>
         </li>
         <li className="about-repo-item">
