@@ -1,21 +1,35 @@
 {
-  "extends": ["standard", "standard-jsx"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "browser": true,
     "jest": true
   },
-  "rules": {
-    "comma-dangle": ["error", "always-multiline"],
-    "space-before-function-paren": ["error", {
-        "anonymous": "always",
-        "asyncArrow": "always",
-        "named": "never"
-    }],
-    "jsx-quotes": ["error", "prefer-double"],
-    "react/jsx-fragments": "off"
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
-  "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "allowImportExportEverywhere": true
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
+    "@typescript-eslint/space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "asyncArrow": "always",
+      "named": "never"
+    }],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }
