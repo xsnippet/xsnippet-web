@@ -6,7 +6,7 @@ XSnippet Web is a single page application (SPA) for the XSnippet API service.
 
 Years ago it was started as educational project, and nothing changed since
 then. That's why the fourth reincarnation is written in JavaScript using
-React, Redux, Webpack and other modern technologies.
+React, Recoil, Webpack and other modern technologies.
 
 The source code is distributed under MIT license. Feel free to contribute by
 any means. Your feedback is welcome as well!
