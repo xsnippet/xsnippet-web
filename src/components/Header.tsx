@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import Logo from '../assets/icons/xsnippet.svg'
 
 import '../styles/Header.styl'
 
-const Header = () => (
+const Header: FC = () => (
   <header className="header">
     <div className="header-logo">
       <NavLink exact to="/">
