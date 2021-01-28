@@ -6,7 +6,7 @@ describe('misc', () => {
     const snippet = {
       content: 'const memoizedSyntaxes = useMemo()',
       created_at: '2019-09-29T19:23:31',
-      id: 364066,
+      id: '364066',
       syntax: 'javascript',
       tags: ['trg', 'rtyger'],
       title: 'some misterious title',
@@ -26,7 +26,7 @@ describe('misc', () => {
     })
 
     it('should return propper title', () => {
-      const untitled = { ...snippet, title: undefined }
+      const untitled = { ...snippet, title: '' }
       const expected = `#${untitled.id}, Untitled`
 
       expect(getSnippetTitle(untitled)).toEqual(expected)

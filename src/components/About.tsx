@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, FC } from 'react'
 
 import Title from './common/Title'
 
@@ -9,7 +9,7 @@ import KaterynaImage from '../assets/photos/kateryna.jpg'
 
 import '../styles/AboutUs.styl'
 
-const About = () => (
+const About: FC = () => (
   <Fragment>
     <div className="about">
       <Title title="About" />
