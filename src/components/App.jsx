@@ -49,7 +49,7 @@ const App = () => {
           <main className="main">
             <Route exact path="/" component={NewSnippet} />
             <Route exact path="/recent" component={RecentSnippets} />
-            <Route exact path="/:id(\d+)" component={Snippet} />
+            <Route exact path="/:id([a-zA-Z0-9]+)" component={Snippet} />
             <Route exact path="/about" component={About} />
             <Route exact path="/sign-in" component={SignIn} />
           </main>
