@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Header from './Header'
 import Sidebar from './Sidebar'
@@ -47,11 +47,15 @@ const App = () => {
         <div className="content">
           <Sidebar />
           <main className="main">
-            <Route exact path="/" component={NewSnippet} />
-            <Route exact path="/recent" component={RecentSnippets} />
-            <Route exact path="/:id([a-zA-Z0-9]+)" component={Snippet} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/sign-in" component={SignIn} />
+            <Switch>
+              <Route exact path="/" component={NewSnippet} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/recent" component={RecentSnippets} />
+              <Route exact path="/sign-in" component={SignIn} />
+              // Switch renders the first matched route, so we need to keep this
+              // one last as the regexp below matches the paths of other pages
+              <Route exact path="/:id([a-zA-Z0-9]+)" component={Snippet} />
+            </Switch>
           </main>
         </div>
       </Fragment>
