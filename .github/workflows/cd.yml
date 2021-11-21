@@ -1,0 +1,59 @@
+name: CD
+
+on:
+  push:
+    branches: [ "master" ]
+    tags: [ "*" ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+
+      - name: Setup dependencies
+        run: npm install
+
+      - name: Build xsnippet-web
+        run: npm run build
+
+      - name: Create xsnippet-web.tar.gz
+        run: tar cvzf xsnippet-web.tar.gz -C dist/ .
+
+      - name: Setup release metadata
+        run: |
+          PRERELEASE=true
+          VERSION=nightly
+
+          if [[ $GITHUB_REF =~ ^refs/tags/ ]]; then
+            if [[ $GITHUB_REF =~ ^refs/tags/v[0-9]+\.[0-9]+(\.[0-9]+)*$ ]]; then
+              PRERELEASE=false
+            fi
+            VERSION="${GITHUB_REF#refs/tags/}"
+          fi
+
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=prerelease::${PRERELEASE}
+        id: metadata
+
+      # Since 'softprops/action-gh-release@v1' does not support release
+      # re-creation, we have to remove 'nightly' release first.
+      - name: Remove nightly release
+        run: |
+          gh release delete nightly --yes || true
+          git push origin :nightly || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.metadata.outputs.version == 'nightly'
+
+      - name: Create github release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.metadata.outputs.version }}
+          prerelease: ${{ steps.metadata.outputs.prerelease}}
+          target_commitish: ${{ github.sha }}
+          files: ./xsnippet-web.tar.gz
+          generate_release_notes: true
+          fail_on_unmatched_files: true
