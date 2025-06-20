@@ -3,7 +3,7 @@ const process = require('process')
 
 const webpack = require('webpack')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -168,29 +168,24 @@ module.exports = () => {
               loader: 'css-loader',
               options: {
                 modules: false,
-                minimize: true,
-
                 // Enable source maps if they are specified in devtool
                 // option. God-Knows-Why css-loader doesn't check devtool
                 // value in order to initialize its sourceMap value, hence
                 // this line.
                 sourceMap: true,
+                url: true,
+                import: true,
               },
             },
             { loader: 'stylus-loader' },
           ],
         },
 
-        // Just copy these files to output "As Is", if they are imported from
-        // JSX sources or encountered inside CSS.
+        // Handle asset files in Webpack 5
         {
-          test: /\.(png|svg|jpg|woff|svg|ttf|woff2|eot)$/,
+          test: /\.(png|svg|jpg|woff|ttf|woff2|eot)$/,
           include: path.resolve(__dirname, 'src'),
-          use: ['file-loader'],
-        },
-        {
-          test: /\.(jpg|png|gif|svg)$/,
-          loader: 'image-webpack-loader',
+          type: 'asset/resource',
         },
       ],
     },
@@ -221,7 +216,10 @@ module.exports = () => {
       // can show errors for some syntaxes (e.g. JavaScript or XML). It's
       // pretty heavy (~1Mb) and we have no plans to use it, so we just
       // aggressively strip this code out of build.
-      new webpack.IgnorePlugin(/worker/, /brace/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /worker/,
+        contextRegExp: /brace/
+      }),
 
       // Webpack, when meets dynamic imports with variables, heuristically
       // figures out what needs to be bundle and bundles everything it can
@@ -230,16 +228,16 @@ module.exports = () => {
       // everything else out.
       //
       // https://webpack.js.org/api/module-methods/#import-<Paste>
-      new webpack.IgnorePlugin(
-        new RegExp(`/(?!(?:${syntaxes.join('|')}).js$).*js$`),
-        /brace[\\/]mode/,
-      ),
+      new webpack.IgnorePlugin({
+        resourceRegExp: new RegExp(`/(?!(?:${syntaxes.join('|')}).js$).*js$`),
+        contextRegExp: /brace[\\/]mode/
+      }),
 
       // Each time we change something, a new version of bundled assets is
       // produced. Since we use hash in filenames in order to invalidate cache
       // on change, we end up having multiple outdated copies in output
       // directory. Let's cleanup it before produce a fresh build.
-      new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
+      new CleanWebpackPlugin(),
 
       // Propagate (and set) environment variables down to the application. We
       // use them to configure application behaviour. Please note, 'null' here
@@ -265,13 +263,16 @@ module.exports = () => {
       }),
     ],
 
-    // Enable importing .js & .jsx & .ts & .tsx files without specifying their extensions.
+
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    },
-
-    node: {
-      net: 'empty',
+      fallback: {
+        "fs": false,
+        "path": false,
+        "os": false,
+        "querystring": require.resolve("querystring-es3"),
+        "url": require.resolve("url/")
+      }
     },
   }
 
