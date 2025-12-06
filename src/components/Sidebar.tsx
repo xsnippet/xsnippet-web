@@ -7,17 +7,17 @@ const Sidebar: FC = () => (
   <nav className="sidebar">
     <ul className="sidebar-list">
       <li className="sidebar-item">
-        <NavLink exact to="/" activeClassName="active" title="New Snippet">
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')} title="New Snippet">
           <i className="icon-new" />
         </NavLink>
       </li>
       <li className="sidebar-item sidebar-item-border">
-        <NavLink to="/recent" activeClassName="active" title="Recent Snippets">
+        <NavLink to="/recent" className={({ isActive }) => (isActive ? 'active' : '')} title="Recent Snippets">
           <i className="icon-recent" />
         </NavLink>
       </li>
       <li className="sidebar-item">
-        <NavLink to="/about" activeClassName="active" title="About">
+        <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')} title="About">
           <i className="icon-about" />
         </NavLink>
       </li>

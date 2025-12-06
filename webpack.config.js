@@ -3,7 +3,7 @@ const process = require('process')
 
 const webpack = require('webpack')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -124,17 +124,19 @@ module.exports = () => {
 
     devServer: {
       historyApiFallback: true,
-      proxy: {
-        '/_api': {
+      proxy: [
+        {
+          context: ['/_api'],
           target: 'http://localhost:8000',
           pathRewrite: { '^/_api': '' },
           headers: { Host: 'localhost:8000/_api' },
         },
-        '/_web-backend': {
+        {
+          context: ['/_web-backend'],
           target: 'http://localhost:8001',
           pathRewrite: { '^/_web-backend': '' },
         },
-      },
+      ],
     },
 
     entry: {
@@ -219,9 +221,11 @@ module.exports = () => {
     plugins: [
       // Worker is a sort of background linter integrated in AceEditor that
       // can show errors for some syntaxes (e.g. JavaScript or XML). It's
-      // pretty heavy (~1Mb) and we have no plans to use it, so we just
-      // aggressively strip this code out of build.
-      new webpack.IgnorePlugin(/worker/, /brace/),
+      // pretty heavy (~1Mb) and we have no plans to use it,.
+      new webpack.IgnorePlugin({
+        resourceRegExp: /worker/,
+        contextRegExp: /brace/,
+      }),
 
       // Webpack, when meets dynamic imports with variables, heuristically
       // figures out what needs to be bundle and bundles everything it can
@@ -230,16 +234,16 @@ module.exports = () => {
       // everything else out.
       //
       // https://webpack.js.org/api/module-methods/#import-<Paste>
-      new webpack.IgnorePlugin(
-        new RegExp(`/(?!(?:${syntaxes.join('|')}).js$).*js$`),
-        /brace[\\/]mode/,
-      ),
+      new webpack.IgnorePlugin({
+        resourceRegExp: new RegExp(`/(?!(?:${syntaxes.join('|')}).js$).*js$`),
+        contextRegExp: /brace[\\/]mode/,
+      }),
 
       // Each time we change something, a new version of bundled assets is
       // produced. Since we use hash in filenames in order to invalidate cache
       // on change, we end up having multiple outdated copies in output
       // directory. Let's cleanup it before produce a fresh build.
-      new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
+      new CleanWebpackPlugin(),
 
       // Propagate (and set) environment variables down to the application. We
       // use them to configure application behaviour. Please note, 'null' here
@@ -267,11 +271,7 @@ module.exports = () => {
 
     // Enable importing .js & .jsx & .ts & .tsx files without specifying their extensions.
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    },
-
-    node: {
-      net: 'empty',
+      extensions: ['.js', '.jsx', ' .ts', '.tsx'],
     },
   }
 

@@ -1,0 +1,1389 @@
+
+> xsnippet-web@1.0.0 devenv-start
+> API_BASE_URI="http://localhost:8080/_api" RAW_SNIPPET_URI_FORMAT="http://localhost:8080/_web-backend/snippets/%s/raw" npm start
+
+
+> xsnippet-web@1.0.0 start
+> webpack-dev-server --mode development --open
+
+assets by info 5.86 MiB [immutable]
+  assets by chunk 178 KiB (auxiliary name: app)
+    assets by path *.jpg 177 KiB
+      asset 3d926124f5d4949f5fc916df24e96a94.jpg 131 KiB [emitted] [immutable] [from: src/assets/photos/kateryna.jpg] (auxiliary name: app)
+      asset 3eab1c64b0cceb2d5727a58a4af59a3d.jpg 21.3 KiB [emitted] [immutable] [from: src/assets/photos/olha.jpg] (auxiliary name: app)
+      + 2 assets
+    assets by path *.svg 1.23 KiB
+      asset 10ed87c473cb8a5b35b139d3ace44e1c.svg 947 bytes [emitted] [immutable] [from: src/assets/icons/ripple.svg] (auxiliary name: app)
+      asset a19df708e586cfdfd49dba16ea4a6c46.svg 312 bytes [emitted] [immutable] [from: src/assets/icons/xsnippet.svg] (auxiliary name: app)
+  assets by path *.js 5.68 MiB
+    asset syntaxes.c4c8377816773e4db00f.js 3.02 MiB [emitted] [immutable] (name: syntaxes) (id hint: syntaxes) 1 related asset
+    asset vendors-node_modules_brace_theme_textmate_js-node_modules_react-ace_lib_index_js-node_modules-238dbd.c51c7f8ecebf46c9fc33.js 2.45 MiB [emitted] [immutable] (id hint: vendors) 1 related asset
+    asset app.ef42d57cada7d476ec02.js 219 KiB [emitted] [immutable] (name: app) 1 related asset
+asset favicon.ico 14.7 KiB [emitted]
+asset index.html 1000 bytes [emitted]
+Entrypoint app 2.66 MiB (3.03 MiB) = vendors-node_modules_brace_theme_textmate_js-node_modules_react-ace_lib_index_js-node_modules-238dbd.c51c7f8ecebf46c9fc33.js 2.45 MiB app.ef42d57cada7d476ec02.js 219 KiB 8 auxiliary assets
+runtime modules 162 KiB 60 modules
+orphan modules 2.86 KiB [orphan] 24 modules
+modules by path ./node_modules/ 5.26 MiB 262 modules
+modules by path ./src/ 32.7 KiB
+  modules by path ./src/components/ 27.6 KiB 14 modules
+  modules with errors 390 bytes [true errors]
+    modules by path ./src/styles/*.styl 273 bytes 7 modules
+    modules by path ./src/styles/common/*.styl 117 bytes 3 modules
+  modules by path ./src/assets/ 480 bytes
+    modules by path ./src/assets/photos/*.jpg 320 bytes 4 modules
+    modules by path ./src/assets/icons/*.svg 160 bytes 2 modules
+  ./src/index.tsx 280 bytes [built] [code generated]
+  ./src/hoc/withSearch.jsx 1.87 KiB [built] [code generated]
+  ./src/hooks/useForm.js 2.14 KiB [built] [code generated]
+
+WARNING in ./src/components/App.jsx 57:38-44
+export 'Switch' (imported as 'Switch') was not found in 'react-router-dom' (possible exports: Await, BrowserRouter, Form, HashRouter, HydratedRouter, IDLE_BLOCKER, IDLE_FETCHER, IDLE_NAVIGATION, Link, Links, MemoryRouter, Meta, NavLink, Navigate, NavigationType, Outlet, PrefetchPageLinks, Route, Router, RouterContextProvider, RouterProvider, Routes, Scripts, ScrollRestoration, ServerRouter, StaticRouter, StaticRouterProvider, UNSAFE_AwaitContextProvider, UNSAFE_DataRouterContext, UNSAFE_DataRouterStateContext, UNSAFE_ErrorResponseImpl, UNSAFE_FetchersContext, UNSAFE_FrameworkContext, UNSAFE_LocationContext, UNSAFE_NavigationContext, UNSAFE_RSCDefaultRootErrorBoundary, UNSAFE_RemixErrorBoundary, UNSAFE_RouteContext, UNSAFE_ServerMode, UNSAFE_SingleFetchRedirectSymbol, UNSAFE_ViewTransitionContext, UNSAFE_WithComponentProps, UNSAFE_WithErrorBoundaryProps, UNSAFE_WithHydrateFallbackProps, UNSAFE_createBrowserHistory, UNSAFE_createClientRoutes, UNSAFE_createClientRoutesWithHMRRevalidationOptOut, UNSAFE_createRouter, UNSAFE_decodeViaTurboStream, UNSAFE_deserializeErrors, UNSAFE_getHydrationData, UNSAFE_getPatchRoutesOnNavigationFunction, UNSAFE_getTurboStreamSingleFetchDataStrategy, UNSAFE_hydrationRouteProperties, UNSAFE_invariant, UNSAFE_mapRouteProperties, UNSAFE_shouldHydrateRouteLoader, UNSAFE_useFogOFWarDiscovery, UNSAFE_useScrollRestoration, UNSAFE_withComponentProps, UNSAFE_withErrorBoundaryProps, UNSAFE_withHydrateFallbackProps, createBrowserRouter, createContext, createCookie, createCookieSessionStorage, createHashRouter, createMemoryRouter, createMemorySessionStorage, createPath, createRequestHandler, createRoutesFromChildren, createRoutesFromElements, createRoutesStub, createSearchParams, createSession, createSessionStorage, createStaticHandler, createStaticRouter, data, generatePath, href, isCookie, isRouteErrorResponse, isSession, matchPath, matchRoutes, parsePath, redirect, redirectDocument, renderMatches, replace, resolvePath, unstable_HistoryRouter, unstable_RSCStaticRouter, unstable_routeRSCServerRequest, unstable_setDevServerHooks, unstable_usePrompt, unstable_useRoute, useActionData, useAsyncError, useAsyncValue, useBeforeUnload, useBlocker, useFetcher, useFetchers, useFormAction, useHref, useInRouterContext, useLinkClickHandler, useLoaderData, useLocation, useMatch, useMatches, useNavigate, useNavigation, useNavigationType, useOutlet, useOutletContext, useParams, useResolvedPath, useRevalidator, useRouteError, useRouteLoaderData, useRoutes, useSearchParams, useSubmit, useViewTransitionState)
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/App.jsx 15:0-27
+Module not found: Error: Can't resolve '../conf' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 9:0-46
+Module not found: Error: Can't resolve '../misc/editor' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 10:0-51
+Module not found: Error: Can't resolve '../misc/modes' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 11:0-63
+Module not found: Error: Can't resolve '../entries/snippetValidation' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 12:0-56
+Module not found: Error: Can't resolve '../entries/keyboardKeys' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 13:0-61
+Module not found: Error: Can't resolve '../entries/aceEditorOptions' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 16:0-41
+Module not found: Error: Can't resolve '../store' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/NewSnippet.jsx 17:0-37
+Module not found: Error: Can't resolve '../api' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/RecentSnippetItem.jsx 4:0-51
+Module not found: Error: Can't resolve '../misc/download' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/RecentSnippets.jsx 6:0-52 31:44-61
+ @ ./src/components/App.jsx 10:0-46 68:15-29
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/RecentSnippetItem.jsx 5:0-53
+Module not found: Error: Can't resolve '../misc/snippet' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/RecentSnippets.jsx 6:0-52 31:44-61
+ @ ./src/components/App.jsx 10:0-46 68:15-29
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/RecentSnippets.jsx 4:0-68
+Module not found: Error: Can't resolve '../store' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 10:0-46 68:15-29
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/RecentSnippets.jsx 7:0-44
+Module not found: Error: Can't resolve '../misc/snippet' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 10:0-46 68:15-29
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/Snippet.jsx 8:0-51
+Module not found: Error: Can't resolve '../misc/download' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/Snippet.jsx 9:0-46
+Module not found: Error: Can't resolve '../misc/editor' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/Snippet.jsx 10:0-53
+Module not found: Error: Can't resolve '../misc/snippet' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/Snippet.jsx 11:0-39
+Module not found: Error: Can't resolve '../store' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/components/Snippet.jsx 12:0-69
+Module not found: Error: Can't resolve '../entries/aceEditorOptions' in '/app/src/components'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/hoc/withSearch.jsx 4:0-46
+Module not found: Error: Can't resolve '../misc/reqExp' in '/app/src/hoc'
+Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".js",".jsx",". .ts",".tsx"]' instead of '[".js",".jsx"," .ts",".tsx"]'?
+ @ ./src/components/NewSnippet.jsx 14:0-43 19:24-34
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/AboutUs.styl (./src/styles/AboutUs.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/AboutUs.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/AboutUs.styl
+ @ ./src/components/About.tsx 7:0-32
+ @ ./src/components/App.jsx 12:0-28 64:15-20
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/App.styl (./src/styles/App.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/App.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/App.styl
+ @ ./src/components/App.jsx 16:0-28
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/Header.styl (./src/styles/Header.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/Header.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/Header.styl
+ @ ./src/components/Header.tsx 4:0-31
+ @ ./src/components/App.jsx 7:0-30 53:138-144
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/NewSnippet.styl (./src/styles/NewSnippet.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/NewSnippet.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/NewSnippet.styl
+ @ ./src/components/NewSnippet.jsx 18:0-35
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/RecentSnippets.styl (./src/styles/RecentSnippets.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/RecentSnippets.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/RecentSnippets.styl
+ @ ./src/components/RecentSnippets.jsx 8:0-39
+ @ ./src/components/App.jsx 10:0-46 68:15-29
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/Sidebar.styl (./src/styles/Sidebar.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/Sidebar.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/Sidebar.styl
+ @ ./src/components/Sidebar.tsx 3:0-32
+ @ ./src/components/App.jsx 8:0-32 55:38-45
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/Snippet.styl (./src/styles/Snippet.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/Snippet.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/Snippet.styl
+ @ ./src/components/Snippet.jsx 13:0-32
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/common/Notification.styl (./src/styles/common/Notification.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/common/Notification.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/common/Notification.styl
+ @ ./src/components/common/Notification.jsx 2:0-47
+ @ ./src/components/NewSnippet.jsx 7:0-49 85:53-65
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/common/Spinner.styl (./src/styles/common/Spinner.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/common/Spinner.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/common/Spinner.styl
+ @ ./src/components/common/Spinner.tsx 3:0-42
+ @ ./src/components/App.jsx 14:0-39 51:44-51
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/common/Title.styl (./src/styles/common/Title.styl.webpack[javascript/auto]!=!./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/stylus-loader/dist/cjs.js!./src/styles/common/Title.styl)
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+ @ ./src/styles/common/Title.styl
+ @ ./src/components/common/Title.tsx 2:0-40
+ @ ./src/components/About.tsx 2:0-35 11:38-43 42:38-43
+ @ ./src/components/App.jsx 12:0-28 64:15-20
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/AboutUs.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/AboutUs.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/AboutUs.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/About.tsx 7:0-32
+ @ ./src/components/App.jsx 12:0-28 64:15-20
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/App.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/App.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/App.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/App.jsx 16:0-28
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/Header.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/Header.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/Header.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/Header.tsx 4:0-31
+ @ ./src/components/App.jsx 7:0-30 53:138-144
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/NewSnippet.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/NewSnippet.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/NewSnippet.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/NewSnippet.jsx 18:0-35
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/RecentSnippets.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/RecentSnippets.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/RecentSnippets.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/RecentSnippets.jsx 8:0-39
+ @ ./src/components/App.jsx 10:0-46 68:15-29
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/Sidebar.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/Sidebar.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/Sidebar.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/Sidebar.tsx 3:0-32
+ @ ./src/components/App.jsx 8:0-32 55:38-45
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/Snippet.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/Snippet.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/Snippet.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/Snippet.jsx 13:0-32
+ @ ./src/components/App.jsx 11:0-32 76:15-22
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/common/Notification.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/common/Notification.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/common/Notification.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/common/Notification.jsx 2:0-47
+ @ ./src/components/NewSnippet.jsx 7:0-49 85:53-65
+ @ ./src/components/App.jsx 9:0-38 60:15-25
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/common/Spinner.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/common/Spinner.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/common/Spinner.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/common/Spinner.tsx 3:0-42
+ @ ./src/components/App.jsx 14:0-39 51:44-51
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+ERROR in ./src/styles/common/Title.styl
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:85:9)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+-- inner error --
+Error: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }
+    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)
+    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)
+    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)
+    at Object.<anonymous> (/app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/common/Title.styl:1:7)
+    at /app/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:548:10
+    at Hook.eval [as call] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5566:39
+    at tryRunOrWebpackError (/app/node_modules/webpack/lib/HookWebpackError.js:80:7)
+    at __webpack_require_module__ (/app/node_modules/webpack/lib/Compilation.js:5564:12)
+    at __webpack_require__ (/app/node_modules/webpack/lib/Compilation.js:5511:18)
+    at /app/node_modules/webpack/lib/Compilation.js:5599:20
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at /app/node_modules/webpack/lib/Compilation.js:5486:43
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5449:16
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5417:15
+    at symbolIterator (/app/node_modules/neo-async/async.js:3485:9)
+    at done (/app/node_modules/neo-async/async.js:3527:9)
+    at /app/node_modules/webpack/lib/Compilation.js:5363:8
+    at /app/node_modules/webpack/lib/Compilation.js:3767:6
+    at /app/node_modules/webpack/lib/HookWebpackError.js:66:2
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)
+    at Cache.store (/app/node_modules/webpack/lib/Cache.js:114:20)
+    at ItemCacheFacade.store (/app/node_modules/webpack/lib/CacheFacade.js:141:15)
+    at /app/node_modules/webpack/lib/Compilation.js:3766:11
+    at /app/node_modules/webpack/lib/Cache.js:98:34
+    at Array.<anonymous> (/app/node_modules/webpack/lib/cache/MemoryCachePlugin.js:44:13)
+    at /app/node_modules/webpack/lib/Cache.js:98:19
+    at Hook.eval [as callAsync] (eval at create (/app/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:19:1)
+    at Cache.get (/app/node_modules/webpack/lib/Cache.js:82:18)
+    at ItemCacheFacade.get (/app/node_modules/webpack/lib/CacheFacade.js:115:15)
+    at Compilation._codeGenerationModule (/app/node_modules/webpack/lib/Compilation.js:3734:9)
+    at codeGen (/app/node_modules/webpack/lib/Compilation.js:5351:11)
+    at symbolIterator (/app/node_modules/neo-async/async.js:3482:9)
+    at timesSync (/app/node_modules/neo-async/async.js:2297:7)
+    at Object.eachLimit (/app/node_modules/neo-async/async.js:3463:5)
+    at /app/node_modules/webpack/lib/Compilation.js:5381:14
+    at processQueue (/app/node_modules/webpack/lib/util/processAsyncTree.js:61:4)
+    at processTicksAndRejections (node:internal/process/task_queues:85:11)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:453:9)
+
+Generated code for /app/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!/app/node_modules/stylus-loader/dist/cjs.js!/app/src/styles/common/Title.styl
+1 | throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'minimize'. These properties are valid:\n   object { url?, import?, modules?, sourceMap?, importLoaders?, esModule?, exportType? }\n    at validate (/app/node_modules/webpack/node_modules/schema-utils/dist/validate.js:213:11)\n    at Object.getOptions (/app/node_modules/webpack/lib/NormalModule.js:723:19)\n    at Object.loader (/app/node_modules/css-loader/dist/index.js:20:27)");
+ @ ./src/components/common/Title.tsx 2:0-40
+ @ ./src/components/About.tsx 2:0-35 11:38-43 42:38-43
+ @ ./src/components/App.jsx 12:0-28 64:15-20
+ @ ./src/index.tsx 4:0-35 5:100-103
+
+18 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.103.0 compiled with 38 errors and 1 warning in 5111 ms
