@@ -9,12 +9,18 @@ type Mode = {
   name: string;
 }
 
+type Modelist = {
+  modesByName: {
+    [name: string]: Mode;
+  };
+}
+
 type NormalizedSyntax = {
   name: string;
   value: string;
 }
 
-export const getModesByName = (): any => brace.acequire('ace/ext/modelist')
+export const getModesByName = (): Modelist => brace.acequire('ace/ext/modelist')
 
 export const getCurrentMode = (syntax: string): Mode => {
   const { modesByName } = getModesByName()
