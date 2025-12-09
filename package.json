@@ -19,15 +19,16 @@
     "sharing"
   ],
   "jest": {
-    "setupFiles": [
-      "./tests/testSetup.js"
+    "setupFilesAfterEnv": [
+      "./tests/test-utils.tsx"
     ],
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
     "moduleNameMapper": {
-      "^.+\\.(css|styl|svg|jpg)$": "identity-obj-proxy"
+      "^.+\\.(css|styl|jpg)$": "identity-obj-proxy",
+      "\\.svg$": "<rootDir>/tests/mocks/svg.ts"
     },
-    "testURL": "http://localhost",
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
     }
@@ -54,6 +55,8 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.12.7",
     "@babel/runtime": "^7.12.5",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^12.1.5",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.20",
     "@types/parse-link-header": "^1.0.0",
