@@ -1,9 +1,12 @@
 import React, { useRef } from 'react'
 import AceEditor from 'react-ace'
 import { WithContext as Tags } from 'react-tag-input'
-import { useRecoilValueLoadable } from 'recoil'
+import { useNavigate } from 'react-router-dom'
+import { useAtomValue } from 'jotai'
+import { loadable } from 'jotai/utils'
 
-import 'brace/theme/textmate'
+import 'ace-builds/src-noconflict/theme-textmate'
+import 'ace-builds/src-noconflict/mode-actionscript'
 
 import Notification from './common/Notification'
 import ListBox from './ListBox'
@@ -24,7 +27,8 @@ import '../styles/NewSnippet.styl'
 
 const ListBoxWithSearch = withSearch(ListBox)
 
-const NewSnippet = ({ history }) => {
+const NewSnippet = () => {
+  const navigate = useNavigate()
   const snippetHeader = useRef()
   const {
     values: { title = '', syntax = '', content = '', tags = [] },
@@ -32,7 +36,7 @@ const NewSnippet = ({ history }) => {
     handleChange,
     handleSubmit,
   } = useForm(post, validate)
-  const syntaxes = useRecoilValueLoadable(syntaxesQuery)
+  const syntaxes = useAtomValue(loadable(syntaxesQuery))
 
   function validate() {
     return validateSnippet({ content: content.trim() })
@@ -40,7 +44,7 @@ const NewSnippet = ({ history }) => {
 
   function post() {
     postSnippet({ content, title, tags: tags.map(tag => tag.text), syntax }, json => {
-      history.push(`/${json.id}`)
+      navigate(`/${json.id}`)
     })
   }
 
@@ -109,7 +113,7 @@ const NewSnippet = ({ history }) => {
       <div className="new-snippet-lang-wrapper">
         <ListBoxWithSearch
           className="new-snippet-lang"
-          items={syntaxes.state === 'hasValue' ? syntaxes.contents : []}
+          items={syntaxes.state === 'hasData' ? syntaxes.data : []}
           onClick={(syntax) => handleChange(syntax, handleSyntax)}
         />
       </div>

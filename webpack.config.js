@@ -3,11 +3,11 @@ const process = require('process')
 
 const webpack = require('webpack')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = () => {
+module.exports = (_env, argv = {}) => {
+  const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const syntaxes = process.env.SYNTAXES
     ? process.env.SYNTAXES.split(',').map(item => item.trim())
     : [
@@ -111,30 +111,40 @@ module.exports = () => {
   const assetsPath = process.env.ASSETS_PATH == null
     ? '/'
     : process.env.ASSETS_PATH
+  const isDevelopment = argv.mode === 'development'
+  const apiProxyTarget = process.env.API_PROXY_TARGET || 'https://api.xsnippet.org'
+  const webBackendProxyTarget = process.env.WEB_BACKEND_PROXY_TARGET || 'https://xsnippet.org'
 
   const conf = {
     // Assume we are targeting production environments by default; the value
     // could be overridden via '--mode' CLI argument.
     mode: 'production',
 
-    // Expose source map even for production because XSnippet is an Open Source
-    // project and we have no intentions to hide its internals while being able
-    // to debug production is pretty valuable.
-    devtool: 'source-map',
+    // Use fast source maps for development and full source maps for production.
+    devtool: isDevelopment ? 'eval-cheap-module-source-map' : 'source-map',
+
+    cache: {
+      type: 'filesystem',
+    },
+
+    target: 'web',
 
     devServer: {
       historyApiFallback: true,
-      proxy: {
-        '/_api': {
-          target: 'http://localhost:8000',
+      proxy: [
+        {
+          context: ['/_api'],
+          target: apiProxyTarget,
           pathRewrite: { '^/_api': '' },
-          headers: { Host: 'localhost:8000/_api' },
+          changeOrigin: true,
         },
-        '/_web-backend': {
-          target: 'http://localhost:8001',
+        {
+          context: ['/_web-backend'],
+          target: webBackendProxyTarget,
           pathRewrite: { '^/_web-backend': '' },
+          changeOrigin: true,
         },
-      },
+      ],
     },
 
     entry: {
@@ -143,10 +153,12 @@ module.exports = () => {
 
     // Use [chunkhash] in order to invalidate browsers cache on new deployments.
     output: {
-      filename: '[name].[chunkhash].js',
-      chunkFilename: '[name].[chunkhash].js',
+      filename: '[name].[contenthash].js',
+      chunkFilename: '[name].[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: assetsPath,
+      clean: true,
+      assetModuleFilename: '[hash][ext][query]',
     },
 
     module: {
@@ -168,7 +180,6 @@ module.exports = () => {
               loader: 'css-loader',
               options: {
                 modules: false,
-                minimize: true,
 
                 // Enable source maps if they are specified in devtool
                 // option. God-Knows-Why css-loader doesn't check devtool
@@ -184,13 +195,14 @@ module.exports = () => {
         // Just copy these files to output "As Is", if they are imported from
         // JSX sources or encountered inside CSS.
         {
-          test: /\.(png|svg|jpg|woff|svg|ttf|woff2|eot)$/,
+          test: /\.(woff2?|ttf|eot)$/,
           include: path.resolve(__dirname, 'src'),
-          use: ['file-loader'],
+          type: 'asset/resource',
         },
         {
-          test: /\.(jpg|png|gif|svg)$/,
-          loader: 'image-webpack-loader',
+          test: /\.(png|svg|jpg|gif)$/,
+          include: path.resolve(__dirname, 'src'),
+          type: 'asset/resource',
         },
       ],
     },
@@ -203,12 +215,19 @@ module.exports = () => {
       splitChunks: {
         chunks: 'all',
         cacheGroups: {
+          defaultVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: -10,
+          },
+
           // AceEditor's modes (aka syntaxes) are pretty heavy, and since they
           // are not essential, we better download them asynchronously when
           // the app is loaded. First step to accomplish this goal is to
           // create a separate bundle by defining a new cache group.
           syntaxes: {
-            test: /[\\/]brace[\\/]mode[\\/]/,
+            test: /[\\/]ace-builds[\\/]src-noconflict[\\/]mode-/,
             name: 'syntaxes',
             priority: -5,
           },
@@ -217,36 +236,32 @@ module.exports = () => {
     },
 
     plugins: [
+      // Some browser dependencies still reference `process`.
+      new webpack.ProvidePlugin({
+        process: 'process/browser.js',
+      }),
+
       // Worker is a sort of background linter integrated in AceEditor that
       // can show errors for some syntaxes (e.g. JavaScript or XML). It's
       // pretty heavy (~1Mb) and we have no plans to use it, so we just
       // aggressively strip this code out of build.
-      new webpack.IgnorePlugin(/worker/, /brace/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /worker-/,
+        contextRegExp: /ace-builds[\\/]src-noconflict/,
+      }),
 
-      // Webpack, when meets dynamic imports with variables, heuristically
-      // figures out what needs to be bundle and bundles everything it can
-      // reach to. In our case we have a clear understanding which syntaxes
-      // we want to distribute within the application, so let's strip
-      // everything else out.
-      //
-      // https://webpack.js.org/api/module-methods/#import-<Paste>
-      new webpack.IgnorePlugin(
-        new RegExp(`/(?!(?:${syntaxes.join('|')}).js$).*js$`),
-        /brace[\\/]mode/,
+      // Restrict Ace mode dynamic import context to configured syntaxes only.
+      new webpack.ContextReplacementPlugin(
+        /ace-builds[\\/]src-noconflict$/,
+        new RegExp(`^\\.\\/mode-(${syntaxes.map(escapeRegExp).join('|')})(?:\\.js)?$`),
       ),
-
-      // Each time we change something, a new version of bundled assets is
-      // produced. Since we use hash in filenames in order to invalidate cache
-      // on change, we end up having multiple outdated copies in output
-      // directory. Let's cleanup it before produce a fresh build.
-      new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
 
       // Propagate (and set) environment variables down to the application. We
       // use them to configure application behaviour. Please note, 'null' here
       // means 'unset'.
       new webpack.EnvironmentPlugin({
-        API_BASE_URI: null,
-        RAW_SNIPPET_URI_FORMAT: null,
+        API_BASE_URI: isDevelopment ? '/_api' : null,
+        RAW_SNIPPET_URI_FORMAT: isDevelopment ? '/_web-backend/snippets/%s/raw' : null,
         RUNTIME_CONF_URI: `${assetsPath}conf.json`,
         SYNTAXES: syntaxes,
       }),
@@ -254,7 +269,7 @@ module.exports = () => {
       // Similar to JavaScript, we use [chunkhash] in order to invalidate
       // browsers cache on new deployments.
       new MiniCssExtractPlugin({
-        filename: '[name].[chunkhash].css',
+        filename: '[name].[contenthash].css',
       }),
 
       // Generate index.html based on passed template, populating it with
@@ -268,10 +283,6 @@ module.exports = () => {
     // Enable importing .js & .jsx & .ts & .tsx files without specifying their extensions.
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    },
-
-    node: {
-      net: 'empty',
     },
   }
 

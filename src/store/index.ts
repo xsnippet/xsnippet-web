@@ -1,4 +1,5 @@
-import { atom, selector, selectorFamily } from 'recoil'
+import { atom } from 'jotai'
+import { atomFamily } from 'jotai/utils'
 
 import { fetchSnippet, fetchSyntaxes, fetchRecentSnippets } from '../api'
 import { normalizedSyntaxes } from '../misc/modes'
@@ -13,41 +14,29 @@ export type Snippet = {
   updated_at: string;
 }
 
-export const recentSnippetsState = atom({
-  key: 'recentSnippetsState',
-  default: null,
+export const recentSnippetsState = atom<Record<string, Snippet> | null>(null)
+
+export const syntaxesQuery = atom(async () => {
+  const syntaxes = await fetchSyntaxes()
+  return normalizedSyntaxes(syntaxes)
 })
 
-export const syntaxesQuery = selector({
-  key: 'syntaxesQuery',
-  get: async () => {
-    const syntaxes = await fetchSyntaxes()
-    return normalizedSyntaxes(syntaxes)
-  },
-})
+export const recentSnippetsQuery = atomFamily((marker: string | null) => atom(async () => {
+  const { snippets, pagination } = await fetchRecentSnippets(marker)
 
-export const recentSnippetsQuery = selectorFamily({
-  key: 'recentSnippetsQuery',
-  get: (marker: string) => async () => {
-    const { snippets, pagination } = await fetchRecentSnippets(marker)
+  return {
+    pagination,
+    recentIds: snippets.map((snippet: Snippet) => snippet.id),
+    snippets: Object.assign({}, ...snippets.map((snippet: Snippet) => ({ [snippet.id]: snippet }))),
+  }
+}))
 
-    return {
-      pagination,
-      recentIds: snippets.map((snippet: Snippet) => snippet.id),
-      snippets: Object.assign({}, ...snippets.map((snippet: Snippet) => ({ [snippet.id]: snippet }))),
-    }
-  },
-})
+export const snippetById = atomFamily((id: string) => atom(async (get) => {
+  const snippets = get(recentSnippetsState)
 
-export const snippetById = selectorFamily({
-  key: 'snippetById',
-  get: (id: string) => async ({ get }) => {
-    const snippets = get(recentSnippetsState)
+  if (snippets && snippets[id]) {
+    return snippets[id]
+  }
 
-    if (snippets) {
-      return snippets[id]
-    }
-
-    return await fetchSnippet(id)
-  },
-})
+  return await fetchSnippet(id)
+}))

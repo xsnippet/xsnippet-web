@@ -8,7 +8,7 @@ import '../styles/Header.styl'
 const Header: FC = () => (
   <header className="header">
     <div className="header-logo">
-      <NavLink exact to="/">
+      <NavLink to="/">
         <img src={Logo} alt="XSnippet" />
       </NavLink>
     </div>
