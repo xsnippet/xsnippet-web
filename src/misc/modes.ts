@@ -1,5 +1,5 @@
-import brace from 'brace'
-import 'brace/ext/modelist'
+import ace from 'ace-builds/src-noconflict/ace'
+import 'ace-builds/src-noconflict/ext-modelist'
 
 type Mode = {
   caption: string;
@@ -14,7 +14,7 @@ type NormalizedSyntax = {
   value: string;
 }
 
-export const getModesByName = (): any => brace.acequire('ace/ext/modelist')
+export const getModesByName = (): any => ace.require('ace/ext/modelist')
 
 export const getCurrentMode = (syntax: string): Mode => {
   const { modesByName } = getModesByName()

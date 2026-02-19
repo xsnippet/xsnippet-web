@@ -1,11 +1,11 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react'
 
 import Spinner from '../../../src/components/common/Spinner'
 
 describe('Spinner', () => {
-  it('should have one child', () => {
-    const wrapper = shallow(<Spinner />)
-    expect(wrapper.children()).toHaveLength(1)
+  it('should render loading indicator', () => {
+    render(<Spinner />)
+    expect(screen.getByAltText('Loading...')).toBeInTheDocument()
   })
 })

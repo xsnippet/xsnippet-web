@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { useSetRecoilState, useRecoilValueLoadable } from 'recoil'
+import { useAtomValue, useSetAtom } from 'jotai'
+import { loadable } from 'jotai/utils'
 
 import { recentSnippetsQuery, recentSnippetsState } from '../store'
 import Spinner from './common/Spinner'
@@ -10,14 +11,14 @@ import '../styles/RecentSnippets.styl'
 
 const RecentSnippets = () => {
   const [marker, setMarker] = useState(null)
-  const setSnippets = useSetRecoilState(recentSnippetsState)
-  const values = useRecoilValueLoadable(recentSnippetsQuery(marker))
+  const setSnippets = useSetAtom(recentSnippetsState)
+  const values = useAtomValue(loadable(recentSnippetsQuery(marker)))
 
-  if (values.state !== 'hasValue') {
+  if (values.state !== 'hasData') {
     return <Spinner />
   }
 
-  const { pagination, recentIds, snippets } = values.contents
+  const { pagination, recentIds, snippets } = values.data
 
   setSnippets(snippets)
 

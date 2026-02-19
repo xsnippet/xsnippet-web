@@ -15,7 +15,7 @@ const RecentSnippetItem = ({ snippet }) => {
     <li className="recent-snippet-item">
       <div className="recent-snippet-meta">
         <div>
-          <Link to={`${snippet.id}`} className="recent-snippet-meta-title">{title}</Link>
+          <Link to={`/${snippet.id}`} className="recent-snippet-meta-title">{title}</Link>
           <SnippetTags className="recent-snippet" tags={snippet.tags} id={snippet.id} />
         </div>
         <span className="recent-snippet-meta-info">{createdAt}, by Guest</span>
@@ -25,7 +25,7 @@ const RecentSnippetItem = ({ snippet }) => {
         <div>
           <a href={rawUrl} className="recent-snippet-button light">Raw</a>
           <button className="recent-snippet-button light" onClick={download}>Download</button>
-          <Link to={`${snippet.id}`} className="recent-snippet-button">Show</Link>
+          <Link to={`/${snippet.id}`} className="recent-snippet-button">Show</Link>
         </div>
       </div>
     </li>

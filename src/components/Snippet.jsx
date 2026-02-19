@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react'
-import { useRecoilValueLoadable } from 'recoil'
+import { useParams } from 'react-router-dom'
+import { useAtomValue } from 'jotai'
+import { loadable } from 'jotai/utils'
 import AceEditor from 'react-ace'
 
-import 'brace/theme/textmate'
+import 'ace-builds/src-noconflict/theme-textmate'
 
 import SnippetTags from './common/SnippetTags'
 import Spinner from './common/Spinner'
@@ -16,14 +18,15 @@ import { existingSnippetOptions } from '../entries/aceEditorOptions'
 
 import '../styles/Snippet.styl'
 
-const Snippet = ({ match }) => {
+const Snippet = () => {
+  const { id } = useParams()
   const [isShowEmbed, setIsShowEmbed] = useState(false)
-  const fetchedSnippet = useRecoilValueLoadable(snippetById(match.params.id))
+  const fetchedSnippet = useAtomValue(loadable(snippetById(id)))
   const embeddedRef = useRef()
 
-  if (fetchedSnippet.state !== 'hasValue') return <Spinner />
+  if (fetchedSnippet.state !== 'hasData') return <Spinner />
 
-  const snippet = fetchedSnippet.contents
+  const snippet = fetchedSnippet.data
 
   const copyToClipboard = () => {
     embeddedRef.current.select()

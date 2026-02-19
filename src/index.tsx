@@ -1,11 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { RecoilRoot } from 'recoil'
+import { createRoot } from 'react-dom/client'
 import App from './components/App'
 
-ReactDOM.render(
-  <RecoilRoot>
-    <App />
-  </RecoilRoot>,
-  document.getElementById('root') as HTMLElement,
+const rootElement = document.getElementById('root')
+if (rootElement == null) {
+  throw new Error('Root element was not found')
+}
+
+createRoot(rootElement).render(
+  <App />,
 )
