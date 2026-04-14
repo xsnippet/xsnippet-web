@@ -23,16 +23,20 @@ const App = () => {
         if (response.status === 404) {
           return {}
         }
-        return response.json()
+        return response.json().catch(() => ({}))
       })
       .then(json => Object.assign(conf, json))
       .then(() => setIsLoading(false))
+      .catch(() => setIsLoading(false))
 
     // AceEditor's modes (aka syntaxes) are pretty heavy, and since they are
     // not essential, we better download them asynchronously when the app is
     // loaded and ready to be used.
+    const aceModes = import.meta.glob(
+      '/node_modules/ace-builds/src-noconflict/mode-*.js',
+    )
     for (const syntax of process.env.SYNTAXES) {
-      import(`ace-builds/src-noconflict/mode-${syntax}`)
+      aceModes[`/node_modules/ace-builds/src-noconflict/mode-${syntax}.js`]?.()
     }
   }, [])
 
